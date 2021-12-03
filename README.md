@@ -1,5 +1,5 @@
 # Tubes P3B-2 
-TODO : kalau mau upload, kalau bisa ke branch sendiri" dulu, trs kalian buat pull request, nnti baru sy yg merge ke main branch, biar bisa di cek dulu apa yg mau di merge nya. Thankyou :)  
+TODO : cek slide 
 
 # Deadline
 - Source code : 22 Des 2021
