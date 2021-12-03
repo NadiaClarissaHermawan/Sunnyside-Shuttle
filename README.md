@@ -2,29 +2,30 @@
 TODO : kalau mau upload, kalau bisa ke branch sendiri" dulu, trs kalian buat pull request, nnti baru sy yg merge ke main branch, biar bisa di cek dulu apa yg mau di merge nya. Thankyou :)  
 
 # Deadline
-22 Des 2021
+- Source code : 22 Des 2021
+- Dokum & Video : 3 Jan 2022
 
 # Kelompok F Kelas A 
-Nadia Clarissa H    6181901013
-Yeremy Ferrel H     6181901011
-Syahdan Riyantyo    6181801043
+- Nadia Clarissa H    6181901013
+- Yeremy Ferrel H     6181901011
+- Syahdan Riyantyo    6181801043
 
 # Required Fragment /Page
-Page1 : splash screen 
-Page2 : login
-Page3 : home 
-Page4 : book ticket 
-- jenis mobil : Large/ Small 
-- rute : dari mana ke mana
-- tanggal
-- dll.. -> cek slide :)
-Page5 : pilih tempat duduk (hrs bisa liat mana kursi yg kosong, mana yg udah terisi)
- * di hard code aja gpp mana yg udah terisi mana yg blm
-Page6 : harga + keterangan pesanan
+- [Page1] : splash screen 
+- [Page2] : login
+- [Page3] : home 
+- [Page4] : book ticket 
+<br>- jenis mobil : Large/ Small 
+<br>- rute : dari mana ke mana
+<br>- tanggal
+<br>- dll.. -> cek slide :)
+- [Page5] : pilih tempat duduk (hrs bisa liat mana kursi yg kosong, mana yg udah terisi)
+<br>* di hard code aja gpp mana yg udah terisi mana yg blm
+- [Page6] : harga + keterangan pesanan
 
-.
-.
-.
+# 
+<br><br><br><br><br><br><br>
+
 
 if u need some info (by gitlab): 
 ## Getting started
