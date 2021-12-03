@@ -1,7 +1,32 @@
-# Tubes P3B-2
+# Tubes P3B-2 
+TODO : kalau mau upload, kalau bisa ke branch sendiri" dulu, trs kalian buat pull request, nnti baru sy yg merge ke main branch, biar bisa di cek dulu apa yg mau di merge nya. Thankyou :)  
 
+# Deadline
+22 Des 2021
 
+# Kelompok F Kelas A 
+Nadia Clarissa H    6181901013
+Yeremy Ferrel H     6181901011
+Syahdan Riyantyo    6181801043
 
+# Required Fragment /Page
+Page1 : splash screen 
+Page2 : login
+Page3 : home 
+Page4 : book ticket 
+- jenis mobil : Large/ Small 
+- rute : dari mana ke mana
+- tanggal
+- dll.. -> cek slide :)
+Page5 : pilih tempat duduk (hrs bisa liat mana kursi yg kosong, mana yg udah terisi)
+ * di hard code aja gpp mana yg udah terisi mana yg blm
+Page6 : harga + keterangan pesanan
+
+.
+.
+.
+
+if u need some info (by gitlab): 
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
