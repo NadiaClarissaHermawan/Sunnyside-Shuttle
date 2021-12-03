@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Tubes P3B_2</string>
+    <string name="app_name">Travel Ticket Booking</string>
+
+    <!--Left Fragment-->
+    <string name="left_fragment_nav_title">MENU</string>
+
+    <!--Splash Screen-->
+
 </resources>
