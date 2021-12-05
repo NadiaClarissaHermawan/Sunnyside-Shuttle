@@ -6,4 +6,11 @@
 
     <!--Splash Screen-->
 
+
+    <!--  login fragment  -->
+    <string name="tv_login_title">Login</string>
+    <string name="et_login_username">username</string>
+    <string name="et_login_password">password</string>
+    <string name="btn_login">Login</string>
+
 </resources>
