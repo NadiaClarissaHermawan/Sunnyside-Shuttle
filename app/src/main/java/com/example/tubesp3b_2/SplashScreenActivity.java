@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
     private ActivitySplashScreenBinding binding;
 
     @Override

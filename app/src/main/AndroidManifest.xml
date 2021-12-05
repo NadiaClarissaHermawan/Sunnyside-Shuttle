@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TubesP3B_2" >
         <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <!--Splash screen will be the first screen to show up-->
             <intent-filter>
