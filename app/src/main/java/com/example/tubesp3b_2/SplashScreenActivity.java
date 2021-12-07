@@ -16,6 +16,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //inflating layout
         super.onCreate(savedInstanceState);
         this.binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         View view = this.binding.getRoot();
