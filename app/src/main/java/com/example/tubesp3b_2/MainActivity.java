@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
@@ -22,5 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         //inisialisasi atribut
         this.fragmentManager = this.getSupportFragmentManager();
+
+//        // test debug masuk Main Activity
+//        Log.d("debug","MainActivity");
     }
+    //testing commit and push
 }
