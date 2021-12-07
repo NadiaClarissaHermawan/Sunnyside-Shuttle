@@ -1,7 +1,10 @@
 package com.example.tubesp3b_2;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,9 +23,19 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(view);
 
         //set splash screen's animations
-        this.binding.splashBg.animate().translationY(-1600).setDuration(1000).setStartDelay(3000);
-        this.binding.logo.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
-        this.binding.appName.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
-        this.binding.lottieShuttle.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
+        this.binding.splashBg.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
+        this.binding.logo.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
+        this.binding.appName.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
+        this.binding.lottieShuttle.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
+
+        // intent change SplashScreenActivity to MainActivity
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 5050);
     }
 }
