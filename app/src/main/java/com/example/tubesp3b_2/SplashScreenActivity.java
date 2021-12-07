@@ -13,15 +13,16 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //inflating layout
         super.onCreate(savedInstanceState);
         this.binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         View view = this.binding.getRoot();
         setContentView(view);
 
         //set splash screen's animations
-        this.binding.splashBg.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
-        this.binding.logo.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
-        this.binding.appName.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
-        this.binding.lottieShuttle.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
+        this.binding.splashBg.animate().translationY(-1600).setDuration(1000).setStartDelay(3000);
+        this.binding.logo.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
+        this.binding.appName.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
+        this.binding.lottieShuttle.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
     }
 }
