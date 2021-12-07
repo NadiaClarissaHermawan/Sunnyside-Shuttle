@@ -24,15 +24,5 @@ public class SplashScreenActivity extends AppCompatActivity {
         this.binding.logo.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
         this.binding.appName.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
         this.binding.lottieShuttle.animate().translationY(1400).setDuration(1000).setStartDelay(3000);
-
-        // intent change SplashScreenActivity to MainActivity
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        }, 5050);
     }
 }
