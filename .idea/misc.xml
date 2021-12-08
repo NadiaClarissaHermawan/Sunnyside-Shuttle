@@ -3,26 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/drawable/buttonn_bg.xml" value="0.403125" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/activity_main.xml" value="0.18819655521783182" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/activity_splash_screen.xml" value="0.18819655521783182" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/landing_page.xml" value="0.38697916666666665" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/landing_page_fragment.xml" value="0.38697916666666665" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/left_fragment.xml" value="0.2477355072463768" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/left_fragment_menu_list_item.xml" value="0.18819655521783182" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/login_fragment.xml" value="0.22" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/on_boarding_1_fragment.xml" value="0.18414387031408308" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/pembayaran_fragment.xml" value="0.33" />
-        <entry key="..\:/AndroidStudioProject/Tubes2/app/src/main/res/layout/pesan_fragment.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/activity_main.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/left_fragment.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/left_fragment_menu_list_item.xml" value="0.25" />
-        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/login_fragment.xml" value="0.22447916666666667" />
-        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/on_boarding_1_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/on_boarding_2_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/login_fragment.xml" value="0.18" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/on_boarding_1_fragment.xml" value="0.22" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/on_boarding_2_fragment.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/splash_fragment.xml" value="0.22447916666666667" />
       </map>
     </option>

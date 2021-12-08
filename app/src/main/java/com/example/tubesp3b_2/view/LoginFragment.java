@@ -21,11 +21,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         this.binding = LoginFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
-        this.binding.tvLoginTitle.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-        this.binding.etLoginUsername.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        this.binding.etLoginPassword.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        this.binding.btnLogin.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
-
         this.binding.btnLogin.setOnClickListener(this);
 
         return view;
