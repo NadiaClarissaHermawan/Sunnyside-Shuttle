@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="30sp"
+    android:paddingTop="30sp"
+    android:orientation="vertical">
+
+    <!--  Layout Dari  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--  TextView Dari  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_dari_pembayaran"
+            android:text="@string/tv_dari_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Info Dari  -->
+        <TextView
+            android:id="@+id/tv_info_dari_pembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Ke  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--  TextView Ke  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_ke_pembayaran"
+            android:text="@string/tv_ke_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_dari_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Info Ke  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info_ke_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_ke_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Tanggal  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--  TextView Tanggal  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_tanggal_pembayaran"
+            android:text="@string/tv_tanggal_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_ke_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Tanggal Berangkat -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info_tanggal_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_tanggal_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Seat  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--  TextView Seat  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_seat_pembayaran"
+            android:text="@string/tv_seat"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_info_tanggal_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Info Seat  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info_seat_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_seat_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Harga  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--  TextView Harga  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_harga_pembayaran"
+            android:text="@string/tv_harga"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_seat_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Info Harga  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info_harga_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_harga_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Diskon  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--  TextView Diskon  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_diskon_pembayaran"
+            android:text="@string/tv_diskon"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_harga_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Info Diskon  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info_diskon_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_dari_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Total  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--  TextView Total  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_total_pembayaran"
+            android:text="@string/tv_total"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_below="@id/tv_diskon_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+        <!--  TextView Info Total  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info_total_pembayaran"
+            android:textColor="@color/orange"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_dari_pembayaran"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    </LinearLayout>
+
+    <!--  Layout Button Pesan  -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--  Button Pesan  -->
+        <Button
+            android:id="@+id/btn_pesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_pesan"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:background="@drawable/buttonn_bg"
+            android:layout_marginBottom="@dimen/margin_pesan_fragment"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

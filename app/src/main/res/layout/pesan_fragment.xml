@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="30sp"
+    android:paddingTop="30sp">
+
+    <!--  TextView Dari  -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dari"
+        android:text="@string/tv_dari"
+        android:textColor="@color/orange"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  Spinner Dari
+    ref = https://developer.android.com/guide/topics/ui/controls/spinner-->
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_dari"
+        android:layout_below="@id/tv_dari"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  TextView Ke  -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_ke"
+        android:text="@string/tv_ke"
+        android:textColor="@color/orange"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_below="@id/spinner_dari"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  Spinner Ke
+    ref = https://developer.android.com/guide/topics/ui/controls/spinner-->
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_ke"
+        android:layout_below="@id/tv_ke"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  TextView Tanggal  -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_tanggal"
+        android:text="@string/tv_tanggal"
+        android:textColor="@color/orange"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_below="@id/spinner_ke"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  EditText Pilih Tanggal
+     ref: datePicker = https://abhiandroid.com/ui/datepicker-->
+    <EditText
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_tanggal"
+        android:background="@color/medium_light_blue"
+        android:hint="@string/et_tanggal"
+        android:padding="5sp"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  TextView Jam Berangkat  -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_jam_berangkat"
+        android:text="@string/tv_jam_berangkat"
+        android:textColor="@color/orange"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_below="@id/date_picker"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  EditText Pilih Jam
+    ref: timePicker = https://www.tutlane.com/tutorial/android/android-timepicker-with-examples-->
+    <EditText
+        android:id="@+id/time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_jam_berangkat"
+        android:hint="@string/et_jam_berangkat"
+        android:background="@color/medium_light_blue"
+        android:padding="5sp"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+
+    <!--  Button Cari  -->
+    <Button
+        android:id="@+id/btn_cari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cari"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
+        android:background="@drawable/buttonn_bg"
+        android:layout_below="@id/time_picker"
+        android:layout_marginBottom="@dimen/margin_pesan_fragment"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
