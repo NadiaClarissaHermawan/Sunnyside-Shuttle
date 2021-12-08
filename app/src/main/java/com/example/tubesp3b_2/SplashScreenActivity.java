@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -87,16 +90,19 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     //method untuk langsung pindah ke login page
     public void changeBoardingPage(int page) {
         this.viewPager.setCurrentItem(page);
+    }
 
-//        //intent change : SplashScreenActivity to MainActivity
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        }, 5050);
+    //method untuk ganti ke intent / activity main
+    public void changeIntent(){
+        //intent change : SplashScreenActivity to MainActivity
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 10);
     }
 
     //inner class change on-boarding fragments
@@ -124,7 +130,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                     OnBoarding2Fragment tab2 = OnBoarding2Fragment.newInstance(this.activity);
                     return tab2;
                 case 2:
-                    LoginFragment tab3 = new LoginFragment();
+                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), this.activity);
                     return tab3;
             }
             return null;

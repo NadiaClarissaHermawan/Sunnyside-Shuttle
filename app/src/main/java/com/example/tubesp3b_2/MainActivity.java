@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         //inisiasi fragments
         this.loginFragment = new LoginFragment();
 
-        //set halaman pertama fragment = login fragment
+        //set halaman pertama fragment = home page
         this.ft = this.fragmentManager.beginTransaction();
         this.ft.add(R.id.fragment_container, this.loginFragment).addToBackStack(null).commit();
         this.currentFragment = this.loginFragment;
