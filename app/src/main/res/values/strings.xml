@@ -18,4 +18,37 @@
     <string name="et_login_password">password</string>
     <string name="btn_login">Login</string>
 
+    <!--  landing page fragment  -->
+    <string name="tv_slogan">Melayani Anda Dengan Senyuman</string>
+    <string name="tv_informasi">Sunny Side Shuttle siap melayani anda dengan sepenuh hati dan senyuman.
+    Dengan rute perjalanan Jakarta - Bandung PP, Jakarta - Cikarang PP, Jakarta - Bekasi PP, dan Cikarang - Bandung PP,
+    kami siap mengantar Anda sampai tujuan dengan selamat.</string>
+    <string name="btn_pesan_sekarang">Pesan Sekarang</string>
+
+    <!--  pesan fragment  -->
+    <string name="tv_dari">Dari</string>
+    <string name="tv_ke">Ke</string>
+    <string name="tv_tanggal">Tanggal</string>
+    <string name="et_tanggal">Pilih Tanggal</string>
+    <string name="tv_jam_berangkat">Jam Berangkat</string>
+    <string name="et_jam_berangkat">Pilih Jam</string>
+    <string name="btn_cari">Cari</string>
+    <string-array name="city_array">
+        <item>Jakarta</item>
+        <item>Bandung</item>
+        <item>Cikarang</item>
+        <item>Bekasi</item>
+    </string-array>
+
+    <!--  pembayaran fragment  -->
+    <string name="tv_dari_pembayaran">Dari : </string>
+    <string name="tv_ke_pembayaran">Ke : </string>
+    <string name="tv_tanggal_pembayaran">Tanggal :</string>
+    <string name="tv_seat">Seat : </string>
+    <string name="tv_harga">Harga : </string>
+    <string name="tv_diskon">Diskon : </string>
+    <string name="tv_total">Total : </string>
+    <string name="btn_pesan">Pesan</string>
+
+
 </resources>
