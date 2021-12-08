@@ -1,7 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!--in case aboleh pake constraint layout-->
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--container logo & menu skip-->
+    <RelativeLayout
+        android:id="@+id/top_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="5dp">
+
+        <!--logo-->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo" />
+
+        <!--App name-->
+        <ImageView
+            android:id="@+id/app_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/logo"
+            android:src="@drawable/title"/>
+
+        <!--skip button-->
+        <Button
+            android:id="@+id/skip_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/skip_btn"
+            android:textColor="@color/dark_blue"
+            android:background="@android:color/transparent"
+            android:padding="0dp"/>
+    </RelativeLayout>
+
+    <!--Container content tengah-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <!--image tengah-->
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/on_boarding_2" />
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="serif"
+            android:text="@string/title_boarding2"
+            android:textColor="@color/dark_blue"
+            android:textFontWeight="1000"
+            android:textSize="23sp" />
+
+        <!--Description-->
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:fontFamily="monospace"
+            android:text="@string/desc_boarding2"
+            android:textAlignment="center"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <!--container bar bottom-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="23dp">
+
+        <!--Button hiasan back-->
+        <Button
+            android:id="@+id/boarding_back"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/left_arrow_dark_blue"/>
+
+        <!--keterangan button hiasan back-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/boarding_back"
+            android:layout_marginLeft="8dp"
+            android:text="@string/slide_next"
+            android:layout_centerVertical="true"
+            android:textColor="@color/dark_blue"/>
+
+        <!--Indikator page berapa-->
+        <ImageView
+            android:id="@+id/indicator"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/on_boarding_indicator2" />
+
+        <!--keterangan button hiasan next-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/boarding_next"
+            android:text="@string/slide_next"
+            android:layout_centerVertical="true"
+            android:textColor="@color/dark_blue"
+            android:layout_marginRight="8dp"/>
+
+        <!--Button hiasan next-->
+        <Button
+            android:id="@+id/boarding_next"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/right_arrow_dark_blue"/>
+    </RelativeLayout>
+</RelativeLayout>

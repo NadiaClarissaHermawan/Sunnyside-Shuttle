@@ -4,8 +4,13 @@
     <!--Left Fragment-->
     <string name="left_fragment_nav_title">MENU</string>
 
-    <!--Splash Screen-->
-
+    <!--Splashscreen & on boarding page-->
+    <string name="skip_btn">SKIP</string>
+    <string name="title_boarding1">Easier To Travel</string>
+    <string name="desc_boarding1">With Sunny Side Shuttle app, it is easier to travel around the cities.</string>
+    <string name="title_boarding2">Travel at Ease With Us</string>
+    <string name="desc_boarding2">Our shuttle will always prioritize your convenience, anywhere.</string>
+    <string name="slide_next">SLIDE</string>
 
     <!--  login fragment  -->
     <string name="tv_login_title">Sunny Side Shuttle</string>
