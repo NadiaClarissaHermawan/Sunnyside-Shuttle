@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
+import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment currentFragment;
 
     //fragment"
-    private LoginFragment loginFragment;
+    private LandingPageFragment landingPageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
         this.fragmentManager = this.getSupportFragmentManager();
 
         //inisiasi fragments
-        this.loginFragment = new LoginFragment();
+        this.landingPageFragment = new LandingPageFragment();
 
         //set halaman pertama fragment = home page
         this.ft = this.fragmentManager.beginTransaction();
-        this.ft.add(R.id.fragment_container, this.loginFragment).addToBackStack(null).commit();
-        this.currentFragment = this.loginFragment;
+        this.ft.add(R.id.fragment_container, this.landingPageFragment).addToBackStack(null).commit();
+        this.currentFragment = this.landingPageFragment;
 
         //listener untuk ganti page
         this.getSupportFragmentManager().setFragmentResultListener(
@@ -72,19 +73,19 @@ public class MainActivity extends AppCompatActivity {
         //EXIT
         if(page == -1){
             this.closeApplication();
-        //LOGIN PAGE
+        //LANDING PAGE (HOME)
         }else if(page == 0){
             if(this.currentFragment != null){
                 ft.hide(currentFragment);
             }
 
-            if(this.loginFragment.isAdded()){
-                ft.show(this.loginFragment);
+            if(this.landingPageFragment.isAdded()){
+                ft.show(this.landingPageFragment);
             }else{
-                ft.add(R.id.fragment_container, this.loginFragment);
+                ft.add(R.id.fragment_container, this.landingPageFragment);
             }
 
-            this.currentFragment = this.loginFragment;
+            this.currentFragment = this.landingPageFragment;
         }//add next fragments
     }
 

@@ -60,6 +60,7 @@ public class Login_ThreadView implements Runnable{
             connection.setReadTimeout(5000);
             connection.setDoInput(true);
             connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type","application/json");
 
             //prepare data as requested (JSON)
             JSONObject jsonObject = new JSONObject();
@@ -82,6 +83,7 @@ public class Login_ThreadView implements Runnable{
 
             //get response code (200 == OK, 400 == MEH)
             int status = connection.getResponseCode();
+            Log.e("STATTS", "run: "+status );
 
             //if OK
             if(status < 299){
@@ -103,8 +105,18 @@ public class Login_ThreadView implements Runnable{
                     e.printStackTrace();
                 }
 
-                Log.e("DEBUG", "run: "+finalResult );
+                //move to landing page
+                this.handler.getToken(finalResult);
+
+            //if NOT OK
+            }else{
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line + ", ");
+                }
+                reader.close();
             }
+            Log.e("DEBUG", "run: "+ responseContent.toString());
 
         }catch (MalformedURLException e){
             e.printStackTrace();
@@ -113,7 +125,5 @@ public class Login_ThreadView implements Runnable{
         }finally {
             connection.disconnect();
         }
-
-        this.handler.getToken(finalResult);
     }
 }
