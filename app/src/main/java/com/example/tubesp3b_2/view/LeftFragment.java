@@ -28,11 +28,10 @@ public class LeftFragment extends Fragment implements ILeftFragment{
         View view = this.binding.getRoot();
 
         //menu" navigasi di drawer kiri
-        //TODO : Cek lagi kebutuhan menu navigasi (setelah ppt diupload)
         MenuNav[] navs = {
                 new MenuNav("Home"),
                 new MenuNav("Book Ticket"),
-                new MenuNav("Setting"),
+                new MenuNav("History"),
                 new MenuNav("Exit")
         };
 

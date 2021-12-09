@@ -27,7 +27,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/logo"
-            android:src="@drawable/title"/>
+            android:src="@drawable/title" />
 
         <!--skip button-->
         <Button
@@ -52,8 +52,8 @@
         <!--image tengah-->
         <ImageView
             android:id="@+id/image"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/on_boarding_1" />
 
@@ -103,16 +103,6 @@
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/on_boarding_indicator1" />
-
-        <!--keterangan button hiasan next-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/boarding_next"
-            android:text="@string/slide_next"
-            android:layout_centerVertical="true"
-            android:textColor="@color/dark_blue"
-            android:layout_marginRight="8dp"/>
 
         <!--Button hiasan next-->
         <Button

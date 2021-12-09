@@ -2,31 +2,47 @@
 <!--Fragment untuk list menu navigasi di drawer kiri-->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="180dp"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--Judul Navigasi-->
-        <TextView
-            android:id="@+id/tv_nav_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/left_fragment_nav_title"
-            android:padding="20dp"
-            android:textSize="24sp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="monospace"
-            android:textStyle="bold"/>
+        <RelativeLayout
+            android:id="@+id/container_nav_title"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@color/light_blue">
+
+            <!--Logo judul navigasi-->
+            <ImageView
+                android:id="@+id/logo_judul_nav"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/navigation_top_img" />
+
+            <!--App name-->
+            <ImageView
+                android:id="@+id/app_name"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/logo_judul_nav"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/title" />
+
+        </RelativeLayout>
 
         <!--list of menu navigasi-->
         <ListView
             android:id="@+id/lv_nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tv_nav_title"/>
+            android:layout_below="@id/container_nav_title" />
 
     </RelativeLayout>
 </FrameLayout>

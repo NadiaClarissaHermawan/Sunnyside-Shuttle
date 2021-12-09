@@ -19,6 +19,8 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -57,13 +59,33 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         this.binding.appName.animate().translationY(2050).setDuration(1000).setStartDelay(4000);
         this.binding.lottieShuttle.animate().translationY(2050).setDuration(1000).setStartDelay(4000);
 
+        //setup status bar
+        this.setupStatusBar(0);
+
         //show / nah on boarding screen
         this.showBoardingScreen();
     }
 
+
+    //set status bar
+    public void setupStatusBar(int page){
+        Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        //ganti warna status bar --> biru
+        if(page == 0){
+            window.setStatusBarColor(this.getResources().getColor(R.color.light_blue));
+        //ganti balik warna status bar jadi putih
+        }else{
+            window.setStatusBarColor(this.getResources().getColor(R.color.white));
+        }
+    }
+
+
+    //TODO: WE ONLY SHOW BOARDING SCREEN AFTER INSTALLATION
     //decide to show on boarding screen or nah
     public void showBoardingScreen(){
-
         //first time running this app --> show on boarding screen
         if(this.sp.getIndicator() == -1){
             //set indicator --> on boarding screen wont show next time
@@ -86,27 +108,37 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         }
     }
 
+
     @Override
     //method untuk langsung pindah ke login page
     public void changeBoardingPage(int page) {
         this.viewPager.setCurrentItem(page);
     }
 
-    //method untuk ganti ke intent / activity main
-    public void changeIntent(){
+
+    //method untuk pindah intent /activity ke mainActivity
+    public void changeIntent(String user_token){
         //intent change : SplashScreenActivity to MainActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                //buat bundle object yg mau dikirim antar activity
+                Bundle tokenBundle = new Bundle();
+                tokenBundle.putString("USER_TOKEN", user_token);
+
                 Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                intent.putExtras(tokenBundle);
                 startActivity(intent);
                 finish();
             }
-        }, 10);
+        }, 0);
     }
 
-    //inner class change on-boarding fragments
-    //deprecated: as for now its fine to use
+
+    /**
+     * @deprecated as for now its fine to use :)
+     * inner class untuk ganti on-boarding fragments (slides)
+     * */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter{
         private SplashScreenActivity activity;
 
@@ -124,6 +156,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
+                    setupStatusBar(1);
                     OnBoarding1Fragment tab1 = OnBoarding1Fragment.newInstance(this.activity);
                     return tab1;
                 case 1:

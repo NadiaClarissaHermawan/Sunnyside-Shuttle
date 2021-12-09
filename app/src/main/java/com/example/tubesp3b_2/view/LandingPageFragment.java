@@ -22,13 +22,12 @@ public class LandingPageFragment extends Fragment implements View.OnClickListene
         this.binding = LandingPageFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
-        this.binding.btnPesanSekarang.setOnClickListener(this);
-
         return view;
     }
 
     @Override
     public void onClick(View view) {
     //binding.btnPesanSekarang menuju ke PesanFragment
+
     }
 }
