@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:orientation="vertical">
+
+    <!--  Gambar Mobil  -->
+    <ImageView
+        android:id="@+id/imageview_mobil_history"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/on_boarding_2"/>
+
+    <!--  Linear Layout Untuk Kota Asal Dan Kota Tujuan  -->
+    <LinearLayout
+        android:id="@+id/linear_layout_kota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!--  Kota Asal  -->
+        <TextView
+            android:id="@+id/tv_kota_asal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="6dp"
+            android:text="BANJARMASIN"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"/>
+
+        <!--  Tanda Panah  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"/>
+
+        <!--  Kota Tujuan  -->
+        <TextView
+            android:id="@+id/tv_kota_tujuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="6dp"
+            android:text="YOGYAKARTA"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"/>
+    </LinearLayout>
+
+    <!--  Linear Layout Untuk Tanggal Dan Jam Keberangkatan  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/linear_layout_kota">
+        <!--  Tanggal, Jam Berangkat  -->
+        <TextView
+            android:id="@+id/tv_info_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="21-11-2022 ● 12:00"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textColor="@color/orange"/>
+    </LinearLayout>
+</RelativeLayout>
