@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Travel Ticket Booking</string>
+    <string name="app_name">Sunny Side Shuttle</string>
 
     <!--Left Fragment-->
     <string name="left_fragment_nav_title">MENU</string>
@@ -19,11 +19,9 @@
     <string name="btn_login">Login</string>
 
     <!--  landing page fragment  -->
-    <string name="tv_slogan">Melayani Anda Dengan Senyuman</string>
-    <string name="tv_informasi">Sunny Side Shuttle siap melayani anda dengan sepenuh hati dan senyuman.
-    Dengan rute perjalanan Jakarta - Bandung PP, Jakarta - Cikarang PP, Jakarta - Bekasi PP, dan Cikarang - Bandung PP,
-    kami siap mengantar Anda sampai tujuan dengan selamat.</string>
-    <string name="btn_pesan_sekarang">Pesan Sekarang</string>
+    <string name="welcome">W E L C O M E,</string>
+    <string name="landing_desc">Are you ready to start your journey with us?</string>
+    <string name="letsBookBtn">Let\'s Book A Ticket !</string>
 
     <!--  pesan fragment  -->
     <string name="tv_dari">Dari</string>

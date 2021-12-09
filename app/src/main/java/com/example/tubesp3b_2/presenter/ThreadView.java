@@ -12,11 +12,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.Buffer;
 
-public class Login_ThreadView implements Runnable{
+public class ThreadView implements Runnable{
     private Thread thread;
-    private Login_UIHandler handler;
+    private UIHandler handler;
 
     //penampung input user
     private String uname, pass;
@@ -30,7 +29,7 @@ public class Login_ThreadView implements Runnable{
     private static HttpURLConnection connection;
 
     //constructor
-    public Login_ThreadView(Login_UIHandler handler){
+    public ThreadView(UIHandler handler){
         this.handler = handler;
         this.thread = new Thread(this);
         this.responseContent = new StringBuffer();
@@ -44,7 +43,7 @@ public class Login_ThreadView implements Runnable{
     }
 
     @Override
-    //post method to send uname & password
+    //http request post method --> send uname & password, then get token
     public void run() {
         String finalResult = "";
         try{
@@ -70,7 +69,7 @@ public class Login_ThreadView implements Runnable{
             }catch (JSONException e){
                 e.printStackTrace();
             }
-            Log.e("LOGIN_TESTER", "run: "+jsonObject.toString() );
+            Log.e("LOGIN_TESTER", "Your input: "+jsonObject.toString() );
 
             //send request to API
             DataOutputStream dos = new DataOutputStream(connection.getOutputStream());
@@ -83,7 +82,7 @@ public class Login_ThreadView implements Runnable{
 
             //get response code (200 == OK, 400 == MEH)
             int status = connection.getResponseCode();
-            Log.e("STATTS", "run: "+status );
+            Log.e("LOGIN_RESPONSE_STATUS", "run: "+status );
 
             //if OK
             if(status < 299){
@@ -94,18 +93,17 @@ public class Login_ThreadView implements Runnable{
                     stringBuilder.append(this.line+"\n");
                 }
                 String res = stringBuilder.toString();
-
-                Log.e("TESTER RES", "run: "+res);
+                Log.e("LOGIN_RESPONSE", "run: "+res);
 
                 //ambil string input yg diinginkan keynya
                 try{
                     jsonObject = new JSONObject(res);
-                    finalResult = jsonObject.getJSONObject("token").toString();
+                    finalResult = jsonObject.getString("token"); //kalo ngambil string langsung aja gini, tp kalo ambilnya array dll pake get JSONObject
                 }catch (JSONException e){
                     e.printStackTrace();
                 }
 
-                //move to landing page
+                //move to landing page & gives user's token
                 this.handler.getToken(finalResult);
 
             //if NOT OK
@@ -115,8 +113,8 @@ public class Login_ThreadView implements Runnable{
                     responseContent.append(line + ", ");
                 }
                 reader.close();
+                Log.e("DEBUG", "run: "+ responseContent.toString());
             }
-            Log.e("DEBUG", "run: "+ responseContent.toString());
 
         }catch (MalformedURLException e){
             e.printStackTrace();

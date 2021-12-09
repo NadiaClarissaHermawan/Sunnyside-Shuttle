@@ -1,10 +1,6 @@
 package com.example.tubesp3b_2.view;
 
-import android.app.Activity;
-import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.LinkProperties;
-import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +10,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.SplashScreenActivity;
 import com.example.tubesp3b_2.databinding.LoginFragmentBinding;
-import com.example.tubesp3b_2.presenter.Login_ThreadView;
-import com.example.tubesp3b_2.presenter.Login_UIHandler;
+import com.example.tubesp3b_2.presenter.ThreadView;
+import com.example.tubesp3b_2.presenter.UIHandler;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
     private LoginFragmentBinding binding;
     private ConnectivityManager connectivityManager;
-    private Login_UIHandler handler;
+    private UIHandler handler;
 
     //must-have empty constructor
     public LoginFragment(){}
@@ -29,7 +25,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public static LoginFragment newInstance(ConnectivityManager connectivityManager, SplashScreenActivity activity){
         LoginFragment frag = new LoginFragment();
         frag.connectivityManager = connectivityManager;
-        frag.handler = new Login_UIHandler(activity);
+        frag.handler = new UIHandler(activity);
 
         return frag;
     }
@@ -40,7 +36,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         this.binding = LoginFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
-        //set click listener
+        //set login click listener
         this.binding.btnLogin.setOnClickListener(this::onClick);
 
         return view;
@@ -48,7 +44,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        //not checking --> android v21 doesnt support getActiveNetwork
+        //not checking active connection --> android v21 doesnt support getActiveNetwork
 
         //login button
         if(view == this.binding.btnLogin) {
@@ -68,7 +64,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     this.binding.errorPass.setText("Please fill your password");
                 }else{
                     this.binding.errorPass.setText("");
-                    new Login_ThreadView(this.handler).startThread(uname, pass);
+                    new ThreadView(this.handler).startThread(uname, pass);
                 }
             }
         }

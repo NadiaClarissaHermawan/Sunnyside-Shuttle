@@ -2,14 +2,15 @@ package com.example.tubesp3b_2.presenter;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.example.tubesp3b_2.SplashScreenActivity;
 
-public class Login_UIHandler extends Handler {
+public class UIHandler extends Handler {
     private final static int AUTHENTICATION_SUCCEED = 0;
     private SplashScreenActivity activity;
 
-    public Login_UIHandler(SplashScreenActivity activity){
+    public UIHandler(SplashScreenActivity activity){
         this.activity = activity;
     }
 
@@ -21,12 +22,13 @@ public class Login_UIHandler extends Handler {
             this.activity.runOnUiThread(new Runnable(){
                 @Override
                 public void run(){
-                    activity.changeIntent();
+                    activity.changeIntent((String)msg.obj);
                 }
             });
         }
     }
 
+    //ambil hasil token dari thread
     public void getToken(String token){
         Message msg = new Message();
         msg.what = AUTHENTICATION_SUCCEED;

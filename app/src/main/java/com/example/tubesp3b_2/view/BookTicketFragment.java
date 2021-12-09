@@ -13,27 +13,27 @@ import android.widget.TimePicker;
 import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.R;
-import com.example.tubesp3b_2.databinding.PesanFragmentBinding;
+import com.example.tubesp3b_2.databinding.BookTicketFragmentBinding;
 
 import java.util.Calendar;
 
-public class PesanFragment extends Fragment implements View.OnClickListener {
-    private PesanFragmentBinding binding;
+public class BookTicketFragment extends Fragment implements View.OnClickListener {
+    private BookTicketFragmentBinding binding;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
     //must-have empty constructor
-    public PesanFragment(){}
+    public BookTicketFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // inflating layout
-        this.binding = PesanFragmentBinding.inflate(inflater, container, false);
+        this.binding = BookTicketFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
         //Dropdown source and destination ref = https://developer.android.com/guide/topics/ui/controls/spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.city_array, R.layout.pesan_fragment);
-        adapter.setDropDownViewResource(R.layout.pesan_fragment);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.city_array, R.layout.book_ticket_fragment);
+        adapter.setDropDownViewResource(R.layout.book_ticket_fragment);
         this.binding.spinnerDari.setAdapter(adapter);
         this.binding.spinnerKe.setAdapter(adapter);
 

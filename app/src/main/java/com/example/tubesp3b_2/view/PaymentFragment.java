@@ -9,19 +9,18 @@ import android.widget.ArrayAdapter;
 import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.R;
-import com.example.tubesp3b_2.databinding.PembayaranFragmentBinding;
-import com.example.tubesp3b_2.databinding.PesanFragmentBinding;
+import com.example.tubesp3b_2.databinding.PaymentFragmentBinding;
 
-public class PembayaranFragment extends Fragment implements View.OnClickListener {
-    private PembayaranFragmentBinding binding;
+public class PaymentFragment extends Fragment implements View.OnClickListener {
+    private PaymentFragmentBinding binding;
 
     //must-have empty constructor
-    public PembayaranFragment(){}
+    public PaymentFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // inflating layout
-        this.binding = PembayaranFragmentBinding.inflate(inflater, container, false);
+        this.binding = PaymentFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
         this.binding.btnPesan.setOnClickListener(this);
