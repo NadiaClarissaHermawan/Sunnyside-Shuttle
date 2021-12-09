@@ -1,16 +1,52 @@
 <resources>
-    <string name="app_name">Travel Ticket Booking</string>
+    <string name="app_name">Sunny Side Shuttle</string>
 
     <!--Left Fragment-->
     <string name="left_fragment_nav_title">MENU</string>
 
-    <!--Splash Screen-->
-
+    <!--Splashscreen & on boarding page-->
+    <string name="skip_btn">SKIP</string>
+    <string name="title_boarding1">Easier To Travel</string>
+    <string name="desc_boarding1">With Sunny Side Shuttle app, it is easier to travel around the cities.</string>
+    <string name="title_boarding2">Travel at Ease With Us</string>
+    <string name="desc_boarding2">Our shuttle will always prioritize your convenience, anywhere.</string>
+    <string name="slide_next">SLIDE</string>
 
     <!--  login fragment  -->
-    <string name="tv_login_title">Login</string>
+    <string name="tv_login_title">Sunny Side Shuttle</string>
     <string name="et_login_username">username</string>
     <string name="et_login_password">password</string>
     <string name="btn_login">Login</string>
+
+    <!--  landing page fragment  -->
+    <string name="welcome">W E L C O M E,</string>
+    <string name="landing_desc">Are you ready to start your journey with us?</string>
+    <string name="letsBookBtn">Let\'s Book A Ticket !</string>
+
+    <!--  pesan fragment  -->
+    <string name="tv_dari">Dari</string>
+    <string name="tv_ke">Ke</string>
+    <string name="tv_tanggal">Tanggal</string>
+    <string name="et_tanggal">Pilih Tanggal</string>
+    <string name="tv_jam_berangkat">Jam Berangkat</string>
+    <string name="et_jam_berangkat">Pilih Jam</string>
+    <string name="btn_cari">Cari</string>
+    <string-array name="city_array">
+        <item>Jakarta</item>
+        <item>Bandung</item>
+        <item>Cikarang</item>
+        <item>Bekasi</item>
+    </string-array>
+
+    <!--  pembayaran fragment  -->
+    <string name="tv_dari_pembayaran">Dari : </string>
+    <string name="tv_ke_pembayaran">Ke : </string>
+    <string name="tv_tanggal_pembayaran">Tanggal :</string>
+    <string name="tv_seat">Seat : </string>
+    <string name="tv_harga">Harga : </string>
+    <string name="tv_diskon">Diskon : </string>
+    <string name="tv_total">Total : </string>
+    <string name="btn_pesan">Pesan</string>
+
 
 </resources>

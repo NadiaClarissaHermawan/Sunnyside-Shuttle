@@ -15,6 +15,40 @@
         android:orientation="vertical">
 
         <!--toolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:elevation="4dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--top-left app name-->
+                <ImageView
+                    android:id="@+id/app_name"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/title"
+                    android:layout_toLeftOf="@id/logo"/>
+
+                <!--top-left logo-->
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/logo" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--container untuk fragments-->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +65,7 @@
         <fragment
             android:name="com.example.tubesp3b_2.view.LeftFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

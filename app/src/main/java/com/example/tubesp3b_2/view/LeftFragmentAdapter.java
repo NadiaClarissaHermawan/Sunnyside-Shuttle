@@ -1,6 +1,7 @@
 package com.example.tubesp3b_2.view;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -90,17 +91,22 @@ public class LeftFragmentAdapter extends BaseAdapter {
         }
 
         @Override
+        //move page
         public void onClick(View view) {
-            //TODO : lengkapin ganti fragment sesuai pilihan menu (tunggu ppt diupload)
-            if(this.binding.tvNavItem.getText().toString().equals("Home")){
+            Bundle nextPage = new Bundle();
 
+            if(this.binding.tvNavItem.getText().toString().equals("Exit")){
+                nextPage.putInt("page", -1);
+            }else if(this.binding.tvNavItem.getText().toString().equals("Home")){
+                nextPage.putInt("page", 0);
             }else if(this.binding.tvNavItem.getText().toString().equals("Book Ticket")){
-
-            }else if(this.binding.tvNavItem.getText().toString().equals("Setting")){
-
-            }else if(this.binding.tvNavItem.getText().toString().equals("Exit")){
-
+                nextPage.putInt("page", 1);
+            }else if(this.binding.tvNavItem.getText().toString().equals("History")){
+                nextPage.putInt("page", 4);
             }
+
+            //kirim ke MainActivity.java
+            this.fragmentManager.setFragmentResult("changePage", nextPage);
         }
     }
 }

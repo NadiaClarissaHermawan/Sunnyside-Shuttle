@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--  activity_login  -->
-    <dimen name="tv_login_title_fontSize">22sp</dimen>
-    <dimen name="et_login_username_fontSize">20sp</dimen>
-    <dimen name="et_login_password_fontSize">20sp</dimen>
-    <dimen name="btn_login_fontSize">18sp</dimen>
-    <dimen name="et_login_marginTop">35dp</dimen>
-    <dimen name="et_login_paddingTop_paddingBottom">8dp</dimen>
-    <dimen name="et_login_paddingLeft">25dp</dimen>
-    <dimen name="et_login_paddingRight">200dp</dimen>
-    <dimen name="btn_login_marginTop">100dp</dimen>
-    <dimen name="btn_login_paddingLeft_paddingRight">50dp</dimen>
-
+    <dimen name="margin_pesan_fragment">10sp</dimen>
 </resources>
