@@ -50,6 +50,7 @@ public class LeftFragment extends Fragment implements ILeftFragment{
         return view;
     }
 
+
     @Override
     public void updateToAdapter(List<MenuNav> updatedList) {
         this.adapter.update(updatedList);

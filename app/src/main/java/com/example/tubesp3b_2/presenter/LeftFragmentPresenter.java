@@ -17,6 +17,7 @@ public class LeftFragmentPresenter {
         this.menuNavs = new ArrayList<>();
     }
 
+
     //insert semua menu navigasi yg sdh tersedia dlm bentuk array
     public void loadData(MenuNav[] menuNavs){
         this.menuNavs.addAll(Arrays.asList(menuNavs));

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
+import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.view.BookTicketFragment;
 import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.LoginFragment;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private PaymentFragment paymentFragment;
 
     //user attr needs
-    private String user_token;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,10 @@ public class MainActivity extends AppCompatActivity {
         View view = this.binding.getRoot();
         setContentView(view);
 
-        //ambil user's token yg dikirim dari SplashScreenActivity
-        this.user_token = this.getIntent().getExtras().getString("USER_TOKEN");
+        //ambil user's token & username yg dikirim dari SplashScreenActivity
+        String user_token = this.getIntent().getExtras().getString("USER_TOKEN");
+        String username = this.getIntent().getExtras().getString("USERNAME");
+        this.user = new User(username, user_token);
 
         //setup drawer & toolbar
         this.setupDrawerToolbar();
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         this.fragmentManager = this.getSupportFragmentManager();
 
         //inisiasi fragments
-        this.landingPageFragment = new LandingPageFragment();
+        this.landingPageFragment = LandingPageFragment.newInstance(this.user);
         this.bookTicketFragment = new BookTicketFragment();
         this.paymentFragment = new PaymentFragment();
 
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+
     //method untuk setup toolbar & drawer
     public void setupDrawerToolbar(){
         //pasang drawer & toolbar
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         this.drawer.addDrawerListener(abdt);
         abdt.syncState();
     }
+
 
     //method untuk ganti page /fragment
     public void changePage (int page){
@@ -178,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
             this.currentFragment = this.paymentFragment;
         }
     }
+
 
     //tutup aplikasi
     public void closeApplication(){

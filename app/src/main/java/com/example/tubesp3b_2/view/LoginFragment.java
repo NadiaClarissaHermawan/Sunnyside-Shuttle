@@ -1,5 +1,6 @@
 package com.example.tubesp3b_2.view;
 
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,25 +11,28 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.SplashScreenActivity;
 import com.example.tubesp3b_2.databinding.LoginFragmentBinding;
-import com.example.tubesp3b_2.presenter.ThreadView;
-import com.example.tubesp3b_2.presenter.UIHandler;
+import com.example.tubesp3b_2.presenter.PostLoginTask;
 
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener, ILogin {
     private LoginFragmentBinding binding;
     private ConnectivityManager connectivityManager;
-    private UIHandler handler;
+    private Context context;
+    private SplashScreenActivity activity;
 
     //must-have empty constructor
     public LoginFragment(){}
 
+
     //singleton
-    public static LoginFragment newInstance(ConnectivityManager connectivityManager, SplashScreenActivity activity){
+    public static LoginFragment newInstance(ConnectivityManager connectivityManager, Context context, SplashScreenActivity activity){
         LoginFragment frag = new LoginFragment();
         frag.connectivityManager = connectivityManager;
-        frag.handler = new UIHandler(activity);
+        frag.activity = activity;
+        frag.context = context;
 
         return frag;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
+
 
     @Override
     public void onClick(View view) {
@@ -61,10 +66,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                 //pass is empty
                 if(pass.equals("")){
+                    //make & post http request
                     this.binding.errorPass.setText("Please fill your password");
                 }else{
                     this.binding.errorPass.setText("");
-                    new ThreadView(this.handler).startThread(uname, pass);
+                    //make & post http request
+                    new PostLoginTask(this.context, this.activity).execute(uname, pass);
                 }
             }
         }

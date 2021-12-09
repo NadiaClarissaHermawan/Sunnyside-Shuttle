@@ -25,6 +25,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     //must-have empty constructor
     public BookTicketFragment(){}
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // inflating layout
@@ -43,6 +44,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
 
         return view;
     }
+
 
     @Override
     public void onClick(View view) {
