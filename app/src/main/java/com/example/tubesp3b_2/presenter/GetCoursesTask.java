@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class GetCoursesTask {
     //attributes
-    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/courses?";
+    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/courses";
     private Context context;
     private MainActivity mainActivity;
     private Gson gson;
@@ -48,7 +48,7 @@ public class GetCoursesTask {
         GsonBuilder builder = new GsonBuilder();
         this.gson = builder.create();
 
-        String url = BASE_URL + "source=" + order.getSource() + "&destination=" + order.getDestination() +
+        String url = BASE_URL + "?source=" + order.getSource() + "&destination=" + order.getDestination() +
                 "&vehicle=" + order.getVehicle()+ "&date="+ order.getDate() + "&hour=" + order.getHour();
 
         Log.e("TEST_TOKEN_GETCOURSES", "executeCourses: "+this.accesstoken );
@@ -62,17 +62,17 @@ public class GetCoursesTask {
     public void callVolleyCourses(String url){
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e("ROUTES_REQ_SUCCEED", "onSucceedResponse: "+ response.toString());
-                        processResultCourses(response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("ROUTES_REQ_ERROR", "onErrorResponse: "+error.toString());
-            }
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.e("ROUTES_REQ_SUCCEED", "onSucceedResponse: "+ response.toString());
+                    processResultCourses(response.toString());
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("ROUTES_REQ_ERROR", "onErrorResponse: "+error.toString());
+                }
         }) {
             @Override
             public String getBodyContentType() {
@@ -82,8 +82,8 @@ public class GetCoursesTask {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                String auth = "Bearer "+accesstoken;
-                headers.put("Authorization", auth);
+                headers.put("Content-Type", "application/json; charset=UTF-8");
+                headers.put("Authorization", "Bearer " + accesstoken);
                 return headers;
             }
         };
