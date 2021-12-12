@@ -1,5 +1,5 @@
 # Tubes P3B-2 
-TODO : SeatFragment, PaymentFragment
+TODO : SeatFragment, PaymentFragment, Dokumentasi, Video Presentasi
 
 # Deadline
 - Source code : 22 Des 2021 (10 days left) 
