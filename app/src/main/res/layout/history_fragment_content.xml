@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@color/light_blue">
+
+    <ImageView
+        android:id="@+id/icon_history"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/history_icon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/icon_history">
+
+        <TextView
+            android:id="@+id/departing_to_arrival_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bandung To Jakarta"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/dark_blue"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5-12-2021 08.00 AM"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tickets_seats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2x tickets (s1, s2)"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/vehicles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="small car"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp" />
+    </LinearLayout>
+</RelativeLayout>

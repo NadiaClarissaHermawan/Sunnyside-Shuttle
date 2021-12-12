@@ -16,10 +16,18 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
+import com.example.tubesp3b_2.model.HistoriesResult;
+import com.example.tubesp3b_2.model.History;
+import com.example.tubesp3b_2.model.RoutesResult;
+import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.view.BookTicketFragment;
+import com.example.tubesp3b_2.view.HistoryFragment;
 import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.PaymentFragment;
+import com.example.tubesp3b_2.view.SeatFragment;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     //basic attrs
@@ -33,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
     //fragment"
     private LandingPageFragment landingPageFragment;
     private BookTicketFragment bookTicketFragment;
+    private SeatFragment seatFragment;
     private PaymentFragment paymentFragment;
+    private HistoryFragment historyFragment;
 
     //user attr needs
-    private String user_token;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
         View view = this.binding.getRoot();
         setContentView(view);
 
-        //ambil user's token yg dikirim dari SplashScreenActivity
-        this.user_token = this.getIntent().getExtras().getString("USER_TOKEN");
+        //ambil user's token & username yg dikirim dari SplashScreenActivity
+        String user_token = this.getIntent().getExtras().getString("USER_TOKEN");
+        String username = this.getIntent().getExtras().getString("USERNAME");
+        this.user = new User(username, user_token);
 
         //setup drawer & toolbar
         this.setupDrawerToolbar();
@@ -56,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
         this.fragmentManager = this.getSupportFragmentManager();
 
         //inisiasi fragments
-        this.landingPageFragment = new LandingPageFragment();
-        this.bookTicketFragment = new BookTicketFragment();
+        this.landingPageFragment = LandingPageFragment.newInstance(this.user, this.getSupportFragmentManager());
+        this.bookTicketFragment = BookTicketFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
+        this.seatFragment = SeatFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
         this.paymentFragment = new PaymentFragment();
+        this.historyFragment = HistoryFragment.newInstance(this.user, this);
 
         //set halaman pertama fragment = home page
         this.ft = this.fragmentManager.beginTransaction();
@@ -77,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+
     //method untuk setup toolbar & drawer
     public void setupDrawerToolbar(){
         //pasang drawer & toolbar
@@ -90,6 +105,19 @@ public class MainActivity extends AppCompatActivity {
         this.drawer.addDrawerListener(abdt);
         abdt.syncState();
     }
+
+
+    //method untuk terima & salurin response route
+    public void giveRoutesResponse(RoutesResult res){
+        this.bookTicketFragment.addRoutesArray(res);
+    }
+
+
+    //method untuk terima & salurin response history
+    public void giveHistoryResponse(HistoriesResult res){
+        this.historyFragment.updateToPresenter(res.getArrHistories());
+    }
+
 
     //method untuk ganti page /fragment
     public void changePage (int page){
@@ -119,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
             this.currentFragment = this.landingPageFragment;
 
+
         //BOOK TICKET
         }else if(page == 1){
             if(this.currentFragment != null){
@@ -134,19 +163,18 @@ public class MainActivity extends AppCompatActivity {
             this.currentFragment = this.bookTicketFragment;
 
         //SEAT
-        // TODO: update page
         }else if(page == 2) {
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
 
-            if (this.landingPageFragment.isAdded()) {
-                ft.show(this.landingPageFragment);
+            if (this.seatFragment.isAdded()) {
+                ft.show(this.seatFragment);
             } else {
-                ft.add(R.id.fragment_container, this.landingPageFragment);
+                ft.add(R.id.fragment_container, this.seatFragment);
             }
 
-            this.currentFragment = this.landingPageFragment;
+            this.currentFragment = this.seatFragment;
 
         //PAYMENT
         }else if(page == 3){
@@ -163,21 +191,42 @@ public class MainActivity extends AppCompatActivity {
             this.currentFragment = this.paymentFragment;
 
         //HISTORY
-        //TODO: Update page
         }else if(page == 4){
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
 
-            if (this.paymentFragment.isAdded()) {
-                ft.show(this.paymentFragment);
+            if (this.historyFragment.isAdded()) {
+                ft.show(this.historyFragment);
             } else {
-                ft.add(R.id.fragment_container, this.paymentFragment);
+                ft.add(R.id.fragment_container, this.historyFragment);
             }
 
-            this.currentFragment = this.paymentFragment;
+            this.currentFragment = this.historyFragment;
+        }
+
+        //closing left drawer
+        this.binding.drawerLayout.closeDrawers();
+
+        //commit change page
+        ft.commit();
+    }
+
+
+    @Override
+    //kalau tombol back ditekan
+    public void onBackPressed(){
+        if(this.currentFragment == this.bookTicketFragment || this.currentFragment == this.historyFragment){
+            this.changePage(0);
+        }else if(this.currentFragment == this.seatFragment){
+            this.changePage(1);
+        }else if(this.currentFragment == this.paymentFragment){
+            this.changePage(2);
+        }else if(this.currentFragment == this.landingPageFragment){
+            this.changePage(-1);
         }
     }
+
 
     //tutup aplikasi
     public void closeApplication(){

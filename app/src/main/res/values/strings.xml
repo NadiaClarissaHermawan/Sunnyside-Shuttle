@@ -23,20 +23,14 @@
     <string name="landing_desc">Are you ready to start your journey with us?</string>
     <string name="letsBookBtn">Let\'s Book A Ticket !</string>
 
-    <!--  pesan fragment  -->
-    <string name="tv_dari">Dari</string>
-    <string name="tv_ke">Ke</string>
-    <string name="tv_tanggal">Tanggal</string>
-    <string name="et_tanggal">Pilih Tanggal</string>
-    <string name="tv_jam_berangkat">Jam Berangkat</string>
-    <string name="et_jam_berangkat">Pilih Jam</string>
-    <string name="btn_cari">Cari</string>
-    <string-array name="city_array">
-        <item>Jakarta</item>
-        <item>Bandung</item>
-        <item>Cikarang</item>
-        <item>Bekasi</item>
-    </string-array>
+    <!--  book a ticket fragment  -->
+    <string name="book_ticket_title">Book Shuttle Ticket</string>
+    <string name="departing_city">Departing City </string>
+    <string name="arrival_city">Arrival City</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="search_btn">Find</string>
+    <string name="colon">:</string>
 
     <!--  pembayaran fragment  -->
     <string name="tv_dari_pembayaran">Dari : </string>
@@ -48,5 +42,6 @@
     <string name="tv_total">Total : </string>
     <string name="btn_pesan">Pesan</string>
 
-
+    <!--History fragment-->
+    <string name="history_title">Payment History</string>
 </resources>

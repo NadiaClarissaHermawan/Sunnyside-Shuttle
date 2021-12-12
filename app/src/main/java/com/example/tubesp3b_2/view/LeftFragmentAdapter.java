@@ -29,26 +29,31 @@ public class LeftFragmentAdapter extends BaseAdapter {
         this.menuNavs = new ArrayList<>();
     }
 
+
     //update to listview layout
     public void update(List<MenuNav> updatedMenuNavs){
         this.menuNavs = updatedMenuNavs;
         this.notifyDataSetChanged();
     }
 
+
     @Override
     public int getCount() {
         return menuNavs.size();
     }
+
 
     @Override
     public Object getItem(int i) {
         return menuNavs.get(i);
     }
 
+
     @Override
     public long getItemId(int i) {
         return 0;
     }
+
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -71,6 +76,7 @@ public class LeftFragmentAdapter extends BaseAdapter {
 
         return binding.getRoot();
     }
+
 
     private class ViewHolder implements View.OnClickListener{
         private FragmentManager fragmentManager;

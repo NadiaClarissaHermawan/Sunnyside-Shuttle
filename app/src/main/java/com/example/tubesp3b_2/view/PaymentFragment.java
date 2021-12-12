@@ -17,6 +17,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     //must-have empty constructor
     public PaymentFragment(){}
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // inflating layout
@@ -27,6 +28,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
+
 
     @Override
     public void onClick(View view) {

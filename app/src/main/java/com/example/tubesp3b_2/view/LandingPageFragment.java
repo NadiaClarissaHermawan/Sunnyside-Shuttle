@@ -6,15 +6,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.tubesp3b_2.databinding.LandingPageFragmentBinding;
 import com.example.tubesp3b_2.databinding.LoginFragmentBinding;
+import com.example.tubesp3b_2.model.User;
 
 public class LandingPageFragment extends Fragment implements View.OnClickListener {
     private LandingPageFragmentBinding binding;
+    private FragmentManager fragmentManager;
+    private User user;
 
     //must-have empty constructor
     public LandingPageFragment(){}
+
+    //singleton
+    public static LandingPageFragment newInstance(User user, FragmentManager fragmentManager){
+        LandingPageFragment fragment = new LandingPageFragment();
+        fragment.fragmentManager = fragmentManager;
+        fragment.user = user;
+
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -22,12 +36,23 @@ public class LandingPageFragment extends Fragment implements View.OnClickListene
         this.binding = LandingPageFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
+        //set username
+        this.binding.username.setText(this.user.getUsername());
+
+        //set listener
+        this.binding.bookATicket.setOnClickListener(this::onClick);
+
         return view;
     }
 
+
     @Override
     public void onClick(View view) {
-    //binding.btnPesanSekarang menuju ke PesanFragment
-
+        //book a ticket
+        if(view == this.binding.bookATicket){
+            Bundle nextPage = new Bundle();
+            nextPage.putInt("page", 1);
+            this.fragmentManager.setFragmentResult("changePage", nextPage);
+        }
     }
 }

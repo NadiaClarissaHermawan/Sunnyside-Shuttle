@@ -9,24 +9,18 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
+import com.example.tubesp3b_2.model.LoginResult;
 import com.example.tubesp3b_2.model.SharedPref;
-import com.example.tubesp3b_2.view.IBoardingScreen;
+import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.OnBoarding1Fragment;
 import com.example.tubesp3b_2.view.OnBoarding2Fragment;
@@ -117,21 +111,22 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
 
 
     //method untuk pindah intent /activity ke mainActivity
-    public void changeIntent(String user_token){
+    public void changeIntent(LoginResult loginResult){
         //intent change : SplashScreenActivity to MainActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 //buat bundle object yg mau dikirim antar activity
                 Bundle tokenBundle = new Bundle();
-                tokenBundle.putString("USER_TOKEN", user_token);
+                tokenBundle.putString("USER_TOKEN", loginResult.getToken());
+                tokenBundle.putString("USERNAME", loginResult.getUname());
 
                 Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                 intent.putExtras(tokenBundle);
                 startActivity(intent);
                 finish();
             }
-        }, 0);
+        }, 10);
     }
 
 
@@ -163,7 +158,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                     OnBoarding2Fragment tab2 = OnBoarding2Fragment.newInstance(this.activity);
                     return tab2;
                 case 2:
-                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), this.activity);
+                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity);
                     return tab3;
             }
             return null;

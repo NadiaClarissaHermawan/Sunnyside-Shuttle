@@ -1,7 +1,7 @@
 package com.example.tubesp3b_2.presenter;
 
 import com.example.tubesp3b_2.model.MenuNav;
-import com.example.tubesp3b_2.view.ILeftFragment;
+import com.example.tubesp3b_2.view.interfaces.ILeftFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +16,7 @@ public class LeftFragmentPresenter {
         this.ui = iNav;
         this.menuNavs = new ArrayList<>();
     }
+
 
     //insert semua menu navigasi yg sdh tersedia dlm bentuk array
     public void loadData(MenuNav[] menuNavs){

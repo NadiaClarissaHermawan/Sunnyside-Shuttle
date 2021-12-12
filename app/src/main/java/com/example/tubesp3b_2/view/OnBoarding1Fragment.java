@@ -1,7 +1,6 @@
 package com.example.tubesp3b_2.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.databinding.OnBoarding1FragmentBinding;
+import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 
 public class OnBoarding1Fragment extends Fragment implements View.OnClickListener{
     private OnBoarding1FragmentBinding binding;
@@ -17,6 +17,7 @@ public class OnBoarding1Fragment extends Fragment implements View.OnClickListene
     //must-have empty constructor
     public OnBoarding1Fragment(){}
 
+
     //singleton
     public static OnBoarding1Fragment newInstance(IBoardingScreen ui){
         OnBoarding1Fragment frag = new OnBoarding1Fragment();
@@ -24,6 +25,7 @@ public class OnBoarding1Fragment extends Fragment implements View.OnClickListene
 
         return frag;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class OnBoarding1Fragment extends Fragment implements View.OnClickListene
         this.binding.boardingNext.setOnClickListener(this::onClick);
         return view;
     }
+
 
     @Override
     public void onClick(View view) {

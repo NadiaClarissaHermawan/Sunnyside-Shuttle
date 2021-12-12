@@ -12,6 +12,7 @@ public class SharedPref {
         this.sp = context.getSharedPreferences(INDIKATOR_FIRST_TIME_LAUNCH, 0);
     }
 
+
     //set indikator launch ke brp-x
     public void saveIndicator(int indicator){
         SharedPreferences.Editor editor = this.sp.edit();

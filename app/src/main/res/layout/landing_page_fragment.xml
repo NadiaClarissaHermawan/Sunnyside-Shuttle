@@ -28,7 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_image"
-        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintVertical_bias="0"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/welcome"
@@ -40,19 +39,16 @@
 
 
     <!--bottom box-->
-
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6181901013"
         android:textColor="@color/medium_dark_blue"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/welcome"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcome"
         app:layout_constraintVertical_bias="0.03" />
 

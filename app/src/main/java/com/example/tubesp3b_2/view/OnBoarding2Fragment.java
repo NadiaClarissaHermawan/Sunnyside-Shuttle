@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.databinding.OnBoarding2FragmentBinding;
+import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 
 public class OnBoarding2Fragment extends Fragment implements View.OnClickListener{
     private OnBoarding2FragmentBinding binding;
@@ -16,6 +17,7 @@ public class OnBoarding2Fragment extends Fragment implements View.OnClickListene
     //must-have empty constructor
     public OnBoarding2Fragment(){}
 
+
     //singleton
     public static OnBoarding2Fragment newInstance(IBoardingScreen ui){
         OnBoarding2Fragment frag = new OnBoarding2Fragment();
@@ -23,6 +25,7 @@ public class OnBoarding2Fragment extends Fragment implements View.OnClickListene
 
         return frag;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class OnBoarding2Fragment extends Fragment implements View.OnClickListene
         this.binding.boardingNext.setOnClickListener(this::onClick);
         return view;
     }
+
 
     @Override
     public void onClick(View view) {
