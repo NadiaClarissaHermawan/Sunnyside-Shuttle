@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.databinding.OnBoarding2FragmentBinding;
+import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 
 public class OnBoarding2Fragment extends Fragment implements View.OnClickListener{
     private OnBoarding2FragmentBinding binding;

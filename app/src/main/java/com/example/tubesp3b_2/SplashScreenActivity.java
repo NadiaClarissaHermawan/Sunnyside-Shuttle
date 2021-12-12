@@ -9,25 +9,18 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
 import com.example.tubesp3b_2.model.LoginResult;
 import com.example.tubesp3b_2.model.SharedPref;
-import com.example.tubesp3b_2.view.IBoardingScreen;
+import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.OnBoarding1Fragment;
 import com.example.tubesp3b_2.view.OnBoarding2Fragment;

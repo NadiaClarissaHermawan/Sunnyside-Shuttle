@@ -1,7 +1,7 @@
 package com.example.tubesp3b_2.presenter;
 
 import com.example.tubesp3b_2.model.MenuNav;
-import com.example.tubesp3b_2.view.ILeftFragment;
+import com.example.tubesp3b_2.view.interfaces.ILeftFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.tubesp3b_2.SplashScreenActivity;
 import com.example.tubesp3b_2.databinding.LoginFragmentBinding;
 import com.example.tubesp3b_2.presenter.PostLoginTask;
+import com.example.tubesp3b_2.view.interfaces.ILogin;
 
 public class LoginFragment extends Fragment implements View.OnClickListener, ILogin {
     private LoginFragmentBinding binding;

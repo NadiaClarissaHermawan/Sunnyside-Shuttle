@@ -1,123 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="30sp"
-    android:paddingTop="30sp">
+    tools:context=".SplashScreenActivity">
 
-    <!--  TextView Dari  -->
+    <!--judul form-->
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_dari"
-        android:text="@string/tv_dari"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias=".06"
+        app:layout_constraintHorizontal_bias="0.14"
+        android:text="@string/book_ticket_title"
+        android:fontFamily="sans-serif"
         android:textColor="@color/orange"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+        android:textSize="25sp"
+        android:textStyle="bold"/>
 
-    <!--  Spinner Dari
-    ref = https://developer.android.com/guide/topics/ui/controls/spinner-->
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_dari"
-        android:layout_below="@id/tv_dari"
-        android:spinnerMode="dropdown"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+    <!--container form -->
+    <RelativeLayout
+        android:id="@+id/container_form"
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:background="@color/light_blue"
+        android:padding="30dp">
 
-    <!--  TextView Ke  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_ke"
-        android:text="@string/tv_ke"
-        android:textColor="@color/orange"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_below="@id/spinner_dari"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+        <!--container row departing city-->
+        <LinearLayout
+            android:id="@+id/container_departing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-    <!--  Spinner Ke
-    ref = https://developer.android.com/guide/topics/ui/controls/spinner-->
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_ke"
-        android:layout_below="@id/tv_ke"
-        android:spinnerMode="dropdown"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+            <!--departing city-->
+            <TextView
+                android:id="@+id/departing"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/departing_city"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+        </LinearLayout>
 
-    <!--  TextView Tanggal  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_tanggal"
-        android:text="@string/tv_tanggal"
-        android:textColor="@color/orange"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_below="@id/spinner_ke"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+        <!--drop down departing city-->
+        <Spinner
+            android:id="@+id/spinner_departing"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/container_departing"
+            style="@style/SpinnerTheme"/>
 
-    <!--  EditText Pilih Tanggal
-     ref: datePicker = https://abhiandroid.com/ui/datepicker-->
-    <EditText
-        android:id="@+id/date_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_tanggal"
-        android:background="@color/medium_light_blue"
-        android:hint="@string/et_tanggal"
-        android:padding="5sp"
-        android:textColor="@color/orange"
-        android:textColorHint="@color/orange"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+        <!--container row arrival city-->
+        <LinearLayout
+            android:id="@+id/container_arrival"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner_departing"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
-    <!--  TextView Jam Berangkat  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_jam_berangkat"
-        android:text="@string/tv_jam_berangkat"
-        android:textColor="@color/orange"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_below="@id/date_picker"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+            <!--departing city-->
+            <TextView
+                android:id="@+id/arrival"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/arrival_city"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
 
-    <!--  EditText Pilih Jam
-    ref: timePicker = https://www.tutlane.com/tutorial/android/android-timepicker-with-examples-->
-    <EditText
-        android:id="@+id/time_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_jam_berangkat"
-        android:hint="@string/et_jam_berangkat"
-        android:background="@color/medium_light_blue"
-        android:padding="5sp"
-        android:textColor="@color/orange"
-        android:textColorHint="@color/orange"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"/>
+        </LinearLayout>
 
-    <!--  Button Cari  -->
-    <Button
-        android:id="@+id/btn_cari"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_cari"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/orange"
-        android:background="@drawable/buttonn_bg"
-        android:layout_below="@id/time_picker"
-        android:layout_marginBottom="@dimen/margin_pesan_fragment"
-        android:layout_centerInParent="true"/>
+        <!--spinner arrival city-->
+        <Spinner
+            android:id="@+id/spinner_arrival"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/container_arrival"
+            android:layout_marginTop="10dp"
+            style="@style/SpinnerTheme" />
 
-</RelativeLayout>
+        <!--container row date-->
+        <LinearLayout
+            android:id="@+id/container_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/spinner_arrival"
+            android:layout_marginTop="20dp">
+
+            <!--departing city-->
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <!--date picker-->
+        <TextView
+            android:id="@+id/date_picker"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/container_date"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/et_bg_white"
+            android:clickable="true"
+            android:drawableRight="@drawable/calendar_icon"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:paddingRight="17dp" />
+
+        <!--container row time-->
+        <LinearLayout
+            android:id="@+id/container_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/date_picker"
+            android:layout_marginTop="20dp">
+
+            <!--time input-->
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/time"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!--time picker-->
+        <TimePicker
+            android:id="@+id/time_picker"
+            android:layout_width="500dp"
+            android:layout_height="125dp"
+            android:layout_below="@id/container_time"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/et_bg_white"
+            android:timePickerMode="spinner" />
+
+
+        <!--  Button Find  -->
+        <Button
+            android:id="@+id/btn_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_btn"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:background="@drawable/orange_btn"
+            android:layout_below="@id/time_picker"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

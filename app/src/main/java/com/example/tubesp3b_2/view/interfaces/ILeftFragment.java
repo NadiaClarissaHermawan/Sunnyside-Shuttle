@@ -1,4 +1,4 @@
-package com.example.tubesp3b_2.view;
+package com.example.tubesp3b_2.view.interfaces;
 
 import com.example.tubesp3b_2.model.MenuNav;
 

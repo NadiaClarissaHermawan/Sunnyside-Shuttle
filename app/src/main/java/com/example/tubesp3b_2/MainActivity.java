@@ -16,8 +16,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
+import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.view.BookTicketFragment;
+import com.example.tubesp3b_2.view.HistoryFragment;
 import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.PaymentFragment;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private LandingPageFragment landingPageFragment;
     private BookTicketFragment bookTicketFragment;
     private PaymentFragment paymentFragment;
+    private HistoryFragment historyFragment;
 
     //user attr needs
     private User user;
@@ -59,9 +62,10 @@ public class MainActivity extends AppCompatActivity {
         this.fragmentManager = this.getSupportFragmentManager();
 
         //inisiasi fragments
-        this.landingPageFragment = LandingPageFragment.newInstance(this.user);
-        this.bookTicketFragment = new BookTicketFragment();
+        this.landingPageFragment = LandingPageFragment.newInstance(this.user, this.getSupportFragmentManager());
+        this.bookTicketFragment = BookTicketFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
         this.paymentFragment = new PaymentFragment();
+        this.historyFragment = new HistoryFragment();
 
         //set halaman pertama fragment = home page
         this.ft = this.fragmentManager.beginTransaction();
@@ -96,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //method untuk terima & salurin response
+    public void giveRoutesResponse(RoutesResult res){
+        this.bookTicketFragment.addRoutesArray(res);
+    }
+
+
     //method untuk ganti page /fragment
     public void changePage (int page){
         this.ft = this.fragmentManager.beginTransaction().setCustomAnimations(
@@ -123,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             this.currentFragment = this.landingPageFragment;
+
 
         //BOOK TICKET
         }else if(page == 1){
@@ -168,19 +179,42 @@ public class MainActivity extends AppCompatActivity {
             this.currentFragment = this.paymentFragment;
 
         //HISTORY
-        //TODO: Update page
         }else if(page == 4){
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
 
-            if (this.paymentFragment.isAdded()) {
-                ft.show(this.paymentFragment);
+            if (this.historyFragment.isAdded()) {
+                ft.show(this.historyFragment);
             } else {
-                ft.add(R.id.fragment_container, this.paymentFragment);
+                ft.add(R.id.fragment_container, this.historyFragment);
             }
 
-            this.currentFragment = this.paymentFragment;
+            this.currentFragment = this.historyFragment;
+        }
+
+        //closing left drawer
+        this.binding.drawerLayout.closeDrawers();
+
+        //commit change page
+        ft.commit();
+    }
+
+
+    @Override
+    //kalau tombol back ditekan
+    public void onBackPressed(){
+        //1
+        if(this.currentFragment == this.bookTicketFragment || this.currentFragment == this.historyFragment){
+            this.changePage(0);
+        //TODO: update seat fragment 2
+        }else if(this.currentFragment == this.bookTicketFragment){
+            this.changePage(0);
+        //TODO: update back to seat fragment 3
+        }else if(this.currentFragment == this.paymentFragment){
+            this.changePage(2);
+        }else if(this.currentFragment == this.landingPageFragment){
+            this.changePage(-1);
         }
     }
 

@@ -6,23 +6,12 @@
     android:background="@drawable/border"
     android:orientation="vertical">
 
-    <!--  Gambar Mobil  -->
-    <ImageView
-        android:id="@+id/imageview_mobil_history"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/on_boarding_2"/>
-
     <!--  Linear Layout Untuk Kota Asal Dan Kota Tujuan  -->
     <LinearLayout
         android:id="@+id/linear_layout_kota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="0dp"
         android:gravity="center"
         android:orientation="horizontal">
         <!--  Kota Asal  -->
@@ -69,6 +58,7 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:layout_below="@+id/linear_layout_kota">
+
         <!--  Tanggal, Jam Berangkat  -->
         <TextView
             android:id="@+id/tv_info_history"

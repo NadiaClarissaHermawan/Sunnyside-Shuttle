@@ -10,10 +10,11 @@ import androidx.fragment.app.Fragment;
 import com.example.tubesp3b_2.databinding.LeftFragmentBinding;
 import com.example.tubesp3b_2.model.MenuNav;
 import com.example.tubesp3b_2.presenter.LeftFragmentPresenter;
+import com.example.tubesp3b_2.view.interfaces.ILeftFragment;
 
 import java.util.List;
 
-public class LeftFragment extends Fragment implements ILeftFragment{
+public class LeftFragment extends Fragment implements ILeftFragment {
     private LeftFragmentBinding binding;
     private LeftFragmentAdapter adapter;
     private LeftFragmentPresenter presenter;

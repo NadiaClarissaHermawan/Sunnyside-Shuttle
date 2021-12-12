@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.tubesp3b_2.databinding.LandingPageFragmentBinding;
 import com.example.tubesp3b_2.databinding.LoginFragmentBinding;
@@ -13,14 +14,16 @@ import com.example.tubesp3b_2.model.User;
 
 public class LandingPageFragment extends Fragment implements View.OnClickListener {
     private LandingPageFragmentBinding binding;
+    private FragmentManager fragmentManager;
     private User user;
 
     //must-have empty constructor
     public LandingPageFragment(){}
 
     //singleton
-    public static LandingPageFragment newInstance(User user){
+    public static LandingPageFragment newInstance(User user, FragmentManager fragmentManager){
         LandingPageFragment fragment = new LandingPageFragment();
+        fragment.fragmentManager = fragmentManager;
         fragment.user = user;
 
         return fragment;
@@ -49,7 +52,7 @@ public class LandingPageFragment extends Fragment implements View.OnClickListene
         if(view == this.binding.bookATicket){
             Bundle nextPage = new Bundle();
             nextPage.putInt("page", 1);
-            this.getParentFragmentManager().setFragmentResult("changePage", nextPage);
+            this.fragmentManager.setFragmentResult("changePage", nextPage);
         }
     }
 }
