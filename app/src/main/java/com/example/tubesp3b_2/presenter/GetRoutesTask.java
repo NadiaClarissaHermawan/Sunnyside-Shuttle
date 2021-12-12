@@ -18,7 +18,7 @@ import com.google.gson.GsonBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GetRoutes_n_CoursesTask {
+public class GetRoutesTask {
     //attributes
     private final String BASE_URL = "https://devel.loconode.com/pppb/v1/routes";
     private Context context;
@@ -27,7 +27,7 @@ public class GetRoutes_n_CoursesTask {
     private String accesstoken;
 
     //constructor
-    public GetRoutes_n_CoursesTask(Context context, MainActivity activity, String accesstoken){
+    public GetRoutesTask(Context context, MainActivity activity, String accesstoken){
         this.context = context;
         this.mainActivity = activity;
         this.accesstoken = accesstoken;
@@ -44,7 +44,7 @@ public class GetRoutes_n_CoursesTask {
     }
 
 
-    //call the web service w/ Volley Library (POST)
+    //call the web service w/ Volley Library (GET)
     public void callVolleyRoutes(){
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL,

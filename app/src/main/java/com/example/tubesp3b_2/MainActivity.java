@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
+import com.example.tubesp3b_2.model.HistoriesResult;
+import com.example.tubesp3b_2.model.History;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.view.BookTicketFragment;
@@ -23,6 +25,9 @@ import com.example.tubesp3b_2.view.HistoryFragment;
 import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.PaymentFragment;
+import com.example.tubesp3b_2.view.SeatFragment;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     //basic attrs
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     //fragment"
     private LandingPageFragment landingPageFragment;
     private BookTicketFragment bookTicketFragment;
+    private SeatFragment seatFragment;
     private PaymentFragment paymentFragment;
     private HistoryFragment historyFragment;
 
@@ -64,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
         //inisiasi fragments
         this.landingPageFragment = LandingPageFragment.newInstance(this.user, this.getSupportFragmentManager());
         this.bookTicketFragment = BookTicketFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
+        this.seatFragment = SeatFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
         this.paymentFragment = new PaymentFragment();
-        this.historyFragment = new HistoryFragment();
+        this.historyFragment = HistoryFragment.newInstance(this.user, this);
 
         //set halaman pertama fragment = home page
         this.ft = this.fragmentManager.beginTransaction();
@@ -100,9 +107,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //method untuk terima & salurin response
+    //method untuk terima & salurin response route
     public void giveRoutesResponse(RoutesResult res){
         this.bookTicketFragment.addRoutesArray(res);
+    }
+
+
+    //method untuk terima & salurin response history
+    public void giveHistoryResponse(HistoriesResult res){
+        this.historyFragment.updateToPresenter(res.getArrHistories());
     }
 
 
@@ -150,19 +163,18 @@ public class MainActivity extends AppCompatActivity {
             this.currentFragment = this.bookTicketFragment;
 
         //SEAT
-        // TODO: update page
         }else if(page == 2) {
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
 
-            if (this.landingPageFragment.isAdded()) {
-                ft.show(this.landingPageFragment);
+            if (this.seatFragment.isAdded()) {
+                ft.show(this.seatFragment);
             } else {
-                ft.add(R.id.fragment_container, this.landingPageFragment);
+                ft.add(R.id.fragment_container, this.seatFragment);
             }
 
-            this.currentFragment = this.landingPageFragment;
+            this.currentFragment = this.seatFragment;
 
         //PAYMENT
         }else if(page == 3){
@@ -204,13 +216,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     //kalau tombol back ditekan
     public void onBackPressed(){
-        //1
         if(this.currentFragment == this.bookTicketFragment || this.currentFragment == this.historyFragment){
             this.changePage(0);
-        //TODO: update seat fragment 2
-        }else if(this.currentFragment == this.bookTicketFragment){
-            this.changePage(0);
-        //TODO: update back to seat fragment 3
+        }else if(this.currentFragment == this.seatFragment){
+            this.changePage(1);
         }else if(this.currentFragment == this.paymentFragment){
             this.changePage(2);
         }else if(this.currentFragment == this.landingPageFragment){

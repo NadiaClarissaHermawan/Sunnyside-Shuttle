@@ -3,71 +3,59 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border"
-    android:orientation="vertical">
+    android:padding="10dp"
+    android:background="@color/light_blue">
 
-    <!--  Linear Layout Untuk Kota Asal Dan Kota Tujuan  -->
+    <ImageView
+        android:id="@+id/icon_history"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/history_icon" />
+
     <LinearLayout
-        android:id="@+id/linear_layout_kota"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <!--  Kota Asal  -->
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/icon_history">
+
         <TextView
-            android:id="@+id/tv_kota_asal"
+            android:id="@+id/departing_to_arrival_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="6dp"
-            android:text="BANJARMASIN"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:text="Bandung To Jakarta"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/dark_blue"
             android:textStyle="bold"
-            android:textColor="@color/orange"/>
+            android:textSize="18sp" />
 
-        <!--  Tanda Panah  -->
         <TextView
+            android:id="@+id/date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="→"
-            android:textAlignment="center"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="@color/orange"/>
+            android:text="5-12-2021 08.00 AM"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp"/>
 
-        <!--  Kota Tujuan  -->
         <TextView
-            android:id="@+id/tv_kota_tujuan"
+            android:id="@+id/tickets_seats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="6dp"
-            android:text="YOGYAKARTA"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/orange"/>
-    </LinearLayout>
+            android:text="2x tickets (s1, s2)"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp" />
 
-    <!--  Linear Layout Untuk Tanggal Dan Jam Keberangkatan  -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:layout_below="@+id/linear_layout_kota">
-
-        <!--  Tanggal, Jam Berangkat  -->
         <TextView
-            android:id="@+id/tv_info_history"
-            android:layout_width="match_parent"
+            android:id="@+id/vehicles"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="21-11-2022 ● 12:00"
-            android:textAlignment="center"
-            android:textSize="15sp"
-            android:textColor="@color/orange"/>
+            android:text="small car"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/medium_dark_blue"
+            android:textSize="15sp" />
     </LinearLayout>
 </RelativeLayout>

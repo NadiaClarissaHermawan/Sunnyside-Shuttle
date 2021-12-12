@@ -2,7 +2,6 @@ package com.example.tubesp3b_2.view;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.example.tubesp3b_2.databinding.BookTicketFragmentBinding;
 import com.example.tubesp3b_2.model.Routes;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.User;
-import com.example.tubesp3b_2.presenter.GetRoutes_n_CoursesTask;
+import com.example.tubesp3b_2.presenter.GetRoutesTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +42,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     //date picker needs
     private Calendar calendar;
     private DatePickerDialog.OnDateSetListener date;
+    private String formatedDate;
 
     //time picker needs
     private String formatedHour;
@@ -69,7 +69,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
         View view = this.binding.getRoot();
 
         //get routes data from API
-        new GetRoutes_n_CoursesTask(this.getContext(), this.activity, this.user.getToken()).executeRoutes();
+        new GetRoutesTask(this.getContext(), this.activity, this.user.getToken()).executeRoutes();
 
         //setup popup calendar
         this.setupCalendar();
@@ -122,16 +122,22 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
         this.spinnerArrival = (Spinner) this.binding.spinnerArrival;
         ArrayAdapter<String> adp = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, this.arrivalCities);
         spinnerArrival.setAdapter(adp);
+        spinnerArrival.setSelected(true);
 
         //inflate departing spinner
         this.spinnerDeparting = (Spinner) this.binding.spinnerDeparting;
         ArrayAdapter<String> adp2 = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, this.departingCities);
         spinnerDeparting.setAdapter(adp2);
+        spinnerDeparting.setSelected(true);
     }
 
 
-    //setup calendar
+    //setup date
     public void setupCalendar(){
+        //set current initial date
+        this.updateViewDate();
+
+        //set date picker listener
         this.date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
@@ -148,24 +154,42 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
 
     //updating date layout
     public void updateViewDate(){
-        String formated = "dd/MM/yy";
+        String formated = "dd-MM-yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(formated, Locale.US);
-        this.binding.datePicker.setText(sdf.format(calendar.getTime()));
+
+        //set current initial date
+        if(this.calendar == null){
+            this.formatedDate = sdf.format(java.util.Calendar.getInstance().getTime());
+        //update date on change
+        }else{
+            this.formatedDate = sdf.format(calendar.getTime());
+        }
+        this.binding.datePicker.setText(this.formatedDate);
     }
 
 
-    //setup time picker listener
+    //setup time
     public void setupTimePicker(){
+        //set current initial date
+        this.formatedHour = ""+this.binding.timePicker.getCurrentHour();
+        this.formatTime();
+
+        //set time picker listener
         this.binding.timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
-                if(hour<10){
-                    formatedHour = "0"+hour+"";
-                }else{
                     formatedHour = hour+"";
-                }
+                    formatTime();
             }
         });
+    }
+
+
+    //format time
+    public void formatTime(){
+        if(this.formatedHour.length() < 2){
+            this.formatedHour = "0"+this.formatedHour;
+        }
     }
 
 
@@ -177,7 +201,6 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
             new DatePickerDialog(this.getContext(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
 
             String dt = this.calendar.getTime().toString();
-            Log.e("TEST DATE", "onClick: "+dt );
 
         //go to next page (pick a seat)
         }else if(view == this.binding.btnFind){
@@ -190,7 +213,8 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
             Bundle orderDetails = new Bundle();
             orderDetails.putString("source", this.binding.spinnerDeparting.getSelectedItem().toString());
             orderDetails.putString("destination", this.binding.spinnerArrival.getSelectedItem().toString());
-            orderDetails.putString("date", this.binding.datePicker.toString().replaceAll("/","-"));
+            orderDetails.putString("vehicle", "Small");
+            orderDetails.putString("date", this.formatedDate);
             orderDetails.putString("hour", this.formatedHour);
             this.fragmentManager.setFragmentResult("getOrderDetails", orderDetails);
         }

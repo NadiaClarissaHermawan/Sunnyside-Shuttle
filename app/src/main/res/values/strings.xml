@@ -32,14 +32,6 @@
     <string name="search_btn">Find</string>
     <string name="colon">:</string>
 
-    <string name="et_jam_berangkat">Pilih Jam</string>
-    <string-array name="city_array">
-        <item>Jakarta</item>
-        <item>Bandung</item>
-        <item>Cikarang</item>
-        <item>Bekasi</item>
-    </string-array>
-
     <!--  pembayaran fragment  -->
     <string name="tv_dari_pembayaran">Dari : </string>
     <string name="tv_ke_pembayaran">Ke : </string>
@@ -50,5 +42,6 @@
     <string name="tv_total">Total : </string>
     <string name="btn_pesan">Pesan</string>
 
-
+    <!--History fragment-->
+    <string name="history_title">Payment History</string>
 </resources>

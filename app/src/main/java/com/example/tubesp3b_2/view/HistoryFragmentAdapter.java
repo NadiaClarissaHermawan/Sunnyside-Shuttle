@@ -68,9 +68,10 @@ public class HistoryFragmentAdapter extends BaseAdapter {
 
         //get current history to show
         History currentHistory = (History) this.getItem(i);
-        binding.tvKotaAsal.setText(currentHistory.getSource());
-        binding.tvKotaTujuan.setText(currentHistory.getDestination());
-        binding.tvInfoHistory.setText(currentHistory.getCourse_datetime());
+        binding.departingToArrivalCity.setText(currentHistory.getSource()+" to "+currentHistory.getDestination());
+        binding.dateTime.setText(currentHistory.getCourse_datetime());
+        binding.ticketsSeats.setText(currentHistory.getTicket_count());
+        binding.vehicles.setText(currentHistory.getVehicle()+" car");
 
         return binding.getRoot();
     }

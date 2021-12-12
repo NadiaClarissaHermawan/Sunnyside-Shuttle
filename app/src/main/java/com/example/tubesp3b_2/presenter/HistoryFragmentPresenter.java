@@ -19,7 +19,6 @@ public class HistoryFragmentPresenter {
 
 
     //insert semua history yg sdh diambil dari API
-    //TODO: LENGKAPIN pengambilan data
     public void loadData(History[] histories){
         this.histories.addAll(Arrays.asList(histories));
         //update to lisview layout

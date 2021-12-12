@@ -1,12 +1,13 @@
 package com.example.tubesp3b_2.model;
 
 public class TicketOrder {
-    private String source, destination, vehicle, date;
-    private int hour;
+    private String source, destination, vehicle, date, hour;
+    private int seat;
 
-    public TicketOrder(String source, String destination, String vehicle, String date, int hour){
+    public TicketOrder(String source, String destination, String vehicle, String date, String hour){
         this.source = source;
         this.destination = destination;
+        this.vehicle = vehicle;
         this.date = date;
         this.hour = hour;
     }
@@ -17,6 +18,10 @@ public class TicketOrder {
         }else{
             this.vehicle = "Large";
         }
+    }
+
+    public void setSeat(int number){
+        this.seat = number;
     }
 
     public String getSource(){
@@ -35,7 +40,11 @@ public class TicketOrder {
         return this.date;
     }
 
-    public int getHour(){
+    public String getHour(){
         return this.hour;
+    }
+
+    public int getSeat(){
+        return this.seat;
     }
 }
