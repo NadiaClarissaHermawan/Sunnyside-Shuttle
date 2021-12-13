@@ -32,7 +32,7 @@
     <string name="search_btn">Find</string>
     <string name="colon">:</string>
 
-    <!--  pembayaran fragment  -->
+    <!--  Pembayaran fragment  -->
     <string name="tv_payment_header">Ticket Payment</string>
     <string name="tv_rute_body_content">Bandung to Jakarta</string>
     <string name="tv_tanggal_body_content">5-12-2021 08.00 AM</string>
@@ -42,6 +42,12 @@
     <string name="tv_seat_body_content">(s1, s2)</string>
     <string name="tv_total_body_content">Rp.100.000</string>
     <string name="btn_confirm_payment">Confirm</string>
+
+    <!--  Book Shuttle Ticket Fragment  -->
+    <string name="tv_book_seat">Book Shuttle Ticket</string>
+    <string name="tv_carType_seat">Car Type :</string>
+    <string name="tv_pickSeat_seat">Pick Your Seat :</string>
+    <string name="btn_continue_seat">Continue</string>
 
     <!--History fragment-->
     <string name="history_title">Payment History</string>
