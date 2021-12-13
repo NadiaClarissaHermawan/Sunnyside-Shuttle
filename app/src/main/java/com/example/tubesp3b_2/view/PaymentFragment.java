@@ -24,7 +24,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         this.binding = PaymentFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
-        this.binding.btnPesan.setOnClickListener(this);
+        this.binding.btnConfirmPayment.setOnClickListener(this);
 
         return view;
     }
