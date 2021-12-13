@@ -165,9 +165,11 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
 
     //setup seats canvas
     public void setupSeatsCanvas(){
-        this.bitmap = Bitmap.createBitmap(this.binding.seatsCanvas.getWidth(), this.binding.seatsCanvas.getHeight(), Bitmap.Config.ARGB_8888);
-        this.binding.seatsCanvas.setImageBitmap(bitmap);
-        this.canvas = new Canvas(bitmap);
+        if(this.canvas == null){
+            this.bitmap = Bitmap.createBitmap(this.binding.seatsCanvas.getWidth(), this.binding.seatsCanvas.getHeight(), Bitmap.Config.ARGB_8888);
+            this.binding.seatsCanvas.setImageBitmap(bitmap);
+            this.canvas = new Canvas(bitmap);
+        }
 
         //set canvas bg color
         int mColorBackground = ResourcesCompat.getColor(getResources(), R.color.white, null);
@@ -188,8 +190,6 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     public void setupSeatsColors(){
         //available seat paint
         this.availableSeatPaint = new Paint();
-        this.availableSeatPaint.setStyle(Paint.Style.FILL);
-        this.availableSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
         this.availableSeatPaint.setStyle(Paint.Style.STROKE);
         this.availableSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.orange, null));
         this.availableSeatPaint.setStrokeWidth(3);
@@ -198,17 +198,13 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
         this.selectedSeatPaint = new Paint();
         this.selectedSeatPaint.setStyle(Paint.Style.FILL);
         this.selectedSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
-        this.selectedSeatPaint.setStyle(Paint.Style.STROKE);
-        this.selectedSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.orange, null));
-        this.selectedSeatPaint.setStrokeWidth(3);
+        this.selectedSeatPaint.setStrokeWidth(0);
 
         //not available seat paint
         this.notAvailableSeatPaint = new Paint();
         this.notAvailableSeatPaint.setStyle(Paint.Style.FILL);
         this.notAvailableSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-        this.notAvailableSeatPaint.setStyle(Paint.Style.STROKE);
-        this.notAvailableSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.orange, null));
-        this.notAvailableSeatPaint.setStrokeWidth(3);
+        this.notAvailableSeatPaint.setStrokeWidth(0);
 
         //white text color
         this.whiteTextPaint = new Paint();
@@ -272,17 +268,19 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
             this.seats[i].setBottom(bottom);
             this.seats[i].setLeft(left);
             this.seats[i].setRight(right);
+
             //occupied (status -1)
             if(this.seats[i].getStatus() == -1){
                 this.canvas.drawRect(rect, this.notAvailableSeatPaint);
                 this.canvas.drawText((i+1)+"", textLeft, textTop, this.whiteTextPaint);
             //selected (status 1)
             }else{
-                Log.e("KENA", "drawSeats: "+(i+1) );
                 this.canvas.drawRect(rect, this.selectedSeatPaint);
                 this.canvas.drawText((i+1)+"", textLeft, textTop, this.orangeTextPaint);
             }
         }
+        //rect border
+        this.canvas.drawRect(rect, this.availableSeatPaint);
     }
 
 
@@ -328,7 +326,6 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
                         seats[i].setStatus(0);
                     }
                     setupSeatsCanvas();
-                    Log.e("KLICK", "checkClickedSeats: "+touchCoordinate.x+" "+touchCoordinate.y );
                     break;
                 }
             }
