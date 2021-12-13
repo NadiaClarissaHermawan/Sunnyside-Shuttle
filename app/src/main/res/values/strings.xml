@@ -33,14 +33,15 @@
     <string name="colon">:</string>
 
     <!--  pembayaran fragment  -->
-    <string name="tv_dari_pembayaran">Dari : </string>
-    <string name="tv_ke_pembayaran">Ke : </string>
-    <string name="tv_tanggal_pembayaran">Tanggal :</string>
-    <string name="tv_seat">Seat : </string>
-    <string name="tv_harga">Harga : </string>
-    <string name="tv_diskon">Diskon : </string>
-    <string name="tv_total">Total : </string>
-    <string name="btn_pesan">Pesan</string>
+    <string name="tv_payment_header">Ticket Payment</string>
+    <string name="tv_rute_body_content">Bandung to Jakarta</string>
+    <string name="tv_tanggal_body_content">5-12-2021 08.00 AM</string>
+    <string name="tv_mobil_body_content">small car</string>
+    <string name="tv_fee_body_content">Fee @50.000</string>
+    <string name="tv_jumlahTicket_body_content">2x tickets</string>
+    <string name="tv_seat_body_content">(s1, s2)</string>
+    <string name="tv_total_body_content">Rp.100.000</string>
+    <string name="btn_confirm_payment">Confirm</string>
 
     <!--History fragment-->
     <string name="history_title">Payment History</string>
