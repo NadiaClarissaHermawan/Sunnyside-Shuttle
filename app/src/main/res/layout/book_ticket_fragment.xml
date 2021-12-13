@@ -61,10 +61,10 @@
         <!--drop down departing city-->
         <Spinner
             android:id="@+id/spinner_departing"
+            style="@style/SpinnerTheme"
             android:layout_width="350dp"
             android:layout_height="40dp"
-            android:layout_below="@id/container_departing"
-            style="@style/SpinnerTheme"/>
+            android:layout_below="@id/container_departing" />
 
         <!--container row arrival city-->
         <LinearLayout

@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="28dp">
 
-    <!--  Header  -->
+    <!--Header-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="15dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="25dp"
             android:paddingLeft="15dp"
             android:text="@string/tv_book_seat"
             android:textSize="25sp"
@@ -23,34 +24,35 @@
             android:textColor="@color/orange"/>
     </LinearLayout>
 
-    <!--  Body  -->
+    <!--Body-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="680dp"
         android:orientation="vertical"
         android:background="@color/light_blue">
 
-        <!--   Container Car Type     -->
+        <!--Container Car Type-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
-            <!--   TextView Car Type     -->
+            <!--TextView Car Type-->
             <TextView
                 android:id="@+id/tv_carType_bookseat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginLeft="30dp"
                 android:text="@string/tv_carType_seat"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/dark_blue"/>
 
-            <!--     Dropdown Car Type       -->
+            <!--Dropdown Car Type-->
             <Spinner
-                android:id="@+id/spinner_departing"
+                android:id="@+id/spinner_vehicle"
                 android:layout_width="350dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
@@ -58,37 +60,37 @@
                 style="@style/SpinnerTheme"/>
         </LinearLayout>
 
-        <!--   Container Canvas Seat     -->
+        <!--Container Canvas Seat-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--   TextView Pick Seat     -->
+            <!--TextView Pick Seat-->
             <TextView
                 android:id="@+id/tv_seat_bookseat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginLeft="30dp"
                 android:text="@string/tv_pickSeat_seat"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/dark_blue"/>
 
-            <!--    Seat Canvas    -->
+            <!--Seat Canvas-->
             <ImageView
-                android:id="@+id/seat_canvas"
+                android:id="@+id/seats_canvas"
                 android:layout_width="300dp"
-                android:layout_height="350dp"
+                android:layout_height="370dp"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:background="@drawable/border_seat"/>
         </LinearLayout>
 
-        <!--   Button Continue   -->
+        <!--Button Continue-->
         <Button
-            android:id="@+id/btn_continue_bookseat"
+            android:id="@+id/btn_continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

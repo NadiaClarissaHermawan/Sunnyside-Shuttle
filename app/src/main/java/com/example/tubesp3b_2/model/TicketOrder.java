@@ -11,12 +11,8 @@ public class TicketOrder {
         this.hour = hour;
     }
 
-    public void setVehicle(int type){
-        if(type == 0){
-            this.vehicle = "small";
-        }else{
-            this.vehicle = "Large";
-        }
+    public void setVehicle(String type){
+        this.vehicle = type;
     }
 
     public String getSource(){

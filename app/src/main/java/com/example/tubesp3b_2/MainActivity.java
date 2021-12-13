@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
 import com.example.tubesp3b_2.model.Course;
+import com.example.tubesp3b_2.model.CoursesResult;
 import com.example.tubesp3b_2.model.HistoriesResult;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.User;
@@ -109,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     //method untuk terima & salurin response course
-    public void giveCoursesResponse(Course res){
-        this.seatFragment.getCourseInfo(res);
+    public void giveCoursesResponse(CoursesResult res){
+        this.seatFragment.getCourseInfo(res.getCoursesResult());
     }
 
 

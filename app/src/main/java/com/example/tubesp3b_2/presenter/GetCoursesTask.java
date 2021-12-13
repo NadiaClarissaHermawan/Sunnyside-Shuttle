@@ -13,6 +13,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.model.Course;
+import com.example.tubesp3b_2.model.CoursesResult;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.TicketOrder;
 import com.google.gson.Gson;
@@ -95,7 +96,7 @@ public class GetCoursesTask {
     //if callVoley succeed, call this response handler
     public void processResultCourses(String json){
         //convert String json to result Object
-        Course res = gson.fromJson(json, Course.class);
+        CoursesResult res = gson.fromJson(json, CoursesResult.class);
 
         //return response to mainActivity
         this.mainActivity.giveCoursesResponse(res);
