@@ -1,7 +1,6 @@
 package com.example.tubesp3b_2.view;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,9 +8,7 @@ import android.widget.BaseAdapter;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tubesp3b_2.databinding.HistoryFragmentContentBinding;
-import com.example.tubesp3b_2.databinding.LeftFragmentMenuListItemBinding;
 import com.example.tubesp3b_2.model.History;
-import com.example.tubesp3b_2.model.MenuNav;
 
 import java.util.ArrayList;
 import java.util.List;

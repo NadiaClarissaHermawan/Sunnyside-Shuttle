@@ -6,14 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.databinding.HistoryFragmentBinding;
-import com.example.tubesp3b_2.model.HistoriesResult;
 import com.example.tubesp3b_2.model.History;
 import com.example.tubesp3b_2.model.User;
-import com.example.tubesp3b_2.presenter.GetCoursesTask;
 import com.example.tubesp3b_2.presenter.GetHistoryTask;
 import com.example.tubesp3b_2.presenter.HistoryFragmentPresenter;
 import com.example.tubesp3b_2.view.interfaces.IHistoryFragment;

@@ -12,9 +12,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.model.HistoriesResult;
-import com.example.tubesp3b_2.model.History;
-import com.example.tubesp3b_2.model.RoutesResult;
-import com.example.tubesp3b_2.model.TicketOrder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

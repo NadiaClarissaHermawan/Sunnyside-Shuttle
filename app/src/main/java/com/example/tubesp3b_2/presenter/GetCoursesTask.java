@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
+import com.example.tubesp3b_2.model.Course;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.TicketOrder;
 import com.google.gson.Gson;
@@ -51,14 +52,11 @@ public class GetCoursesTask {
         String url = BASE_URL + "?source=" + order.getSource() + "&destination=" + order.getDestination() +
                 "&vehicle=" + order.getVehicle()+ "&date="+ order.getDate() + "&hour=" + order.getHour();
 
-        Log.e("TEST_TOKEN_GETCOURSES", "executeCourses: "+this.accesstoken );
-
         this.callVolleyCourses(url);
     }
 
 
     //call the web service w/ Volley Library (GET)
-    //TODO: ERROR 400, E_NO_TOKEN (FIX THIS)
     public void callVolleyCourses(String url){
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -97,9 +95,9 @@ public class GetCoursesTask {
     //if callVoley succeed, call this response handler
     public void processResultCourses(String json){
         //convert String json to result Object
-        RoutesResult res = gson.fromJson(json, RoutesResult.class);
+        Course res = gson.fromJson(json, Course.class);
 
         //return response to mainActivity
-        this.mainActivity.giveRoutesResponse(res);
+        this.mainActivity.giveCoursesResponse(res);
     }
 }

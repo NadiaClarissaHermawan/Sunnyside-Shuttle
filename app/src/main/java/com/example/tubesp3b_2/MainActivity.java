@@ -10,24 +10,19 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
+import com.example.tubesp3b_2.model.Course;
 import com.example.tubesp3b_2.model.HistoriesResult;
-import com.example.tubesp3b_2.model.History;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.view.BookTicketFragment;
 import com.example.tubesp3b_2.view.HistoryFragment;
 import com.example.tubesp3b_2.view.LandingPageFragment;
-import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.PaymentFragment;
 import com.example.tubesp3b_2.view.SeatFragment;
-
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     //basic attrs
@@ -110,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
     //method untuk terima & salurin response route
     public void giveRoutesResponse(RoutesResult res){
         this.bookTicketFragment.addRoutesArray(res);
+    }
+
+
+    //method untuk terima & salurin response course
+    public void giveCoursesResponse(Course res){
+        this.seatFragment.getCourseInfo(res);
     }
 
 

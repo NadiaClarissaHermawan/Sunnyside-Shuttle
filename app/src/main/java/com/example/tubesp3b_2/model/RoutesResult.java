@@ -1,13 +1,13 @@
 package com.example.tubesp3b_2.model;
 
 public class RoutesResult {
-    private Routes[] payload;
+    private Route[] payload;
 
-    public RoutesResult(Routes[] payload){
+    public RoutesResult(Route[] payload){
         this.payload = payload;
     }
 
-    public Routes[] getArrRoutes(){
+    public Route[] getArrRoutes(){
         return this.payload;
     }
 }

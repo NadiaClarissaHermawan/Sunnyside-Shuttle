@@ -9,13 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.databinding.BookTicketFragmentBinding;
-import com.example.tubesp3b_2.model.Routes;
+import com.example.tubesp3b_2.model.Route;
 import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.presenter.GetRoutesTask;
@@ -43,9 +44,11 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     private Calendar calendar;
     private DatePickerDialog.OnDateSetListener date;
     private String formatedDate;
+    private String currentDate;
 
     //time picker needs
     private String formatedHour;
+    private String currentHour;
 
     //must-have empty constructor
     public BookTicketFragment(){}
@@ -85,11 +88,11 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     }
 
 
-    //adding routes array & setup spinner --> diasumsikan kota source & kota tujuan berbeda
+    //adding routes array & setup spinner
     public void addRoutesArray(RoutesResult res){
         this.arrivalCities = new ArrayList<>();
         this.departingCities = new ArrayList<>();
-        Routes[] arrRoutes = res.getArrRoutes();
+        Route[] arrRoutes = res.getArrRoutes();
         int size = res.getArrRoutes().length;
 
         //cek duplikat
@@ -159,7 +162,8 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
 
         //set current initial date
         if(this.calendar == null){
-            this.formatedDate = sdf.format(java.util.Calendar.getInstance().getTime());
+            this.currentDate = sdf.format(java.util.Calendar.getInstance().getTime());
+            this.formatedDate = this.currentDate;
         //update date on change
         }else{
             this.formatedDate = sdf.format(calendar.getTime());
@@ -171,7 +175,8 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     //setup time
     public void setupTimePicker(){
         //set current initial date
-        this.formatedHour = ""+this.binding.timePicker.getCurrentHour();
+        this.currentHour = ""+this.binding.timePicker.getCurrentHour();
+        this.formatedHour = this.currentHour;
         this.formatTime();
 
         //set time picker listener
@@ -193,6 +198,45 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     }
 
 
+    //schedule input validity checker
+    public int checkInputValidity(){
+        String source = this.binding.spinnerDeparting.getSelectedItem().toString();
+        String destination = this.binding.spinnerArrival.getSelectedItem().toString();
+        int size = this.arrivalCities.size();
+
+        //source & destination check
+        for(int i = 0; i< size; i++){
+            if(this.departingCities.get(i).equals(source) && this.arrivalCities.get(i).equals(destination)){
+                //year check
+                if(Integer.parseInt(this.formatedDate.substring(6)) > Integer.parseInt(this.currentDate.substring(6))){
+                    return 1;
+                //same year
+                }else if(Integer.parseInt(this.formatedDate.substring(6)) == Integer.parseInt(this.currentDate.substring(6))){
+                    //month check
+                    if(Integer.parseInt(this.formatedDate.substring(3, 5)) > Integer.parseInt(this.currentDate.substring(3, 5))){
+                       return 1;
+                    //same month
+                    }else if(Integer.parseInt(this.formatedDate.substring(3, 5)) == Integer.parseInt(this.currentDate.substring(3, 5))){
+                        //date check
+                        if(Integer.parseInt(this.formatedDate.substring(0, 2)) > Integer.parseInt(this.currentDate.substring(0, 2))){
+                            return 1;
+                        //same date
+                        }else if(Integer.parseInt(this.formatedDate.substring(0, 2)) == Integer.parseInt(this.currentDate.substring(0, 2))){
+                            //hour check
+                            if(Integer.parseInt(this.formatedHour) > Integer.parseInt(this.currentHour)){
+                                return 1;
+                            }else{
+                                return 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+
     @Override
     public void onClick(View view) {
         //show popup calendar
@@ -200,23 +244,38 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
             this.calendar = Calendar.getInstance();
             new DatePickerDialog(this.getContext(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
 
-            String dt = this.calendar.getTime().toString();
-
         //go to next page (pick a seat)
         }else if(view == this.binding.btnFind){
-            //move page
-            Bundle nextPage = new Bundle();
-            nextPage.putInt("page", 2);
-            this.fragmentManager.setFragmentResult("changePage", nextPage);
+            int checker = this.checkInputValidity();
 
-            //send order details to SeatFragment
-            Bundle orderDetails = new Bundle();
-            orderDetails.putString("source", this.binding.spinnerDeparting.getSelectedItem().toString());
-            orderDetails.putString("destination", this.binding.spinnerArrival.getSelectedItem().toString());
-            orderDetails.putString("vehicle", "Small");
-            orderDetails.putString("date", this.formatedDate);
-            orderDetails.putString("hour", this.formatedHour);
-            this.fragmentManager.setFragmentResult("getOrderDetails", orderDetails);
+            //check input validity
+            if(checker == 1){
+                //send order details to SeatFragment
+                Bundle orderDetails = new Bundle();
+                orderDetails.putString("source", this.binding.spinnerDeparting.getSelectedItem().toString());
+                orderDetails.putString("destination", this.binding.spinnerArrival.getSelectedItem().toString());
+                orderDetails.putString("vehicle", "Small");
+                orderDetails.putString("date", this.formatedDate);
+                orderDetails.putString("hour", this.formatedHour);
+                this.fragmentManager.setFragmentResult("getOrderDetails", orderDetails);
+
+                //move page
+                Bundle nextPage = new Bundle();
+                nextPage.putInt("page", 2);
+                this.fragmentManager.setFragmentResult("changePage", nextPage);
+
+            //invalid schedule
+            }else {
+                Toast toast = new Toast(this.getContext());
+                //date & time invalid
+                if (checker == 0) {
+                    toast.setText("Please pick later schedule");
+                //no route
+                } else {
+                    toast.setText("There is currently no shuttle for your selected cities");
+                }
+                toast.show();
+            }
         }
     }
 }
