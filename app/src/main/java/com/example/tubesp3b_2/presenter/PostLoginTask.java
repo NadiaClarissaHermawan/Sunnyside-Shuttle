@@ -1,10 +1,8 @@
 package com.example.tubesp3b_2.presenter;
 
-import android.app.AuthenticationRequiredException;
 import android.content.Context;
 import android.util.Log;
 
-import com.airbnb.lottie.utils.Utils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -13,8 +11,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.SplashScreenActivity;
-import com.example.tubesp3b_2.model.LoginInput;
-import com.example.tubesp3b_2.model.LoginResult;
+import com.example.tubesp3b_2.model.request.LoginInput;
+import com.example.tubesp3b_2.model.result.LoginResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

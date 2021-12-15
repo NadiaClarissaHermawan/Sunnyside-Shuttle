@@ -11,7 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
-import com.example.tubesp3b_2.model.HistoriesResult;
+import com.example.tubesp3b_2.model.result.HistoriesResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -69,8 +69,12 @@ public class GetHistoryTask {
         };
 
         //send request to API
-        RequestQueue volleyRequestQueue = Volley.newRequestQueue(this.context);
-        volleyRequestQueue.add(stringRequest);
+        if(this.context == null){
+            Log.e("HISTORY TEST", "callVolleyHistory: " );
+        }else {
+            RequestQueue volleyRequestQueue = Volley.newRequestQueue(this.context);
+            volleyRequestQueue.add(stringRequest);
+        }
     }
 
 

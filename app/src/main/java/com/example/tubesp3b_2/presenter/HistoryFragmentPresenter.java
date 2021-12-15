@@ -21,6 +21,7 @@ public class HistoryFragmentPresenter {
     //insert semua history yg sdh diambil dari API
     public void loadData(History[] histories){
         this.histories = Arrays.asList(histories);
+
         //update to lisview layout
         this.ui.updateToAdapter(this.histories);
     }

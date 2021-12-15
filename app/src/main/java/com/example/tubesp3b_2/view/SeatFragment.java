@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -31,6 +32,8 @@ import com.example.tubesp3b_2.model.Seat;
 import com.example.tubesp3b_2.model.TicketOrder;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.presenter.GetCoursesTask;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -90,8 +93,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
             "getOrderSchedule", this, new FragmentResultListener() {
                 @Override
                 public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                    order = new TicketOrder(result.getString("source"), result.getString("destination"),
-                                        result.getString("vehicle"), result.getString("date"), result.getString("hour"));
+                    order = (TicketOrder) Parcels.unwrap(result.getParcelable("orderSchedule"));
                     requestCourseInfo();
                 }
             }
@@ -334,15 +336,11 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
                 this.fragmentManager.setFragmentResult("changePage", nextPage);
 
                 //send id_course & selected seats
-                Bundle confirmOrder = new Bundle();
-                confirmOrder.putString("course_id", this.courses.getCourse_id());
-                confirmOrder.putString("source", this.courses.getSource());
-                confirmOrder.putString("destination", this.courses.getDestination());
-                confirmOrder.putString("datetime", this.courses.getDatetime());
-                confirmOrder.putString("vehicle", this.courses.getVehicle());
-                confirmOrder.putInt("fee", this.courses.getFee());
-                confirmOrder.putIntegerArrayList("seats", this.order.getSeats());
-                this.fragmentManager.setFragmentResult("getOrderConfirmation", confirmOrder);
+                this.order.setFee(this.courses.getFee());
+                this.order.setCourse_id(this.courses.getCourse_id());
+                Bundle confirmedOrder = new Bundle();
+                confirmedOrder.putParcelable("confirmedOrder", Parcels.wrap(this.order));
+                this.fragmentManager.setFragmentResult("getOrderConfirmation", confirmedOrder);
 
             }else{
                 Toast toast = new Toast(this.getContext());

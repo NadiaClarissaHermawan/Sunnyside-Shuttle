@@ -1,4 +1,4 @@
-package com.example.tubesp3b_2.model;
+package com.example.tubesp3b_2.model.request;
 
 import java.util.ArrayList;
 

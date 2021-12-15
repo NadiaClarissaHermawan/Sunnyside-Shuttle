@@ -11,7 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
-import com.example.tubesp3b_2.model.CoursesResult;
+import com.example.tubesp3b_2.model.result.CoursesResult;
 import com.example.tubesp3b_2.model.TicketOrder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

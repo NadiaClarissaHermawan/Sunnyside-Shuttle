@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
@@ -12,13 +13,12 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
-import com.example.tubesp3b_2.model.LoginResult;
+import com.example.tubesp3b_2.model.result.LoginResult;
 import com.example.tubesp3b_2.model.SharedPref;
 import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 import com.example.tubesp3b_2.view.LoginFragment;
@@ -44,8 +44,6 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
 
         //attributes initialization --> sementara masih di set biar selalu show boarding screen
         this.sp = new SharedPref(getBaseContext());
-        Log.e("Splash_ScreenTESTER", "onCreate: " +sp.getIndicator());
-        sp.saveIndicator(-1);
 
         //set splash screen's animations
         this.binding.splashBg.animate().translationY(-2400).setDuration(1000).setStartDelay(4000);
@@ -77,13 +75,13 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     }
 
 
-    //TODO: WE ONLY SHOW BOARDING SCREEN AFTER INSTALLATION
     //decide to show on boarding screen or nah
+    //TODO: FIX FIRST TIME ON BOARDING SCREEN
     public void showBoardingScreen(){
-        //first time running this app --> show on boarding screen
-        if(this.sp.getIndicator() == -1){
-            //set indicator --> on boarding screen wont show next time
-            this.sp.saveIndicator(1);
+        //first time running this app
+        if(this.sp.getIndicator("first_time_install") == 0){
+            //TODO: LATER CHANGE THE INDICATOR INTO 1
+            this.sp.saveIndicator(0, "first_time_install");
 
             //set on-boarding page's adapter
             this.viewPager = this.binding.pager;
@@ -98,7 +96,11 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
 
         //the n-th time opening this app --> login page
         }else{
-            this.changeBoardingPage(2);
+            this.sp.saveIndicator(0, "first_time_install");
+            //TODO THIS PART IS STILL OVERLAPPING WITH THE SPLASH SCREEN, CAN WE SET WAIT()?
+            LoginFragment loginFragment = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this);
+            FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.fragment_container, loginFragment).addToBackStack(null).commit();
         }
     }
 

@@ -23,6 +23,8 @@ import com.example.tubesp3b_2.model.TicketOrder;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.presenter.PostOrderTask;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -64,12 +66,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
             "getOrderConfirmation", this, new FragmentResultListener() {
                 @Override
                 public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                    order = new TicketOrder(result.getString("source"), result.getString("destination"),
-                            result.getString("vehicle"), result.getString("datetime").substring(0, 9), result.getString("datetime").substring(11));
-                    order.setCourse_id(result.getString("course_id"));
-                    order.setFee(result.getInt("fee"));
-                    order.setSeats(result.getIntegerArrayList("seats"));
-
+                    order = (TicketOrder) Parcels.unwrap(result.getParcelable("confirmedOrder"));
                     updateView();
                 }
             }
@@ -93,8 +90,6 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
 
     //showing popup payment succeed
     public void paymentSucceed(){
-        Log.e("TESTER", "paymentSucceed: " );
-        
         //bind dengan layout popupnya
         PaymentSucceedDialogBinding bindingPopup = PaymentSucceedDialogBinding.inflate(getLayoutInflater());
         View viewPopup = bindingPopup.getRoot();

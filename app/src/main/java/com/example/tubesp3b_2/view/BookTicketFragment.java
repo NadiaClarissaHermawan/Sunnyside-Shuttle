@@ -2,7 +2,6 @@ package com.example.tubesp3b_2.view;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,12 @@ import androidx.fragment.app.FragmentManager;
 import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.databinding.BookTicketFragmentBinding;
 import com.example.tubesp3b_2.model.Route;
-import com.example.tubesp3b_2.model.RoutesResult;
+import com.example.tubesp3b_2.model.result.RoutesResult;
+import com.example.tubesp3b_2.model.TicketOrder;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.presenter.GetRoutesTask;
+
+import org.parceler.Parcels;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -251,12 +253,11 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
             //inputs are valid
             if(checker == 1){
                 //send order details to SeatFragment
+                TicketOrder order = new TicketOrder(this.binding.spinnerDeparting.getSelectedItem().toString(),
+                        this.binding.spinnerArrival.getSelectedItem().toString(),
+                        "Small", this.formatedDate, this.formatedHour);
                 Bundle orderDetails = new Bundle();
-                orderDetails.putString("source", this.binding.spinnerDeparting.getSelectedItem().toString());
-                orderDetails.putString("destination", this.binding.spinnerArrival.getSelectedItem().toString());
-                orderDetails.putString("vehicle", "Small");
-                orderDetails.putString("date", this.formatedDate);
-                orderDetails.putString("hour", this.formatedHour);
+                orderDetails.putParcelable("orderSchedule", Parcels.wrap(order));
                 this.fragmentManager.setFragmentResult("getOrderSchedule", orderDetails);
 
                 //move page

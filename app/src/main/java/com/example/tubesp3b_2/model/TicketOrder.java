@@ -1,12 +1,16 @@
 package com.example.tubesp3b_2.model;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
+@Parcel
 public class TicketOrder {
-    private String source, destination, vehicle, date, hour;
-    private String course_id;
-    private int fee;
-    private ArrayList<Integer> seats;
+    String source, destination, vehicle, date, hour, course_id;
+    ArrayList<Integer> seats;
+    int fee;
+
+    public TicketOrder(){}
 
     public TicketOrder(String source, String destination, String vehicle, String date, String hour){
         this.source = source;
