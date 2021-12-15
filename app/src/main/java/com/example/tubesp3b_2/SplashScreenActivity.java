@@ -28,6 +28,10 @@ import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.OnBoarding1Fragment;
 import com.example.tubesp3b_2.view.OnBoarding2Fragment;
 
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import org.parceler.Parcels;
 
 public class SplashScreenActivity extends AppCompatActivity implements IBoardingScreen {
@@ -52,6 +56,15 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         View view = this.binding.getRoot();
         setContentView(view);
 
+        //inisialisasi Calligraphy
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+
+        //attributes initialization --> sementara masih di set biar selalu show boarding screen
         //attributes initialization
         this.sp = new SharedPref(getBaseContext());
         this.db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "pppb_tubes2_database").build();
@@ -211,5 +224,12 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         public int getCount() {
             return NUM_PAGES;
         }
+    }
+
+
+    //inject library Calligraphy
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

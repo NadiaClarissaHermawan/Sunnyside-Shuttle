@@ -21,7 +21,8 @@
             android:text="@string/tv_payment_header"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@color/orange"/>
+            android:textColor="@color/orange"
+            fontPath="fonts/PoppinsBold.ttf"/>
     </LinearLayout>
 
     <!--  Body  -->
@@ -50,7 +51,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                fontPath="fonts/MontserratRegular.ttf"/>
 
             <!--     TextView Tanggal       -->
             <TextView
@@ -60,7 +62,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                fontPath="fonts/MontserratRegular.ttf"/>
 
             <!--     TextView Jenis Mobil       -->
             <TextView
@@ -70,7 +73,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                fontPath="fonts/MontserratRegular.ttf"/>
 
             <!--     TextView Jenis Mobil       -->
             <TextView
@@ -80,7 +84,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                fontPath="fonts/MontserratRegular.ttf"/>
 
             <!--      Horizontal Line      -->
             <View
@@ -105,7 +110,8 @@
                     android:layout_marginTop="10dp"
                     android:textColor="@color/dark_blue"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    fontPath="fonts/MontserratSemiBold.ttf"/>
 
                 <!--       TextView Seat         -->
                 <TextView
@@ -116,7 +122,8 @@
                     android:layout_marginTop="32dp"
                     android:textColor="@color/dark_blue"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    fontPath="fonts/MontserratSemiBold.ttf"/>
 
                 <!--       TextView Total         -->
                 <TextView
@@ -128,7 +135,8 @@
                     android:layout_marginRight="20dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/dark_blue"
+                    fontPath="fonts/MontserratSemiBold.ttf"/>
             </RelativeLayout>
         </LinearLayout>
         <Button
@@ -146,6 +154,7 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:background="@drawable/orange_btn"/>
+            android:background="@drawable/orange_btn"
+            fontPath="fonts/RobotoBold.ttf"/>
     </LinearLayout>
 </LinearLayout>

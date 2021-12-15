@@ -21,7 +21,8 @@
             android:text="@string/tv_book_seat"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@color/orange"/>
+            android:textColor="@color/orange"
+            fontPath="fonts/PoppinsBold.ttf"/>
     </LinearLayout>
 
     <!--Body-->
@@ -48,7 +49,8 @@
                 android:text="@string/tv_carType_seat"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:textColor="@color/dark_blue"
+                fontPath="fonts/MontserratBold.ttf"/>
 
             <!--Dropdown Car Type-->
             <Spinner
@@ -57,7 +59,8 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
-                style="@style/SpinnerTheme"/>
+                style="@style/SpinnerTheme"
+                fontPath="fonts/MontserratRegular.ttf"/>
         </LinearLayout>
 
         <!--Container Canvas Seat-->
@@ -76,7 +79,8 @@
                 android:text="@string/tv_pickSeat_seat"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:textColor="@color/dark_blue"
+                fontPath="fonts/MontserratBold.ttf"/>
 
             <!--Seat Canvas-->
             <ImageView
@@ -104,6 +108,7 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:background="@drawable/orange_btn"/>
+            android:background="@drawable/orange_btn"
+            fontPath="fonts/RobotoBold.ttf"/>
     </LinearLayout>
 </LinearLayout>

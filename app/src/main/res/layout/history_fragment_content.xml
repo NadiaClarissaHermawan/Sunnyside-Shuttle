@@ -26,19 +26,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bandung To Jakarta"
-            android:fontFamily="sans-serif"
             android:textColor="@color/dark_blue"
             android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            fontPath="fonts/MontserratBold.ttf"/>
 
         <TextView
             android:id="@+id/date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5-12-2021 08.00 AM"
-            android:fontFamily="sans-serif"
             android:textColor="@color/medium_dark_blue"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            fontPath="fonts/MontserratRegular.ttf"/>
 
         <TextView
             android:id="@+id/tickets_seats"
@@ -47,15 +47,16 @@
             android:text="2x tickets (s1, s2)"
             android:fontFamily="sans-serif"
             android:textColor="@color/medium_dark_blue"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            fontPath="fonts/MontserratRegular.ttf"/>
 
         <TextView
             android:id="@+id/vehicles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="small car"
-            android:fontFamily="sans-serif"
             android:textColor="@color/medium_dark_blue"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            fontPath="fonts/MontserratRegular.ttf"/>
     </LinearLayout>
 </RelativeLayout>

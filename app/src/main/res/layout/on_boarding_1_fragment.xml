@@ -68,7 +68,7 @@
             android:text="@string/title_boarding1"
             android:textColor="@color/dark_blue"
             android:textFontWeight="1000"
-            android:textSize="23sp" />
+            android:textSize="23sp"/>
 
         <!--Description-->
         <TextView
@@ -78,11 +78,11 @@
             android:layout_below="@id/title"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:fontFamily="monospace"
             android:text="@string/desc_boarding1"
             android:textAlignment="center"
             android:textColor="@color/medium_dark_blue"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            fontPath="fonts/RobotoMonoRegular.ttf"/>
 
     </RelativeLayout>
 
