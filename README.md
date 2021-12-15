@@ -7,7 +7,7 @@ TODO : SeatFragment, PaymentFragment, Dokumentasi, Video Presentasi
 
 # Kelompok F Kelas A 
 - Nadia Clarissa H    6181901013
-- Yeremy Ferrel H     6181901011
+- Yeremy Ferell H     6181901011
 - Syahdan Riyantyo    6181801043
 
 # Required Fragment /Page
