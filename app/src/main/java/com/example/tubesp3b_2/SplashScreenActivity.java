@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
@@ -13,13 +13,16 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
-import com.example.tubesp3b_2.model.result.LoginResult;
 import com.example.tubesp3b_2.model.SharedPref;
+import com.example.tubesp3b_2.model.User;
+import com.example.tubesp3b_2.model.room_database.AppDataBase;
+import com.example.tubesp3b_2.presenter.LoginCheckerThread;
 import com.example.tubesp3b_2.view.interfaces.IBoardingScreen;
 import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.OnBoarding1Fragment;
@@ -29,15 +32,21 @@ import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+import org.parceler.Parcels;
 
 public class SplashScreenActivity extends AppCompatActivity implements IBoardingScreen {
     private ActivitySplashScreenBinding binding;
     private SharedPref sp;
+    private AppDataBase db;
+    private LoginCheckerThread checkerLogin;
 
     //on-boarding page needs
     private static final int NUM_PAGES = 3;
     private ViewPager viewPager;
     private ScreenSlidePagerAdapter pagerAdapter;
+
+    //change intent needs
+    private int delay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +65,32 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                 .build());
 
         //attributes initialization --> sementara masih di set biar selalu show boarding screen
+        //attributes initialization
         this.sp = new SharedPref(getBaseContext());
+        this.db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "pppb_tubes2_database").build();
+        this.checkerLogin =  new LoginCheckerThread(this.db, this);
+        this.delay = 4000;
+
+        //check if logout
+        this.checkLogout();
+
+        //check if theres still user's info on database
+        this.checkUser();
 
         //set splash screen's animations
+        this.setSplashAnimation();
+
+        //setup status bar
+        this.setupStatusBar(0);
+    }
+
+
+    //set splash screen animation
+    public void setSplashAnimation(){
         this.binding.splashBg.animate().translationY(-2400).setDuration(1000).setStartDelay(4000);
         this.binding.logo.animate().translationY(2050).setDuration(1000).setStartDelay(4000);
         this.binding.appName.animate().translationY(2050).setDuration(1000).setStartDelay(4000);
         this.binding.lottieShuttle.animate().translationY(2050).setDuration(1000).setStartDelay(4000);
-
-        //setup status bar
-        this.setupStatusBar(0);
-
-        //show / nah on boarding screen
-        this.showBoardingScreen();
     }
 
 
@@ -81,40 +103,52 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         //ganti warna status bar --> biru
         if(page == 0){
             window.setStatusBarColor(this.getResources().getColor(R.color.light_blue));
-        //ganti balik warna status bar jadi putih
+            //ganti balik warna status bar jadi putih
         }else{
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
     }
 
 
-    //decide to show on boarding screen or nah
-    //TODO: FIX FIRST TIME ON BOARDING SCREEN
-    public void showBoardingScreen(){
-        //first time running this app
-        if(this.sp.getIndicator("first_time_install") == 0){
-            //TODO: LATER CHANGE THE INDICATOR INTO 1
-            this.sp.saveIndicator(0, "first_time_install");
-
-            //set on-boarding page's adapter
-            this.viewPager = this.binding.pager;
-            this.pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-            this.pagerAdapter.setActivity(this);
-            this.viewPager.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    viewPager.setAdapter(pagerAdapter);
-                }
-            }, 5000);
-
-        //the n-th time opening this app --> login page
-        }else{
-            this.sp.saveIndicator(0, "first_time_install");
-            //TODO THIS PART IS STILL OVERLAPPING WITH THE SPLASH SCREEN, CAN WE SET WAIT()?
-            LoginFragment loginFragment = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this);
-            FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.fragment_container, loginFragment).addToBackStack(null).commit();
+    //check if user choose to logout from MainActivity
+    public void checkLogout(){
+        if(this.getIntent().hasExtra("user")){
+            User user = Parcels.unwrap(this.getIntent().getExtras().getParcelable("user"));
+            new LoginCheckerThread(this.db, this).removeUser(user.getUsername(), user.getToken());
         }
+    }
+
+
+    //check if user info is still on database
+    public void checkUser(){
+       this.checkerLogin.startThread();
+    }
+
+
+    //getter checker response
+    public void getResultCheckUser(String uname, String token){
+        //show on boarding screen
+        if(uname == "" && token == ""){
+            this.showBoardingScreen();
+        //move intent
+        }else{
+            this.changeIntent(uname, token);
+        }
+    }
+
+
+    //show onboarding screen or nah
+    public void showBoardingScreen(){
+        //set on-boarding page's adapter
+        this.viewPager = this.binding.pager;
+        this.pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        this.pagerAdapter.setActivity(this);
+        this.viewPager.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPager.setAdapter(pagerAdapter);
+            }
+        }, 5000);
     }
 
 
@@ -126,22 +160,29 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
 
 
     //method untuk pindah intent /activity ke mainActivity
-    public void changeIntent(LoginResult loginResult){
-        //intent change : SplashScreenActivity to MainActivity
-        new Handler().postDelayed(new Runnable() {
+    public void changeIntent(String uname, String token){
+        if(this.checkerLogin.getLogin_indicator() == 0){
+            new LoginCheckerThread(this.db, this).addUser(uname, token);
+            this.delay = 10;
+        }
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //buat bundle object yg mau dikirim antar activity
-                Bundle tokenBundle = new Bundle();
-                tokenBundle.putString("USER_TOKEN", loginResult.getToken());
-                tokenBundle.putString("USERNAME", loginResult.getUname());
+                //intent change : SplashScreenActivity to MainActivity
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bundle tokenBundle = new Bundle();
+                        tokenBundle.putParcelable("user", Parcels.wrap(new User(0, uname, token)));
 
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                intent.putExtras(tokenBundle);
-                startActivity(intent);
-                finish();
+                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        intent.putExtras(tokenBundle);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, delay);
             }
-        }, 10);
+        });
     }
 
 
@@ -173,7 +214,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                     OnBoarding2Fragment tab2 = OnBoarding2Fragment.newInstance(this.activity);
                     return tab2;
                 case 2:
-                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity);
+                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity, db);
                     return tab3;
             }
             return null;

@@ -11,7 +11,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.example.tubesp3b_2.databinding.ActivityMainBinding;
@@ -19,16 +21,19 @@ import com.example.tubesp3b_2.model.result.CoursesResult;
 import com.example.tubesp3b_2.model.result.HistoriesResult;
 import com.example.tubesp3b_2.model.result.RoutesResult;
 import com.example.tubesp3b_2.model.User;
+import com.example.tubesp3b_2.model.room_database.AppDataBase;
 import com.example.tubesp3b_2.view.BookTicketFragment;
 import com.example.tubesp3b_2.view.HistoryFragment;
 import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.PaymentFragment;
 import com.example.tubesp3b_2.view.SeatFragment;
 
+
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+import org.parceler.Parcels;
 
 public class MainActivity extends AppCompatActivity {
     //basic attrs
@@ -105,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
         String user_token = this.getIntent().getExtras().getString("USER_TOKEN");
         String username = this.getIntent().getExtras().getString("USERNAME");
         this.user = new User(username, user_token);
+
+        //take user's info
+        this.user = Parcels.unwrap(this.getIntent().getExtras().getParcelable("user"));
 
         //setup drawer & toolbar
         this.setupDrawerToolbar();
@@ -196,13 +204,11 @@ public class MainActivity extends AppCompatActivity {
             if(this.currentFragment != null){
                 ft.hide(currentFragment);
             }
-
             if(this.landingPageFragment.isAdded()){
                 ft.show(this.landingPageFragment);
             }else{
                 ft.add(R.id.fragment_container, this.landingPageFragment);
             }
-
             this.currentFragment = this.landingPageFragment;
 
 
@@ -211,13 +217,11 @@ public class MainActivity extends AppCompatActivity {
             if(this.currentFragment != null){
                 ft.hide(currentFragment);
             }
-
             if(this.bookTicketFragment.isAdded()){
                 ft.show(this.bookTicketFragment);
             }else{
                 ft.add(R.id.fragment_container, this.bookTicketFragment);
             }
-
             this.currentFragment = this.bookTicketFragment;
 
         //SEAT
@@ -225,13 +229,11 @@ public class MainActivity extends AppCompatActivity {
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
-
             if (this.seatFragment.isAdded()) {
                 ft.show(this.seatFragment);
             } else {
                 ft.add(R.id.fragment_container, this.seatFragment);
             }
-
             this.currentFragment = this.seatFragment;
 
         //PAYMENT
@@ -239,13 +241,11 @@ public class MainActivity extends AppCompatActivity {
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
-
             if (this.paymentFragment.isAdded()) {
                 ft.show(this.paymentFragment);
             } else {
                 ft.add(R.id.fragment_container, this.paymentFragment);
             }
-
             this.currentFragment = this.paymentFragment;
 
         //HISTORY
@@ -253,14 +253,16 @@ public class MainActivity extends AppCompatActivity {
             if (this.currentFragment != null) {
                 ft.hide(currentFragment);
             }
-
             if (this.historyFragment.isAdded()) {
                 ft.show(this.historyFragment);
             } else {
                 ft.add(R.id.fragment_container, this.historyFragment);
             }
-
             this.currentFragment = this.historyFragment;
+
+        //SIGN OUT
+        }else{
+            this.changeIntent();
         }
 
         //closing left drawer
@@ -284,6 +286,23 @@ public class MainActivity extends AppCompatActivity {
         }else if(this.currentFragment == this.landingPageFragment){
             this.changePage(-1);
         }
+    }
+
+
+    //change intent MainActivity -> SplashActivity
+    public void changeIntent(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bundle tokenBundle = new Bundle();
+                tokenBundle.putParcelable("user", Parcels.wrap(user));
+
+                Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
+                intent.putExtras(tokenBundle);
+                startActivity(intent);
+                finish();
+            }
+        }, 0);
     }
 
 
