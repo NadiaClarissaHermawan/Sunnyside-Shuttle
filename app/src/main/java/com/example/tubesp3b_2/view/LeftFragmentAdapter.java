@@ -109,6 +109,8 @@ public class LeftFragmentAdapter extends BaseAdapter {
                 nextPage.putInt("page", 1);
             }else if(this.binding.tvNavItem.getText().toString().equals("History")){
                 nextPage.putInt("page", 4);
+            }else if(this.binding.tvNavItem.getText().toString().equals("Sign Out")){
+                nextPage.putInt("page", 5);
             }
 
             //kirim ke MainActivity.java

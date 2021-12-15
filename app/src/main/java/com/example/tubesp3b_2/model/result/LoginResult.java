@@ -1,4 +1,4 @@
-package com.example.tubesp3b_2.model;
+package com.example.tubesp3b_2.model.result;
 
 public class LoginResult {
     private String token, message, uname;

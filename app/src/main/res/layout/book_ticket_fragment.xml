@@ -61,10 +61,10 @@
         <!--drop down departing city-->
         <Spinner
             android:id="@+id/spinner_departing"
+            style="@style/SpinnerTheme"
             android:layout_width="350dp"
             android:layout_height="40dp"
-            android:layout_below="@id/container_departing"
-            style="@style/SpinnerTheme"/>
+            android:layout_below="@id/container_departing" />
 
         <!--container row arrival city-->
         <LinearLayout
@@ -166,15 +166,15 @@
             android:id="@+id/btn_find"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/search_btn"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:background="@drawable/orange_btn"
             android:layout_below="@id/time_picker"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:background="@drawable/orange_btn"
+            android:text="@string/search_btn"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

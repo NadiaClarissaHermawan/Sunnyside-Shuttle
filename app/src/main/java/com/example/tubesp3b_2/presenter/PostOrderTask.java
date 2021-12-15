@@ -1,19 +1,18 @@
 package com.example.tubesp3b_2.presenter;
 
+
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tubesp3b_2.SplashScreenActivity;
-import com.example.tubesp3b_2.model.request.LoginInput;
-import com.example.tubesp3b_2.model.result.LoginResult;
-import com.example.tubesp3b_2.model.room_database.AppDataBase;
+import com.example.tubesp3b_2.MainActivity;
+import com.example.tubesp3b_2.model.request.ConfirmedOrderInput;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -24,33 +23,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 //pemanggilan webservice with volley library
-public class PostLoginTask {
+public class PostOrderTask {
     //attributes
-    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/authenticate";
+    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/orders";
     private Context context;
-    private SplashScreenActivity activity;
+    private MainActivity activity;
     private Gson gson;
-    private String uname;
-    private AppDataBase dataBase;
+    private String accesstoken;
 
     //constructor
-    public PostLoginTask(Context context, SplashScreenActivity activity, AppDataBase dataBase){
+    public PostOrderTask(Context context, MainActivity activity, String accesstoken){
         this.context = context;
         this.activity = activity;
-        this.dataBase = dataBase;
+        this.accesstoken = accesstoken;
     }
 
 
     //start Volley Thread
-    public void execute(String uname, String pass){
-        this.uname = uname;
-
+    public void execute(String course_id, String seats){
         //initialize GSON builder & clean input
         GsonBuilder builder = new GsonBuilder();
         this.gson = builder.create();
 
         //create input Object
-        LoginInput input = new LoginInput(uname, pass);
+        ConfirmedOrderInput input = new ConfirmedOrderInput(course_id, seats);
 
         //convert input object into Json String
         String inputGson = gson.toJson(input);
@@ -59,7 +55,7 @@ public class PostLoginTask {
             JSONObject jsonObject = new JSONObject(inputGson);
             this.callVolley(jsonObject);
 
-            Log.e("LOGIN_REQ_BODY", "http request body (input) : "+jsonObject.toString());
+            Log.e("POST_ORDER_BODY", jsonObject.toString());
         }catch (JSONException e){
             e.printStackTrace();
         }
@@ -72,20 +68,26 @@ public class PostLoginTask {
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Log.e("POST_ORDER_SUCCEED", "onSucceedResponse: "+ response.toString());
                 processResult(response.toString());
-                Log.e("LOGIN_REQ_SUCCEED", "onSucceedResponse: "+ response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("LOGIN_REQ_ERROR", "onErrorResponse: "+error.toString());
+                Log.e("POST_ORDER_ERROR", "onErrorResponse: "+error.toString());
             }
         }){
-            //set http request header
-            protected Map<String, String> getHeader() throws AuthFailureError{
-                Map<String, String> params = new HashMap<>();
-                params.put("Content-Type","application/json");
-                return params;
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=UTF-8");
+                headers.put("Authorization", "Bearer " + accesstoken);
+                return headers;
             }
         };
 
@@ -97,11 +99,7 @@ public class PostLoginTask {
 
     //if callVoley succeed, call this response handler
     public void processResult(String json){
-        //convert String json to result Object
-        LoginResult res = gson.fromJson(json, LoginResult.class);
-        res.setUname(this.uname);
-
-        //return response to splashScreenActivity
-        this.activity.changeIntent(res.getUname(), res.getToken());
+        //back to payment page
+        this.activity.givePostOrderResponse();
     }
 }

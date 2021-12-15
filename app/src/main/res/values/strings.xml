@@ -32,15 +32,17 @@
     <string name="search_btn">Find</string>
     <string name="colon">:</string>
 
-    <!--  pembayaran fragment  -->
-    <string name="tv_dari_pembayaran">Dari : </string>
-    <string name="tv_ke_pembayaran">Ke : </string>
-    <string name="tv_tanggal_pembayaran">Tanggal :</string>
-    <string name="tv_seat">Seat : </string>
-    <string name="tv_harga">Harga : </string>
-    <string name="tv_diskon">Diskon : </string>
-    <string name="tv_total">Total : </string>
-    <string name="btn_pesan">Pesan</string>
+    <!--  Pembayaran fragment  -->
+    <string name="tv_payment_header">Ticket Payment</string>
+    <string name="btn_confirm_payment">Confirm</string>
+    <string name="payment_succeed">Transaction Succeed</string>
+    <string name="back_to_home">Back To Home</string>
+
+    <!--  Book Shuttle Ticket Fragment  -->
+    <string name="tv_book_seat">Book Shuttle Ticket</string>
+    <string name="tv_carType_seat">Car Type :</string>
+    <string name="tv_pickSeat_seat">Pick Your Seat :</string>
+    <string name="btn_continue_seat">Continue</string>
 
     <!--History fragment-->
     <string name="history_title">Payment History</string>

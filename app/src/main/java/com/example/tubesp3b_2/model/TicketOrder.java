@@ -1,8 +1,16 @@
 package com.example.tubesp3b_2.model;
 
+import org.parceler.Parcel;
+
+import java.util.ArrayList;
+
+@Parcel
 public class TicketOrder {
-    private String source, destination, vehicle, date, hour;
-    private int seat;
+    String source, destination, vehicle, date, hour, course_id;
+    ArrayList<Integer> seats;
+    int fee;
+
+    public TicketOrder(){}
 
     public TicketOrder(String source, String destination, String vehicle, String date, String hour){
         this.source = source;
@@ -10,18 +18,35 @@ public class TicketOrder {
         this.vehicle = vehicle;
         this.date = date;
         this.hour = hour;
+        this.seats = new ArrayList<>();
     }
 
-    public void setVehicle(int type){
-        if(type == 0){
-            this.vehicle = "small";
-        }else{
-            this.vehicle = "Large";
-        }
+    public void setCourse_id(String course_id){
+        this.course_id = course_id;
     }
 
-    public void setSeat(int number){
-        this.seat = number;
+    public void setFee(int fee){
+        this.fee = fee;
+    }
+
+    public void setSeats(ArrayList<Integer> seats){
+        this.seats = seats;
+    }
+
+    public void setVehicle(String type){
+        this.vehicle = type;
+    }
+
+    public String getCourse_id(){
+        return this.course_id;
+    }
+
+    public int getFee(){
+        return this.fee;
+    }
+
+    public ArrayList<Integer> getSeats(){
+        return this.seats;
     }
 
     public String getSource(){
@@ -42,9 +67,5 @@ public class TicketOrder {
 
     public String getHour(){
         return this.hour;
-    }
-
-    public int getSeat(){
-        return this.seat;
     }
 }

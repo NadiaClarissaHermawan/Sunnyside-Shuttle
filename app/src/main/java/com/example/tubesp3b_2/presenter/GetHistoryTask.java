@@ -11,10 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
-import com.example.tubesp3b_2.model.HistoriesResult;
-import com.example.tubesp3b_2.model.History;
-import com.example.tubesp3b_2.model.RoutesResult;
-import com.example.tubesp3b_2.model.TicketOrder;
+import com.example.tubesp3b_2.model.result.HistoriesResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -23,7 +20,7 @@ import java.util.Map;
 
 public class GetHistoryTask {
     //attributes
-    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/orders?limit=2&offset=1";
+    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/orders?limit=10&offset=1";
     private Context context;
     private MainActivity mainActivity;
     private Gson gson;
@@ -72,8 +69,12 @@ public class GetHistoryTask {
         };
 
         //send request to API
-        RequestQueue volleyRequestQueue = Volley.newRequestQueue(this.context);
-        volleyRequestQueue.add(stringRequest);
+        if(this.context == null){
+            Log.e("HISTORY TEST", "callVolleyHistory: " );
+        }else {
+            RequestQueue volleyRequestQueue = Volley.newRequestQueue(this.context);
+            volleyRequestQueue.add(stringRequest);
+        }
     }
 
 
