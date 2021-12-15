@@ -33,6 +33,7 @@ public class LeftFragment extends Fragment implements ILeftFragment {
                 new MenuNav("Home"),
                 new MenuNav("Book Ticket"),
                 new MenuNav("History"),
+                new MenuNav("Sign Out"),
                 new MenuNav("Exit")
         };
 

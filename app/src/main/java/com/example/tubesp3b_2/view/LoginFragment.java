@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tubesp3b_2.SplashScreenActivity;
 import com.example.tubesp3b_2.databinding.LoginFragmentBinding;
+import com.example.tubesp3b_2.model.room_database.AppDataBase;
 import com.example.tubesp3b_2.presenter.PostLoginTask;
 import com.example.tubesp3b_2.view.interfaces.ILogin;
 
@@ -19,17 +20,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
     private ConnectivityManager connectivityManager;
     private Context context;
     private SplashScreenActivity activity;
+    private AppDataBase dataBase;
 
     //must-have empty constructor
     public LoginFragment(){}
 
 
     //singleton
-    public static LoginFragment newInstance(ConnectivityManager connectivityManager, Context context, SplashScreenActivity activity){
+    public static LoginFragment newInstance(ConnectivityManager connectivityManager, Context context, SplashScreenActivity activity, AppDataBase dataBase){
         LoginFragment frag = new LoginFragment();
         frag.connectivityManager = connectivityManager;
         frag.activity = activity;
         frag.context = context;
+        frag.dataBase = dataBase;
 
         return frag;
     }
@@ -72,7 +75,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
                 }else{
                     this.binding.errorPass.setText("");
                     //make & post http request
-                    new PostLoginTask(this.context, this.activity).execute(uname, pass);
+                    new PostLoginTask(this.context, this.activity, this.dataBase).execute(uname, pass);
                 }
             }
         }

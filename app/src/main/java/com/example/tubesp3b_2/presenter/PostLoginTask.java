@@ -13,6 +13,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.SplashScreenActivity;
 import com.example.tubesp3b_2.model.request.LoginInput;
 import com.example.tubesp3b_2.model.result.LoginResult;
+import com.example.tubesp3b_2.model.room_database.AppDataBase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,11 +31,13 @@ public class PostLoginTask {
     private SplashScreenActivity activity;
     private Gson gson;
     private String uname;
+    private AppDataBase dataBase;
 
     //constructor
-    public PostLoginTask(Context context, SplashScreenActivity activity){
+    public PostLoginTask(Context context, SplashScreenActivity activity, AppDataBase dataBase){
         this.context = context;
         this.activity = activity;
+        this.dataBase = dataBase;
     }
 
 
@@ -78,7 +81,6 @@ public class PostLoginTask {
                 Log.e("LOGIN_REQ_ERROR", "onErrorResponse: "+error.toString());
             }
         }){
-
             //set http request header
             protected Map<String, String> getHeader() throws AuthFailureError{
                 Map<String, String> params = new HashMap<>();
@@ -100,6 +102,6 @@ public class PostLoginTask {
         res.setUname(this.uname);
 
         //return response to splashScreenActivity
-        this.activity.changeIntent(res);
+        this.activity.changeIntent(res.getUname(), res.getToken());
     }
 }
