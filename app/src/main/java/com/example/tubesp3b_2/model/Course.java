@@ -23,12 +23,24 @@ public class Course {
         return this.course_id;
     }
 
-    public String getVehicle(){
-        return this.vehicle;
+    public String getSource(){
+        return this.source;
     }
 
-    public int getNum_seats(){
-        return this.num_seats;
+    public String getDestination(){
+        return this.destination;
+    }
+
+    public String getDatetime(){
+        return this.datetime;
+    }
+
+    public int getFee(){
+        return this.fee;
+    }
+
+    public String getVehicle(){
+        return this.vehicle;
     }
 
     public ArrayList<Integer> getSeats(){

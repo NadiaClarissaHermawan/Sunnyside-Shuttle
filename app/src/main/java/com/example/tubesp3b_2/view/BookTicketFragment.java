@@ -2,6 +2,7 @@ package com.example.tubesp3b_2.view;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     //dropdown cities needs
     private Spinner spinnerArrival;
     private Spinner spinnerDeparting;
-    ArrayList<String> arrivalCities;
-    ArrayList<String> departingCities;
+    private Route[] allRoutes;
 
     //date picker needs
     private Calendar calendar;
@@ -90,9 +90,9 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
 
     //adding routes array & setup spinner
     public void addRoutesArray(RoutesResult res){
-        this.arrivalCities = new ArrayList<>();
-        this.departingCities = new ArrayList<>();
-        Route[] arrRoutes = res.getArrRoutes();
+        ArrayList<String> arrivalCities = new ArrayList<>();
+        ArrayList<String> departingCities = new ArrayList<>();
+        allRoutes = res.getArrRoutes();
         int size = res.getArrRoutes().length;
 
         //cek duplikat
@@ -101,35 +101,35 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
 
         //masukin ke arraylist
         for(int i = 0; i<size; i++){
-            String city = arrRoutes[i].getSource();
+            String city = allRoutes[i].getSource();
             if(!checkDuplicateArrival.containsKey(city)){
                 checkDuplicateArrival.put(city,true);
-                this.arrivalCities.add(city);
+                arrivalCities.add(city);
             }
 
-            city = arrRoutes[i].getDestination();
+            city = allRoutes[i].getDestination();
             if(!checkDuplicateDeparting.containsKey(city)){
                 checkDuplicateDeparting.put(city, true);
-                this.departingCities.add(city);
+                departingCities.add(city);
             }
         }
 
         //setup spinner
-        this.setupSpinner();
+        this.setupSpinner(arrivalCities, departingCities);
     }
 
 
     //setup spinner
-    public void setupSpinner(){
+    public void setupSpinner(ArrayList<String> arrivalCities, ArrayList<String> departingCities){
         //inflate arrival spinner
         this.spinnerArrival = (Spinner) this.binding.spinnerArrival;
-        ArrayAdapter<String> adp = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, this.arrivalCities);
+        ArrayAdapter<String> adp = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, arrivalCities);
         spinnerArrival.setAdapter(adp);
         spinnerArrival.setSelected(true);
 
         //inflate departing spinner
         this.spinnerDeparting = (Spinner) this.binding.spinnerDeparting;
-        ArrayAdapter<String> adp2 = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, this.departingCities);
+        ArrayAdapter<String> adp2 = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, departingCities);
         spinnerDeparting.setAdapter(adp2);
         spinnerDeparting.setSelected(true);
     }
@@ -202,11 +202,11 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
     public int checkInputValidity(){
         String source = this.binding.spinnerDeparting.getSelectedItem().toString();
         String destination = this.binding.spinnerArrival.getSelectedItem().toString();
-        int size = this.arrivalCities.size();
+        int size = this.allRoutes.length;
 
         //source & destination check
         for(int i = 0; i< size; i++){
-            if(this.departingCities.get(i).equals(source) && this.arrivalCities.get(i).equals(destination)){
+            if(this.allRoutes[i].getSource().equals(source) && this.allRoutes[i].getDestination().equals(destination)){
                 //year check
                 if(Integer.parseInt(this.formatedDate.substring(6)) > Integer.parseInt(this.currentDate.substring(6))){
                     return 1;
@@ -248,7 +248,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
         }else if(view == this.binding.btnFind){
             int checker = this.checkInputValidity();
 
-            //check input validity
+            //inputs are valid
             if(checker == 1){
                 //send order details to SeatFragment
                 Bundle orderDetails = new Bundle();
@@ -257,7 +257,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
                 orderDetails.putString("vehicle", "Small");
                 orderDetails.putString("date", this.formatedDate);
                 orderDetails.putString("hour", this.formatedHour);
-                this.fragmentManager.setFragmentResult("getOrderDetails", orderDetails);
+                this.fragmentManager.setFragmentResult("getOrderSchedule", orderDetails);
 
                 //move page
                 Bundle nextPage = new Bundle();
@@ -267,10 +267,8 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
             //invalid schedule
             }else {
                 Toast toast = new Toast(this.getContext());
-                //date & time invalid
                 if (checker == 0) {
                     toast.setText("Please pick later schedule");
-                //no route
                 } else {
                     toast.setText("There is currently no shuttle for your selected cities");
                 }

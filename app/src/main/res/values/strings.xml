@@ -34,14 +34,9 @@
 
     <!--  Pembayaran fragment  -->
     <string name="tv_payment_header">Ticket Payment</string>
-    <string name="tv_rute_body_content">Bandung to Jakarta</string>
-    <string name="tv_tanggal_body_content">5-12-2021 08.00 AM</string>
-    <string name="tv_mobil_body_content">small car</string>
-    <string name="tv_fee_body_content">Fee @50.000</string>
-    <string name="tv_jumlahTicket_body_content">2x tickets</string>
-    <string name="tv_seat_body_content">(s1, s2)</string>
-    <string name="tv_total_body_content">Rp.100.000</string>
     <string name="btn_confirm_payment">Confirm</string>
+    <string name="payment_succeed">Transaction Succeed</string>
+    <string name="back_to_home">Back To Home</string>
 
     <!--  Book Shuttle Ticket Fragment  -->
     <string name="tv_book_seat">Book Shuttle Ticket</string>

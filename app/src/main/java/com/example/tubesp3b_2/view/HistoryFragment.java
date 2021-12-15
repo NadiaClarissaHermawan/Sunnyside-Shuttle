@@ -55,22 +55,19 @@ public class HistoryFragment extends Fragment implements IHistoryFragment {
         this.binding.listviewHistory.setAdapter(this.adapter);
 
         //get order list dari API
-        new GetHistoryTask(this.getContext(), this.activity, this.user.getToken()).executeHistory();
-
-        //TODO:TESTER JANGAN LUPA HAPUS
-        ArrayList<Integer> sit = new ArrayList<>();
-        sit.add(3);
-        sit.add(4);
-        History[] his = {new History("1",  "2",  "Bandung", "Jakarta", "Small", "10-10-2021", "26-11-2021", sit, 50000),
-                new History("1",  "2",  "Bandung", "Jakarta", "Small", "10-10-2021", "26-11-2021", sit, 50000)};
-        this.presenter.loadData(his);
+        this.requestHistoryTask();
 
         return view;
     }
 
 
-    //TODO: sebenernya gausah pake presenter jg gpp krn gaada operasi ke listnya,
-    // cmn just in case nambah fitur apus history jgn dihapus dl
+    //request payment history
+    public void requestHistoryTask(){
+        new GetHistoryTask(this.getContext(), this.activity, this.user.getToken()).executeHistory();
+    }
+
+
+    //request to renew data at presenter
     public void updateToPresenter(History[] retrievedHistories){
         this.presenter.loadData(retrievedHistories);
     }

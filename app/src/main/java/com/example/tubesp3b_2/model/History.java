@@ -7,7 +7,7 @@ import java.util.Date;
 public class History {
     private String order_id, course_id, source, destination, vehicle, order_datetime, course_datetime;
     private ArrayList<Integer> seats;
-    private int fee, ticket_count;
+    private int fee;
 
     public History(String order_id, String course_id, String source, String destination, String vehicle, String order_datetime, String course_datetime, ArrayList<Integer> seats, int fee){
         this.order_id = order_id;
@@ -19,8 +19,6 @@ public class History {
         this.course_datetime = course_datetime;
         this.seats = seats;
         this.fee = fee;
-
-        this.ticket_count = seats.size();
     }
 
     public String getSource(){
@@ -52,9 +50,10 @@ public class History {
     }
 
     public String getTicket_count(){
-        String res = this.ticket_count+"x tickets (";
-        for(int i = 0; i<this.ticket_count; i++){
-            if(i == this.ticket_count-1){
+        int size = this.seats.size();
+        String res = size + "x tickets (";
+        for(int i = 0; i<size; i++){
+            if(i == size-1){
                 res = res + this.seats.get(i) + ")";
             }else {
                 res = res + this.seats.get(i) + ",";

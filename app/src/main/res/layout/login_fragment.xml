@@ -53,10 +53,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/et_login_username"
+        app:layout_constraintEnd_toEndOf="@id/et_login_username"
         app:layout_constraintTop_toBottomOf="@id/et_login_username"
-        app:layout_constraintBottom_toTopOf="@id/et_login_password" />
+        app:layout_constraintBottom_toTopOf="@id/et_login_password"
+        app:layout_constraintHorizontal_bias="0.09"/>
 
     <!--  EditText Password  -->
     <EditText
@@ -84,11 +85,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/et_login_password"
+        app:layout_constraintEnd_toEndOf="@id/et_login_password"
         app:layout_constraintTop_toBottomOf="@id/et_login_password"
         app:layout_constraintBottom_toTopOf="@id/btn_login"
-        app:layout_constraintVertical_bias="0"/>
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0.09"/>
 
     <!--  Button Login  -->
     <Button

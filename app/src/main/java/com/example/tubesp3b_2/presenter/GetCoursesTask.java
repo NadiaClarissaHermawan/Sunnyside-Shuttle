@@ -8,23 +8,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tubesp3b_2.MainActivity;
-import com.example.tubesp3b_2.model.Course;
 import com.example.tubesp3b_2.model.CoursesResult;
-import com.example.tubesp3b_2.model.RoutesResult;
 import com.example.tubesp3b_2.model.TicketOrder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,13 +55,13 @@ public class GetCoursesTask {
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.e("ROUTES_REQ_SUCCEED", "onSucceedResponse: "+ response.toString());
+                    Log.e("COURSES_REQ_SUCCEED", "onSucceedResponse: "+ response.toString());
                     processResultCourses(response.toString());
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("ROUTES_REQ_ERROR", "onErrorResponse: "+error.toString());
+                    Log.e("COURSES_REQ_ERROR", "onErrorResponse: "+error.toString());
                 }
         }) {
             @Override

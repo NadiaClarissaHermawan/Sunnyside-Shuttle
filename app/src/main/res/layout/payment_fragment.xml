@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="28dp">
 
     <!--  Header  -->
     <LinearLayout
@@ -26,14 +27,15 @@
     <!--  Body  -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="680dp"
         android:orientation="vertical"
         android:background="@color/light_blue">
 
         <!--    Body Content    -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="215dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
@@ -47,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:text="@string/tv_rute_body_content"
                 android:textSize="18sp"
                 android:textColor="@color/medium_dark_blue"/>
 
@@ -58,29 +59,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="@string/tv_tanggal_body_content"
                 android:textSize="18sp"
                 android:textColor="@color/medium_dark_blue"/>
 
             <!--     TextView Jenis Mobil       -->
             <TextView
-                android:id="@+id/tv_mobil_payment"
+                android:id="@+id/tv_vehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="@string/tv_mobil_body_content"
                 android:textSize="18sp"
                 android:textColor="@color/medium_dark_blue"/>
 
             <!--     TextView Jenis Mobil       -->
             <TextView
-                android:id="@+id/tv_fee_payment"
+                android:id="@+id/tv_fee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="@string/tv_fee_body_content"
                 android:textSize="18sp"
                 android:textColor="@color/medium_dark_blue"/>
 
@@ -100,27 +98,25 @@
 
                 <!--       TextView Jumlah Tiket         -->
                 <TextView
-                    android:id="@+id/tv_jumlahTicket_payment"
+                    android:id="@+id/tv_jumlahTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                    android:text="@string/tv_jumlahTicket_body_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/dark_blue"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark_blue"/>
+                    android:textStyle="bold" />
 
                 <!--       TextView Seat         -->
                 <TextView
-                    android:id="@+id/tv_ticketSeat_payment"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_ticketSeat"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:layout_marginLeft="20dp"
-                    android:text="@string/tv_seat_body_content"
+                    android:layout_marginTop="32dp"
+                    android:textColor="@color/dark_blue"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark_blue"/>
+                    android:textStyle="bold" />
 
                 <!--       TextView Total         -->
                 <TextView
@@ -130,7 +126,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="@string/tv_total_body_content"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/dark_blue"/>

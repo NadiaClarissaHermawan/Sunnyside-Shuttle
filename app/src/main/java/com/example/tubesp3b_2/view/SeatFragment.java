@@ -3,7 +3,6 @@ package com.example.tubesp3b_2.view;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import com.example.tubesp3b_2.model.TicketOrder;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.presenter.GetCoursesTask;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SeatFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
@@ -42,7 +40,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     private FragmentManager fragmentManager;
     private User user;
     private TicketOrder order;
-    private ArrayList<Course> course;
+    private Course courses;
 
     //dropdown vehicle needs
     private Spinner spinnerVehicle;
@@ -51,7 +49,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     //seats canvas needs
     private Bitmap bitmap;
     private Canvas canvas;
-    private Paint availableSeatPaint, selectedSeatPaint, notAvailableSeatPaint;
+    private Paint borderPaint, selectedSeatPaint, occupiedSeatPaint;
     private Paint whiteTextPaint, orangeTextPaint;
     private Seat[] seats;
     private GestureDetector gestureDetector;
@@ -83,17 +81,17 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
         //setup vehicle type spinner
         this.setupVehicleSpinner();
 
-        //set touch listener
+        //set touch & click listener
         this.binding.seatsCanvas.setOnTouchListener(this::onTouch);
+        this.binding.btnContinue.setOnClickListener(this::onClick);
 
         //listener get ticket order details
         this.fragmentManager.setFragmentResultListener(
-            "getOrderDetails", this, new FragmentResultListener() {
+            "getOrderSchedule", this, new FragmentResultListener() {
                 @Override
                 public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                     order = new TicketOrder(result.getString("source"), result.getString("destination"),
                                         result.getString("vehicle"), result.getString("date"), result.getString("hour"));
-
                     requestCourseInfo();
                 }
             }
@@ -111,9 +109,16 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
 
     //get course detailed information
     public void getCourseInfo(ArrayList<Course> res){
-        this.course = res;
+        this.courses = res.get(0);
+        this.spinnerVehicle.setSelected(true);
         this.initializeOccupiedSeat();
         this.setupSeatsCanvas();
+    }
+
+
+    //reset vehicle spinner selected into Small
+    public void resetVehicleType(){
+        this.spinnerVehicle.setSelection(0);
     }
 
 
@@ -149,13 +154,13 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
 
     //initialize occupied seats object
     public void initializeOccupiedSeat(){
-        if(this.course.get(0).getVehicle().equals("Small")){
+        if(this.courses.getVehicle().equals("Small")){
             this.seats = new Seat[6];
         }else{
             this.seats = new Seat[10];
         }
 
-        ArrayList<Integer> occupiedSeats = this.course.get(0).getSeats();
+        ArrayList<Integer> occupiedSeats = this.courses.getSeats();
         int tempSize = occupiedSeats.size();
         for(int i = 0; i< tempSize; i++){
             this.seats[occupiedSeats.get(i)-1] = new Seat(occupiedSeats.get(i), -1, 0, 0, 0, 0);
@@ -189,10 +194,10 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     //setup various seats colors
     public void setupSeatsColors(){
         //available seat paint
-        this.availableSeatPaint = new Paint();
-        this.availableSeatPaint.setStyle(Paint.Style.STROKE);
-        this.availableSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.orange, null));
-        this.availableSeatPaint.setStrokeWidth(3);
+        this.borderPaint = new Paint();
+        this.borderPaint.setStyle(Paint.Style.STROKE);
+        this.borderPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.orange, null));
+        this.borderPaint.setStrokeWidth(3);
 
         //selected seat paint
         this.selectedSeatPaint = new Paint();
@@ -201,10 +206,10 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
         this.selectedSeatPaint.setStrokeWidth(0);
 
         //not available seat paint
-        this.notAvailableSeatPaint = new Paint();
-        this.notAvailableSeatPaint.setStyle(Paint.Style.FILL);
-        this.notAvailableSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-        this.notAvailableSeatPaint.setStrokeWidth(0);
+        this.occupiedSeatPaint = new Paint();
+        this.occupiedSeatPaint.setStyle(Paint.Style.FILL);
+        this.occupiedSeatPaint.setColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+        this.occupiedSeatPaint.setStrokeWidth(0);
 
         //white text color
         this.whiteTextPaint = new Paint();
@@ -230,13 +235,13 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
         int textTop = top + 100;
 
         //6 seats
-        if(this.course.get(0).getVehicle().equals("Small")){
+        if(this.courses.getVehicle().equals("Small")){
             for(int i = 0; i<6; i++){
                 if(i == 3){
                     top = 100;
                     bottom = 250;
-                    left = 550;
-                    right = 700;
+                    left = this.binding.seatsCanvas.getWidth()-250;
+                    right = this.binding.seatsCanvas.getWidth()-100;
                     textLeft = left + 80;
                     textTop = top + 100;
                 }
@@ -249,7 +254,30 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
 
         //10 seats
         }else{
-            //TODO:LENGKAPIN TITIK SEATSNYA
+            left = 70;
+            right = 200;
+            textLeft = left + 60;
+            for(int i = 0; i<10; i++){
+                //draw seats according to the setup
+                this.drawSeats(i, left, top, right, bottom, textLeft, textTop);
+                if(i < 3){
+                    top += 210;
+                    bottom += 210;
+                    textTop += 210;
+                }else if(i < 6){
+                    left += 175;
+                    right += 175;
+                    textLeft += 178;
+                }else if(i < 8){
+                    top -= 210;
+                    bottom -= 210;
+                    textTop -= 210;
+                }else{
+                    left -= 175;
+                    right -= 175;
+                    textLeft -= 178;
+                }
+            }
         }
     }
 
@@ -260,7 +288,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
         //available (status 0)
         if(this.seats[i] == null || this.seats[i].getStatus() == 0){
             this.seats[i] = new Seat(i+1, 0, top, bottom, right, left);
-            this.canvas.drawRect(rect, this.availableSeatPaint);
+            this.canvas.drawRect(rect, this.borderPaint);
             this.canvas.drawText((i+1)+"", textLeft, textTop, this.orangeTextPaint);
 
         }else{
@@ -271,7 +299,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
 
             //occupied (status -1)
             if(this.seats[i].getStatus() == -1){
-                this.canvas.drawRect(rect, this.notAvailableSeatPaint);
+                this.canvas.drawRect(rect, this.occupiedSeatPaint);
                 this.canvas.drawText((i+1)+"", textLeft, textTop, this.whiteTextPaint);
             //selected (status 1)
             }else{
@@ -280,13 +308,48 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
             }
         }
         //rect border
-        this.canvas.drawRect(rect, this.availableSeatPaint);
+        this.canvas.drawRect(rect, this.borderPaint);
+    }
+
+
+    //check input validity
+    public boolean checkInputValidity(){
+        //pick no seat
+        if(this.order.getSeats().size() == 0){
+            return false;
+        }
+        return true;
     }
 
 
     @Override
     public void onClick(View view) {
+        //btn continue
+        if(view == this.binding.btnContinue){
+            //input valid
+            if(this.checkInputValidity()){
+                //change page
+                Bundle nextPage = new Bundle();
+                nextPage.putInt("page", 3);
+                this.fragmentManager.setFragmentResult("changePage", nextPage);
 
+                //send id_course & selected seats
+                Bundle confirmOrder = new Bundle();
+                confirmOrder.putString("course_id", this.courses.getCourse_id());
+                confirmOrder.putString("source", this.courses.getSource());
+                confirmOrder.putString("destination", this.courses.getDestination());
+                confirmOrder.putString("datetime", this.courses.getDatetime());
+                confirmOrder.putString("vehicle", this.courses.getVehicle());
+                confirmOrder.putInt("fee", this.courses.getFee());
+                confirmOrder.putIntegerArrayList("seats", this.order.getSeats());
+                this.fragmentManager.setFragmentResult("getOrderConfirmation", confirmOrder);
+
+            }else{
+                Toast toast = new Toast(this.getContext());
+                toast.setText("Please pick a seat");
+                toast.show();
+            }
+        }
     }
 
 
@@ -294,7 +357,6 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return gestureDetector.onTouchEvent(motionEvent);
     }
-
 
 
     private class MyCustomGestureListener extends GestureDetector.SimpleOnGestureListener{
@@ -319,12 +381,16 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
             for(int i = 0; i<size; i++){
                 if(this.touchCoordinate.x >= seats[i].getLeft()*1.0 && this.touchCoordinate.x <= seats[i].getRight()*1.0
                     && this.touchCoordinate.y >= seats[i].getTop()*1.0 && this.touchCoordinate.y <= seats[i].getBottom()*1.0){
-                    //update view
+
+                    //update status
                     if(seats[i].getStatus() == 0){
+                        order.getSeats().add(i);
                         seats[i].setStatus(1);
                     }else if(seats[i].getStatus() == 1){
+                        order.getSeats().remove((Object)i);
                         seats[i].setStatus(0);
                     }
+                    //update view
                     setupSeatsCanvas();
                     break;
                 }

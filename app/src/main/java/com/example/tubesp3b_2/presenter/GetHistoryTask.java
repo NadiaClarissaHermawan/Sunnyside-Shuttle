@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class GetHistoryTask {
     //attributes
-    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/orders?limit=2&offset=1";
+    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/orders?limit=10&offset=1";
     private Context context;
     private MainActivity mainActivity;
     private Gson gson;

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         this.landingPageFragment = LandingPageFragment.newInstance(this.user, this.getSupportFragmentManager());
         this.bookTicketFragment = BookTicketFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
         this.seatFragment = SeatFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
-        this.paymentFragment = new PaymentFragment();
+        this.paymentFragment = PaymentFragment.newInstance(this.user, this.getSupportFragmentManager(), this);
         this.historyFragment = HistoryFragment.newInstance(this.user, this);
 
         //set halaman pertama fragment = home page
@@ -118,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
     //method untuk terima & salurin response history
     public void giveHistoryResponse(HistoriesResult res){
         this.historyFragment.updateToPresenter(res.getArrHistories());
+    }
+
+
+    //method untuk terima & salurin response payment confirmed & update history
+    public void givePostOrderResponse(){
+        this.paymentFragment.paymentSucceed();
+        this.historyFragment.requestHistoryTask();
     }
 
 
@@ -221,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
         if(this.currentFragment == this.bookTicketFragment || this.currentFragment == this.historyFragment){
             this.changePage(0);
         }else if(this.currentFragment == this.seatFragment){
+            this.seatFragment.resetVehicleType();
             this.changePage(1);
         }else if(this.currentFragment == this.paymentFragment){
             this.changePage(2);
