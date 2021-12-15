@@ -28,14 +28,13 @@ import com.example.tubesp3b_2.view.LandingPageFragment;
 import com.example.tubesp3b_2.view.PaymentFragment;
 import com.example.tubesp3b_2.view.SeatFragment;
 
-
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import org.parceler.Parcels;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     //basic attrs
     private ActivityMainBinding binding;
     private DrawerLayout drawer;
@@ -62,60 +61,12 @@ public class MainActivity extends AppCompatActivity {
         View view = this.binding.getRoot();
         setContentView(view);
 
-        //inisialisasi Calligraphy
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoRegular.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoBold.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratRegular.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratSemiBold.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratBold.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/PoppinsBold.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-
-        //ambil user's token & username yg dikirim dari SplashScreenActivity
-        String user_token = this.getIntent().getExtras().getString("USER_TOKEN");
-        String username = this.getIntent().getExtras().getString("USERNAME");
-        this.user = new User(username, user_token);
-
         //take user's info
         this.user = Parcels.unwrap(this.getIntent().getExtras().getParcelable("user"));
 
-        //setup drawer & toolbar
+        //setup drawer & toolbar, fonts
         this.setupDrawerToolbar();
+        this.setupFonts();
 
         //inisialisasi atribut
         this.fragmentManager = this.getSupportFragmentManager();
@@ -313,8 +264,55 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //inject library Calligraphy
+    //setup fonts, initialize Calligraphy
+    public void setupFonts(){
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoBold.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratSemiBold.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratBold.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/PoppinsBold.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+    }
+
+
     @Override
+    //inject library Calligraphy
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }

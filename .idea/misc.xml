@@ -3,20 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/activity_main.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/activity_splash_screen.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/book_ticket_fragment.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/history_fragment.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/history_fragment_content.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/landing_page_fragment.xml" value="0.33" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/left_fragment.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/left_fragment_menu_list_item.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/login_fragment.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/on_boarding_1_fragment.xml" value="0.33" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/on_boarding_2_fragment.xml" value="0.33" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/payment_fragment.xml" value="0.30932971014492755" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/payment_succeed_dialog.xml" value="0.38697916666666665" />
-        <entry key="..\:/University File/Semester_5/AIF183209_Pemrograman_Pada_Perangkat_Bergerak/Tugas Besar 2/6181901011/app/src/main/res/layout/seat_fragment.xml" value="0.38179347826086957" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/drawable/bg_spinner.xml" value="0.225" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/drawable/border.xml" value="0.10885416666666667" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/drawable/buttonn_bg.xml" value="0.225" />
@@ -30,7 +16,7 @@
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/drawable/spinner_style.xml" value="0.225" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
-        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/book_ticket_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/book_ticket_fragment.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/history_fragment.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/history_fragment_content.xml" value="0.33" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/landing_page_fragment.xml" value="0.22" />
@@ -40,7 +26,7 @@
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/on_boarding_1_fragment.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/on_boarding_2_fragment.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/payment_fragment.xml" value="0.33" />
-        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/payment_succeed_dialog.xml" value="0.22" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/payment_succeed_dialog.xml" value="0.16" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/pembayaran_fragment.xml" value="0.2056159420289855" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/pesan_fragment.xml" value="0.2056159420289855" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/TubesP3B_2/app/src/main/res/layout/seat_fragment.xml" value="0.2" />

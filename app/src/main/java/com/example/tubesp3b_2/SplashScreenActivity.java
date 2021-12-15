@@ -48,6 +48,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     //change intent needs
     private int delay;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //inflating layout
@@ -57,14 +58,8 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         setContentView(view);
 
         //inisialisasi Calligraphy
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
+        this.setupFonts();
 
-        //attributes initialization --> sementara masih di set biar selalu show boarding screen
         //attributes initialization
         this.sp = new SharedPref(getBaseContext());
         this.db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "pppb_tubes2_database").build();
@@ -73,9 +68,6 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
 
         //check if logout
         this.checkLogout();
-
-        //check if theres still user's info on database
-        this.checkUser();
 
         //set splash screen's animations
         this.setSplashAnimation();
@@ -94,6 +86,17 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     }
 
 
+    //setup fonts
+    public void setupFonts(){
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+    }
+
+
     //set status bar
     public void setupStatusBar(int page){
         Window window = this.getWindow();
@@ -103,7 +106,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         //ganti warna status bar --> biru
         if(page == 0){
             window.setStatusBarColor(this.getResources().getColor(R.color.light_blue));
-            //ganti balik warna status bar jadi putih
+        //ganti balik warna status bar jadi putih
         }else{
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
@@ -114,7 +117,10 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     public void checkLogout(){
         if(this.getIntent().hasExtra("user")){
             User user = Parcels.unwrap(this.getIntent().getExtras().getParcelable("user"));
-            new LoginCheckerThread(this.db, this).removeUser(user.getUsername(), user.getToken());
+            new LoginCheckerThread(this.db, this).removeUser();
+
+        }else{
+            this.checkUser();
         }
     }
 

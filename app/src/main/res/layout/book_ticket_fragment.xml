@@ -50,7 +50,7 @@
             <!--departing city-->
             <TextView
                 android:id="@+id/departing"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/departing_city"
                 android:textColor="@color/dark_blue"
@@ -80,7 +80,7 @@
             <!--arrival city-->
             <TextView
                 android:id="@+id/arrival"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/arrival_city"
                 android:textColor="@color/dark_blue"
@@ -103,7 +103,7 @@
         <!--container row date-->
         <LinearLayout
             android:id="@+id/container_date"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/spinner_arrival"
@@ -112,7 +112,7 @@
             <!--date-->
             <TextView
                 android:id="@+id/date"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
                 android:textColor="@color/dark_blue"

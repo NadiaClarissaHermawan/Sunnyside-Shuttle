@@ -143,6 +143,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
                 //change vehicle
                 if(!currentVehicle.equals(order.getVehicle())){
                     order.setVehicle(currentVehicle);
+                    order.setSeats(new ArrayList<>());
                     requestCourseInfo();
                 }
             }

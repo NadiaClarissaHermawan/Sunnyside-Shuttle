@@ -38,9 +38,7 @@ public class LoginCheckerThread implements Runnable{
     }
 
 
-    public void removeUser(String uname, String token){
-        this.uname = uname;
-        this.token = token;
+    public void removeUser(){
         this.task_code = 2;
         this.thread.start();
     }
@@ -62,17 +60,20 @@ public class LoginCheckerThread implements Runnable{
             if(users.isEmpty()){
                 this.login_indicator = 0;
                 this.activity.getResultCheckUser("", "");
-                //nope
+            //nope
             }else{
                 this.login_indicator = 1;
                 this.activity.getResultCheckUser(users.get(0).getUsername(), users.get(0).getToken());
             }
         //log in
         }else if(this.task_code == 1){
+            this.login_indicator= 1;
             this.taskDao.insert(new User(0, this.uname, this.token));
         //sign out
         }else{
+            this.login_indicator = 0;
             this.taskDao.delete();
+            this.activity.getResultCheckUser("", "");
         }
     }
 }
