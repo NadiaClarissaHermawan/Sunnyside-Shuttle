@@ -41,8 +41,9 @@
 
     <!--  Book Shuttle Ticket Fragment  -->
     <string name="tv_book_seat">Book Shuttle Ticket</string>
-    <string name="tv_carType_seat">Car Type :</string>
-    <string name="tv_pickSeat_seat">Pick Your Seat :</string>
+    <string name="tv_carType_seat">Car Type</string>
+    <string name="shake">(try to shake your phone)</string>
+    <string name="tv_pickSeat_seat">Pick Your Seat </string>
     <string name="btn_continue_seat">Continue</string>
 
     <!--History fragment-->
