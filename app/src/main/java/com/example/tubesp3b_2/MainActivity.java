@@ -130,9 +130,13 @@ public class MainActivity extends AppCompatActivity{
 
 
     //method untuk terima & salurin response payment confirmed & update history
-    public void givePostOrderResponse(){
-        this.paymentFragment.paymentSucceed();
-        this.historyFragment.requestHistoryTask();
+    public void givePostOrderResponse(boolean responseCode){
+        if(responseCode){
+            this.paymentFragment.paymentSucceed();
+            this.historyFragment.requestHistoryTask();
+        }else{
+            this.paymentFragment.paymentFailed();
+        }
     }
 
 

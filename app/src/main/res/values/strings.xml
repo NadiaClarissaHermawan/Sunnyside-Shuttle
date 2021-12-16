@@ -37,6 +37,7 @@
     <string name="btn_confirm_payment">Confirm</string>
     <string name="payment_succeed">Transaction Succeed</string>
     <string name="back_to_home">Back To Home</string>
+    <string name="back_to_seats">Select Another Seats</string>
 
     <!--  Book Shuttle Ticket Fragment  -->
     <string name="tv_book_seat">Book Shuttle Ticket</string>

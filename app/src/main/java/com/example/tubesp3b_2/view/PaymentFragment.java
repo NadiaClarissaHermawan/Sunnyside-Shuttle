@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.R;
+import com.example.tubesp3b_2.databinding.PaymentFailedDialogBinding;
 import com.example.tubesp3b_2.databinding.PaymentFragmentBinding;
 import com.example.tubesp3b_2.databinding.PaymentSucceedDialogBinding;
 import com.example.tubesp3b_2.model.TicketOrder;
@@ -79,12 +80,36 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     //update order details to layout view
     public void updateView(){
         this.binding.tvRutePayment.setText(this.order.getSource() + " to "+this.order.getDestination());
-        this.binding.tvTanggalPayment.setText(this.order.getDate() + "   "+this.order.getHour());
+        this.binding.tvTanggalPayment.setText(this.order.getDate() + "   "+this.order.getHour()+":00");
         this.binding.tvVehicle.setText(this.order.getVehicle() + " car");
         this.binding.tvFee.setText("each seat fee : " + this.order.getFee());
         this.binding.tvJumlahTicket.setText(this.order.getSeats().size() + "x Ticket(s)");
         this.binding.tvTicketSeat.setText(this.formatSeats());
         this.binding.tvTotalPayment.setText("Rp "+this.order.getSeats().size() * this.order.getFee());
+    }
+
+
+    //formating seats string view
+    public String formatSeats(){
+        ArrayList<Integer> seats =  this.order.getSeats();
+        Collections.sort(seats);
+        int size = seats.size();
+
+        String res = "";
+        for(int i = 0; i< size; i++){
+            if(i == 0){
+                res = res + "s" + (seats.get(i)+1);
+            }else{
+                res = res + ", s" + (seats.get(i)+1);
+            }
+        }
+        return res;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        new PostOrderTask(this.getContext(), this.activity, this.user.getToken()).execute(this.order.getCourse_id(), formatSeats().replaceAll("\\s","").replaceAll("s", ""));
     }
 
 
@@ -119,26 +144,33 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    //formating seats view
-    public String formatSeats(){
-        ArrayList<Integer> seats =  this.order.getSeats();
-        Collections.sort(seats);
-        int size = seats.size();
+    //showing popup payment failed
+    public void paymentFailed(){
+        //bind dengan layout popupnya
+        PaymentFailedDialogBinding bindingPopup = PaymentFailedDialogBinding.inflate(getLayoutInflater());
+        View viewPopup = bindingPopup.getRoot();
 
-        String res = "";
-        for(int i = 0; i< size; i++){
-            if(i == 0){
-                res = res + "s" + (seats.get(i)+1);
-            }else{
-                res = res + ", s" + (seats.get(i)+1);
+        //bikin dialog window untuk popupny & set stylenya
+        final Dialog addPopup = new Dialog(this.getActivity(), android.R.style.Theme);
+        addPopup.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+
+        //masukin view layout xml untuk popupnya
+        addPopup.setContentView(viewPopup);
+        addPopup.setCancelable(true);
+
+        //listener pick another seats button
+        bindingPopup.backToSeatsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //move to seats fragment
+                Bundle nextPage = new Bundle();
+                nextPage.putInt("page", 2);
+                fragmentManager.setFragmentResult("changePage", nextPage);
+
+                addPopup.dismiss();
             }
-        }
-        return res;
-    }
+        });
 
-
-    @Override
-    public void onClick(View view) {
-        new PostOrderTask(this.getContext(), this.activity, this.user.getToken()).execute(this.order.getCourse_id(), formatSeats().replaceAll("\\s","").replaceAll("s", ""));
+        addPopup.show();
     }
 }
