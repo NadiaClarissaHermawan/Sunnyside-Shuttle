@@ -1,5 +1,5 @@
 # Tubes P3B-2 
-TODO : fix history fragment (limitation probs), Dokumentasi (on progress too), Video Presentasi
+TODO : fitur tambahan (anyone? p.s. contact me 1st if u want to add somethin), Dokumentasi (on progress too), Video Presentasi
 
 # Deadline
 - Source code : 22 Des 2021 (6 days left) 
@@ -17,10 +17,10 @@ TODO : fix history fragment (limitation probs), Dokumentasi (on progress too), V
 - [Page1] : splash screen           [DONE]
 - [Page2] : login                   [DONE]
 - [Page3] : home                    [DONE]
-- [Page4] : book ticket             [1 /2]
+- [Page4] : book ticket             [DONE]
 <br>- Book Ticket
 <br>- Pick a Seat   
-- [Page5] : payment confirmation    [0 /1]
+- [Page5] : payment confirmation    [DONE]
 - [Page6] : history                 [DONE]
 </pre>
 
