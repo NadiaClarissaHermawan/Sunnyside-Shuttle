@@ -162,9 +162,9 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         bindingPopup.backToSeatsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //move to seats fragment
+                //move to Book Ticket fragment
                 Bundle nextPage = new Bundle();
-                nextPage.putInt("page", 2);
+                nextPage.putInt("page", 1);
                 fragmentManager.setFragmentResult("changePage", nextPage);
 
                 addPopup.dismiss();

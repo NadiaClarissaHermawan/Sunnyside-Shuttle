@@ -13,13 +13,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
-import com.example.tubesp3b_2.model.SharedPref;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.model.room_database.AppDataBase;
 import com.example.tubesp3b_2.presenter.LoginCheckerThread;
@@ -36,7 +34,6 @@ import org.parceler.Parcels;
 
 public class SplashScreenActivity extends AppCompatActivity implements IBoardingScreen {
     private ActivitySplashScreenBinding binding;
-    private SharedPref sp;
     private AppDataBase db;
     private LoginCheckerThread checkerLogin;
 
@@ -61,7 +58,6 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         this.setupFonts();
 
         //attributes initialization
-        this.sp = new SharedPref(getBaseContext());
         this.db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "pppb_tubes2_database").build();
         this.checkerLogin =  new LoginCheckerThread(this.db, this);
         this.delay = 4000;

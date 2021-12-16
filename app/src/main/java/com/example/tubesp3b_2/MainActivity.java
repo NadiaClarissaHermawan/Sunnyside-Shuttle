@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity{
     public void givePostOrderResponse(boolean responseCode){
         if(responseCode){
             this.paymentFragment.paymentSucceed();
-            this.historyFragment.requestHistoryTask();
+            this.historyFragment.updateToPresenter(null);
         }else{
             this.paymentFragment.paymentFailed();
         }

@@ -1,10 +1,15 @@
 package com.example.tubesp3b_2.presenter;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.example.tubesp3b_2.MainActivity;
 import com.example.tubesp3b_2.model.History;
 import com.example.tubesp3b_2.view.interfaces.IHistoryFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class HistoryFragmentPresenter {
@@ -18,11 +23,26 @@ public class HistoryFragmentPresenter {
     }
 
 
-    //insert semua history yg sdh diambil dari API
-    public void loadData(History[] histories){
-        this.histories = Arrays.asList(histories);
+    //add more history chunks
+    public void addHistory(History[] historiesChunk){
+        if(historiesChunk != null && historiesChunk.length > 0){
+            this.histories.addAll(Arrays.asList(historiesChunk));
+        }
+    }
 
-        //update to lisview layout
+
+    //update newest history (add front)
+    public void updateNewHistory(History[] newHistories){
+        ArrayList<History> updateItem = new ArrayList<>();
+        updateItem.addAll(Arrays.asList(newHistories));
+        updateItem.addAll(this.histories);
+
+        this.histories = updateItem;
+    }
+
+
+    //send complete history to historyFragment
+    public void sendAllToFrag(){
         this.ui.updateToAdapter(this.histories);
     }
 }
