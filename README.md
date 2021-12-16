@@ -23,6 +23,6 @@ TODO : fix history fragment (limitation probs), Dokumentasi (on progress too), V
 - [Page5] : payment confirmation    [0 /1]
 - [Page6] : history                 [DONE]
 </pre>
-# 
+
 
 
