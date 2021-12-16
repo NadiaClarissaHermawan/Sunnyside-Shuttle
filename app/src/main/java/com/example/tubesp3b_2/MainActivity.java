@@ -131,6 +131,8 @@ public class MainActivity extends AppCompatActivity{
 
     //method untuk terima & salurin response payment confirmed & update history
     public void givePostOrderResponse(boolean responseCode){
+        this.seatFragment.resetVehicleType();
+
         if(responseCode){
             this.paymentFragment.paymentSucceed();
             this.historyFragment.updateToPresenter(null);
