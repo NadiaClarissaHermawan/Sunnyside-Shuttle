@@ -36,6 +36,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     private ActivitySplashScreenBinding binding;
     private AppDataBase db;
     private LoginCheckerThread checkerLogin;
+    private LoginFragment tab3;
 
     //on-boarding page needs
     private static final int NUM_PAGES = 3;
@@ -70,6 +71,12 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
 
         //setup status bar
         this.setupStatusBar(0);
+    }
+
+
+    //method untuk terima & salurin response login gagal
+    public void givePostLoginResponse(){
+        this.tab3.loginFailed();
     }
 
 
@@ -216,7 +223,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                     OnBoarding2Fragment tab2 = OnBoarding2Fragment.newInstance(this.activity);
                     return tab2;
                 case 2:
-                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity, db);
+                    tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity, db);
                     return tab3;
             }
             return null;

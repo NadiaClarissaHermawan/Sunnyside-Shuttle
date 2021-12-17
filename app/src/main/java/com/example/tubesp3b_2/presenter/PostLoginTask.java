@@ -72,13 +72,14 @@ public class PostLoginTask {
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, BASE_URL, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                processResult(response.toString());
                 Log.e("LOGIN_REQ_SUCCEED", "onSucceedResponse: "+ response.toString());
+                processResult(response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("LOGIN_REQ_ERROR", "onErrorResponse: "+error.toString());
+                processFailed();
             }
         }){
             //set http request header
@@ -103,5 +104,10 @@ public class PostLoginTask {
 
         //return response to splashScreenActivity
         this.activity.changeIntent(res.getUname(), res.getToken());
+    }
+
+
+    public void processFailed(){
+        this.activity.givePostLoginResponse();
     }
 }

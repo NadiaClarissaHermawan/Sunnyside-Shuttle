@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity{
             if(this.currentFragment != null){
                 ft.hide(currentFragment);
             }
+
             if(this.landingPageFragment.isAdded()){
                 ft.show(this.landingPageFragment);
             }else{
@@ -168,13 +169,13 @@ public class MainActivity extends AppCompatActivity{
             }
             this.currentFragment = this.landingPageFragment;
 
-
         //BOOK TICKET
         }else if(page == 1){
             if(this.currentFragment != null){
                 ft.hide(currentFragment);
             }
             if(this.bookTicketFragment.isAdded()){
+                this.bookTicketFragment.enableButton();
                 ft.show(this.bookTicketFragment);
             }else{
                 ft.add(R.id.fragment_container, this.bookTicketFragment);
@@ -199,6 +200,7 @@ public class MainActivity extends AppCompatActivity{
                 ft.hide(currentFragment);
             }
             if (this.paymentFragment.isAdded()) {
+                this.paymentFragment.enableButton();
                 ft.show(this.paymentFragment);
             } else {
                 ft.add(R.id.fragment_container, this.paymentFragment);
@@ -236,9 +238,11 @@ public class MainActivity extends AppCompatActivity{
         if(this.currentFragment == this.bookTicketFragment || this.currentFragment == this.historyFragment){
             this.changePage(0);
         }else if(this.currentFragment == this.seatFragment){
+            this.bookTicketFragment.enableButton();
             this.seatFragment.resetVehicleType();
             this.changePage(1);
         }else if(this.currentFragment == this.paymentFragment){
+            this.seatFragment.resetVehicleType();
             this.changePage(2);
         }else if(this.currentFragment == this.landingPageFragment){
             this.changePage(-1);

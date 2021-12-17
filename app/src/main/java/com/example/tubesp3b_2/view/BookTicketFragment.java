@@ -225,7 +225,7 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
                         //same date
                         }else if(Integer.parseInt(this.formatedDate.substring(0, 2)) == Integer.parseInt(this.currentDate.substring(0, 2))){
                             //hour check
-                            if(Integer.parseInt(this.formatedHour) > Integer.parseInt(this.currentHour)){
+                            if(Integer.parseInt(this.formatedHour) > Integer.parseInt(this.currentHour)) {
                                 return 1;
                             }else{
                                 return 0;
@@ -236,6 +236,12 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
             }
         }
         return -1;
+    }
+
+
+    //enabling button
+    public void enableButton(){
+        this.binding.btnFind.setEnabled(true);
     }
 
 
@@ -259,6 +265,9 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
                 Bundle orderDetails = new Bundle();
                 orderDetails.putParcelable("orderSchedule", Parcels.wrap(order));
                 this.fragmentManager.setFragmentResult("getOrderSchedule", orderDetails);
+
+                //disable button (prevent spam :))
+                this.binding.btnFind.setEnabled(false);
 
                 //move page
                 Bundle nextPage = new Bundle();

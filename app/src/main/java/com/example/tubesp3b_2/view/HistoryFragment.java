@@ -62,6 +62,9 @@ public class HistoryFragment extends Fragment implements IHistoryFragment {
         //get order list dari API
         this.updateToPresenter(null);
 
+        //start loading gif
+        this.binding.lottieLoading.setVisibility(View.VISIBLE);
+
         return view;
     }
 
@@ -100,6 +103,8 @@ public class HistoryFragment extends Fragment implements IHistoryFragment {
     @Override
     //update to listview layout
     public void updateToAdapter(List<History> updatedHistories) {
+        //stop loading gif
+        this.binding.lottieLoading.setVisibility(View.GONE);
         this.adapter.update(updatedHistories);
     }
 }

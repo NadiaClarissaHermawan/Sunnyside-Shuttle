@@ -34,7 +34,7 @@
         android:textColor="@color/dark_blue"
         android:textSize="25sp"
         android:textStyle="bold"
-        fontPath="fonts/RobotoRegular.ttf"/>
+        fontPath="fonts/RobotoBold.ttf"/>
 
     <!--User name-->
 
@@ -67,6 +67,7 @@
         <!--Desc-->
         <TextView
             android:id="@+id/landing_desc"
+            fontPath="fonts/MontserratSemiBold.ttf"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -75,12 +76,12 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            fontPath="fonts/MontserratSemiBold.ttf"/>
+            android:textStyle="bold" />
 
         <!--Button start book a ticket-->
         <Button
             android:id="@+id/book_a_ticket"
+            fontPath="fonts/RobotoBold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -91,7 +92,6 @@
             android:text="@string/letsBookBtn"
             android:textColor="@color/dark_blue"
             android:textSize="15sp"
-            android:textStyle="bold"
-            fontPath="fonts/RobotoBold.ttf"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
