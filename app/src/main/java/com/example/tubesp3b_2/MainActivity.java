@@ -290,12 +290,6 @@ public class MainActivity extends AppCompatActivity{
                 .build());
         ViewPump.init(ViewPump.builder()
                 .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratRegular.ttf")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
                         new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratSemiBold.ttf")
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
@@ -315,6 +309,12 @@ public class MainActivity extends AppCompatActivity{
         ViewPump.init(ViewPump.builder()
                 .addInterceptor(new CalligraphyInterceptor(
                         new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/MontserratRegular.ttf")
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build());
