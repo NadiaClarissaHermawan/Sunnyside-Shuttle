@@ -73,6 +73,9 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
         this.binding = BookTicketFragmentBinding.inflate(inflater, container, false);
         View view = this.binding.getRoot();
 
+        //disable button until datas are loaded
+        this.binding.btnFind.setEnabled(false);
+
         //get routes data from API
         new GetRoutesTask(this.getContext(), this.activity, this.user.getToken()).executeRoutes();
 
@@ -134,6 +137,9 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
         ArrayAdapter<String> adp2 = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, departingCities);
         spinnerDeparting.setAdapter(adp2);
         spinnerDeparting.setSelected(true);
+
+        //enable button
+        this.enableButton();
     }
 
 

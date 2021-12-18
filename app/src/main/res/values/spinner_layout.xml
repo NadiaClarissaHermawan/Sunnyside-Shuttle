@@ -3,4 +3,7 @@
     <style name="SpinnerTheme" >
         <item name="android:background">@drawable/bg_spinner</item>
     </style>
+    <style name="SpinnerThemeSharp">
+        <item name="android:background">@drawable/bg_spinner_sharp</item>
+    </style>
 </resources>

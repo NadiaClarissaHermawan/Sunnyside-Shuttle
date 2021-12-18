@@ -4,11 +4,12 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,7 +17,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
 import com.example.tubesp3b_2.MainActivity;
-import com.example.tubesp3b_2.R;
 import com.example.tubesp3b_2.databinding.PaymentFailedDialogBinding;
 import com.example.tubesp3b_2.databinding.PaymentFragmentBinding;
 import com.example.tubesp3b_2.databinding.PaymentSucceedDialogBinding;
@@ -27,8 +27,6 @@ import com.example.tubesp3b_2.presenter.PostOrderTask;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 public class PaymentFragment extends Fragment implements View.OnClickListener {
@@ -37,6 +35,8 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     private MainActivity activity;
     private User user;
     private TicketOrder order;
+    private Spinner spinnerDiscount;
+    private int rawTotal;
 
     //must-have empty constructor
     public PaymentFragment(){}
@@ -62,6 +62,9 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         //set confirm btn listener
         this.binding.btnConfirmPayment.setOnClickListener(this::onClick);
 
+        //generate discount spinner
+        this.setupSpinnerDiscount();
+
         //listener get ticket order details
         this.fragmentManager.setFragmentResultListener(
             "getOrderConfirmation", this, new FragmentResultListener() {
@@ -82,10 +85,58 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         this.binding.tvRutePayment.setText(this.order.getSource() + " to "+this.order.getDestination());
         this.binding.tvTanggalPayment.setText(this.order.getDate() + "   "+this.order.getHour()+":00");
         this.binding.tvVehicle.setText(this.order.getVehicle() + " car");
-        this.binding.tvFee.setText("each seat fee : " + this.order.getFee());
+        this.binding.tvFee.setText("Each seat fee : " + this.order.getFee());
         this.binding.tvJumlahTicket.setText(this.order.getSeats().size() + "x Ticket(s)");
         this.binding.tvTicketSeat.setText(this.formatSeats());
-        this.binding.tvTotalPayment.setText("Rp "+this.order.getSeats().size() * this.order.getFee());
+        this.rawTotal = this.order.getSeats().size() * this.order.getFee();
+        this.binding.tvTotalPayment.setText("Rp "+this.rawTotal);
+        this.binding.discountAmount.setText("Rp 0");
+        this.binding.finalTotalAmount.setText("Rp "+this.rawTotal);
+    }
+
+
+    //setup discounts spinner
+    public void setupSpinnerDiscount(){
+        //adding discounts
+        ArrayList<String> discounts = new ArrayList<>();
+        discounts.add("No discount choosen");
+        discounts.add("Diskon Gebyar Akhir Tahun 50%");
+        discounts.add("Diskon 20% Tiket HepiHepi 2021");
+
+        //setup spinner
+        this.spinnerDiscount = (Spinner) this.binding.spinnerDiscount;
+        ArrayAdapter<String> adp = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, discounts);
+        spinnerDiscount.setAdapter(adp);
+        spinnerDiscount.setSelected(true);
+
+        //setup onselect listener
+        this.setupSpinnerListener();
+    }
+
+
+    //setup spinner listener
+    public void setupSpinnerListener(){
+        //set onselect listener
+        this.spinnerDiscount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String currentDiscount = binding.spinnerDiscount.getSelectedItem().toString();
+                //update final total
+                if(currentDiscount.equals("No discount choosen")){
+                    binding.discountAmount.setText("Rp 0");
+                    binding.finalTotalAmount.setText("Rp "+rawTotal);
+                }else if(currentDiscount.equals("Diskon Gebyar Akhir Tahun 50%")){
+                    binding.discountAmount.setText("Rp "+(int)(0.5*rawTotal));
+                    binding.finalTotalAmount.setText("Rp "+(int)(rawTotal-(0.5*rawTotal)));
+                }else{
+                    binding.discountAmount.setText("Rp "+(int)(0.2*rawTotal));
+                    binding.finalTotalAmount.setText("Rp "+(int)(rawTotal-(0.2*rawTotal)));
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //do nothing
+            }
+        });
     }
 
 

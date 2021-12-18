@@ -146,7 +146,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     }
 
 
-    //show onboarding screen or nah
+    //show onboarding screen
     public void showBoardingScreen(){
         //set on-boarding page's adapter
         this.viewPager = this.binding.pager;

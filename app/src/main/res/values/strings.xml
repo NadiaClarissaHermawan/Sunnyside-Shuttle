@@ -32,12 +32,14 @@
     <string name="search_btn">Find</string>
     <string name="colon">:</string>
 
-    <!--  Pembayaran fragment  -->
+    <!--  Payment fragment  -->
     <string name="tv_payment_header">Ticket Payment</string>
     <string name="btn_confirm_payment">Confirm</string>
     <string name="payment_succeed">Transaction Succeed</string>
     <string name="back_to_home">Back To Home</string>
     <string name="back_to_seats">Select Another Seats</string>
+    <string name="discount_title">Discount </string>
+    <string name="total_title">Total</string>
 
     <!--  Book Shuttle Ticket Fragment  -->
     <string name="tv_book_seat">Book Shuttle Ticket</string>
