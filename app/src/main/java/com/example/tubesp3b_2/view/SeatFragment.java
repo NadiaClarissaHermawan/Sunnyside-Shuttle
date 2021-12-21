@@ -373,6 +373,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
             }
         });
         ShakeDetector.start();
+        ShakeDetector.updateConfiguration(5, 3);
     }
 
 

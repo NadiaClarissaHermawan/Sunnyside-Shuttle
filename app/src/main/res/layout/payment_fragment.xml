@@ -41,7 +41,7 @@
             android:layout_marginTop="30dp"
             android:background="@color/white"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="15dp">
 
             <!--TextView Rute-->
             <TextView
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/medium_dark_blue"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <!--TextView Tanggal-->
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/medium_dark_blue"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <!--TextView Jenis Mobil-->
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/medium_dark_blue"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <!--TextView Jenis Mobil-->
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/medium_dark_blue"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <!--Horizontal Line-->
             <View
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/medium_dark_blue"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <!--TextView Seat-->
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:textColor="@color/medium_dark_blue"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <!--TextView Total-->
@@ -126,7 +126,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/medium_dark_blue"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
@@ -147,7 +147,7 @@
                 android:layout_width="350dp"
                 android:layout_height="40dp"
                 android:textColor="@color/medium_dark_blue"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <!--Final Price container-->
             <RelativeLayout
@@ -161,13 +161,13 @@
 
                 <TextView
                     android:id="@+id/discount_title"
+                    fontPath="fonts/MontserratRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="@string/discount_title"
                     android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
-                    fontPath="fonts/MontserratRegular.ttf"/>
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/discount_amount"
@@ -176,19 +176,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="13dp"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textColor="@color/dark_blue"/>
 
                 <TextView
                     android:id="@+id/final_total_title"
+                    fontPath="fonts/MontserratBold.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/discount_title"
                     android:layout_marginLeft="8dp"
                     android:text="@string/total_title"
-                    android:textSize="18sp"
                     android:textColor="@color/dark_blue"
-                    fontPath="fonts/MontserratBold.ttf"/>
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/final_total_amount"
@@ -198,28 +198,28 @@
                     android:layout_alignParentRight="true"
                     android:layout_below="@id/discount_amount"
                     android:layout_marginRight="13dp"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textColor="@color/dark_blue"/>
             </RelativeLayout>
         </RelativeLayout>
 
         <Button
             android:id="@+id/btn_confirm_payment"
+            fontPath="fonts/RobotoBold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/container_discount"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/orange_btn"
             android:paddingLeft="15dp"
+            android:paddingTop="10dp"
             android:paddingRight="15dp"
+            android:paddingBottom="10dp"
             android:text="@string/btn_confirm_payment"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:background="@drawable/orange_btn"
-            fontPath="fonts/RobotoBold.ttf"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>

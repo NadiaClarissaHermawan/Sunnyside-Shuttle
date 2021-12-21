@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
 import com.example.tubesp3b_2.MainActivity;
+import com.example.tubesp3b_2.R;
 import com.example.tubesp3b_2.databinding.PaymentFailedDialogBinding;
 import com.example.tubesp3b_2.databinding.PaymentFragmentBinding;
 import com.example.tubesp3b_2.databinding.PaymentSucceedDialogBinding;
@@ -85,7 +86,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
         this.binding.tvRutePayment.setText(this.order.getSource() + " to "+this.order.getDestination());
         this.binding.tvTanggalPayment.setText(this.order.getDate() + "   "+this.order.getHour()+":00");
         this.binding.tvVehicle.setText(this.order.getVehicle() + " car");
-        this.binding.tvFee.setText("Each seat fee : " + this.order.getFee());
+        this.binding.tvFee.setText("Each seat fee : Rp " + this.order.getFee());
         this.binding.tvJumlahTicket.setText(this.order.getSeats().size() + "x Ticket(s)");
         this.binding.tvTicketSeat.setText(this.formatSeats());
         this.rawTotal = this.order.getSeats().size() * this.order.getFee();
@@ -105,7 +106,7 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
 
         //setup spinner
         this.spinnerDiscount = (Spinner) this.binding.spinnerDiscount;
-        ArrayAdapter<String> adp = new ArrayAdapter<String> (this.getContext(), android.R.layout.simple_spinner_dropdown_item, discounts);
+        ArrayAdapter<String> adp = new ArrayAdapter<String> (this.getContext(), R.layout.spinner_layout, discounts);
         spinnerDiscount.setAdapter(adp);
         spinnerDiscount.setSelected(true);
 
@@ -137,6 +138,12 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
                 //do nothing
             }
         });
+    }
+
+
+    //reset discount
+    public void resetDiscount(){
+        this.spinnerDiscount.setSelection(0);
     }
 
 

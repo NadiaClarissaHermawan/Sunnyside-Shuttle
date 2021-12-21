@@ -9,6 +9,48 @@
         android:id="@+id/container_splash_landing"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!--top right waves-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="-40dp"
+            android:src="@drawable/top_splash"/>
+
+        <!--Anywhere-->
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/anywhere"/>
+
+        <!--big center logo-->
+        <ImageView
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <!--Anywhen-->
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="90dp"
+            android:src="@drawable/anywhen"/>
+
+        <!--bottom left waves-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-40dp"
+            android:src="@drawable/bottom_splash"/>
     </RelativeLayout>
 
     <!--Splash Screen animation-->
@@ -25,7 +67,7 @@
         <ImageView
             android:id="@+id/splash_bg"
             android:layout_width="wrap_content"
-            android:layout_height="900dp"
+            android:layout_height="910dp"
             android:src="@drawable/splash_background"
             app:layout_constraintVertical_bias="0"
             android:scaleType="centerCrop"

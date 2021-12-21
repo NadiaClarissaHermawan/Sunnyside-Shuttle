@@ -141,6 +141,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
             this.showBoardingScreen();
         //move intent
         }else{
+            binding.containerSplashLanding.setVisibility(View.GONE);
             this.changeIntent(uname, token);
         }
     }
@@ -155,9 +156,10 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         this.viewPager.postDelayed(new Runnable() {
             @Override
             public void run() {
+                binding.containerSplashLanding.setVisibility(View.GONE);
                 viewPager.setAdapter(pagerAdapter);
             }
-        }, 5000);
+        }, 7500);
     }
 
 

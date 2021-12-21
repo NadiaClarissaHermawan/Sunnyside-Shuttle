@@ -243,6 +243,7 @@ public class MainActivity extends AppCompatActivity{
             this.changePage(1);
         }else if(this.currentFragment == this.paymentFragment){
             this.seatFragment.resetVehicleType();
+            this.paymentFragment.resetDiscount();
             this.changePage(2);
         }else if(this.currentFragment == this.landingPageFragment){
             this.changePage(-1);
