@@ -23,6 +23,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
     private SplashScreenActivity activity;
     private AppDataBase dataBase;
 
+
     //must-have empty constructor
     public LoginFragment(){}
 
