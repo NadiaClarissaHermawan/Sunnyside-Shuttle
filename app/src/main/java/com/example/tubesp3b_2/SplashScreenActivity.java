@@ -110,7 +110,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         if(page == 0){
             window.setStatusBarColor(this.getResources().getColor(R.color.light_blue));
         //ganti balik warna status bar jadi putih
-        }else{
+        }else if(page == 1){
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
     }
@@ -159,7 +159,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                 binding.containerSplashLanding.setVisibility(View.GONE);
                 viewPager.setAdapter(pagerAdapter);
             }
-        }, 7500);
+        }, 5000);
     }
 
 

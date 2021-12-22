@@ -65,17 +65,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
 
             //uname is empty
             if(uname.equals("")){
-                this.binding.errorUname.setText("Please fill your username");
+                this.binding.error.setText("Please fill your username..");
             //uname not empty
             }else{
-                this.binding.errorUname.setText("");
+                this.binding.error.setText("");
 
                 //pass is empty
                 if(pass.equals("")){
                     //make & post http request
-                    this.binding.errorPass.setText("Please fill your password");
+                    this.binding.error.setText("Please fill your password..");
                 }else{
-                    this.binding.errorPass.setText("");
+                    this.binding.error.setText("");
                     //make & post http request
                     new PostLoginTask(this.context, this.activity, this.dataBase).execute(uname, pass);
 
@@ -94,6 +94,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
     public void loginFailed(){
         this.binding.lottieLoading.setVisibility(View.GONE);
         this.binding.btnLogin.setEnabled(true);
-        this.binding.errorPass.setText("Wrong Password !");
+        this.binding.error.setText("Wrong Password !");
     }
 }
