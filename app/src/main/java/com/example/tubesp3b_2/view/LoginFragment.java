@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,6 +22,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
     private Context context;
     private SplashScreenActivity activity;
     private AppDataBase dataBase;
+
 
     //must-have empty constructor
     public LoginFragment(){}
@@ -47,14 +49,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
         //set login click listener
         this.binding.btnLogin.setOnClickListener(this::onClick);
 
+        //hide loading gif
+        this.binding.lottieLoading.setVisibility(View.GONE);
+
         return view;
     }
 
 
     @Override
     public void onClick(View view) {
-        //not checking active connection --> android v21 doesnt support getActiveNetwork
-
         //login button
         if(view == this.binding.btnLogin) {
             //take input value
@@ -63,21 +66,35 @@ public class LoginFragment extends Fragment implements View.OnClickListener, ILo
 
             //uname is empty
             if(uname.equals("")){
-                this.binding.errorUname.setText("Please fill your username");
+                this.binding.error.setText("Please fill your username..");
             //uname not empty
             }else{
-                this.binding.errorUname.setText("");
+                this.binding.error.setText("");
 
                 //pass is empty
                 if(pass.equals("")){
                     //make & post http request
-                    this.binding.errorPass.setText("Please fill your password");
+                    this.binding.error.setText("Please fill your password..");
                 }else{
-                    this.binding.errorPass.setText("");
+                    this.binding.error.setText("");
                     //make & post http request
                     new PostLoginTask(this.context, this.activity, this.dataBase).execute(uname, pass);
+
+                    //loading gif appear
+                    this.binding.lottieLoading.setVisibility(View.VISIBLE);
+
+                    //disable button (prevent spam :))
+                    this.binding.btnLogin.setEnabled(false);
                 }
             }
         }
+    }
+
+
+    //login failed
+    public void loginFailed(){
+        this.binding.lottieLoading.setVisibility(View.GONE);
+        this.binding.btnLogin.setEnabled(true);
+        this.binding.error.setText("Wrong Password !");
     }
 }

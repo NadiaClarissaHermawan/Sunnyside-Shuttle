@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_marginTop="28dp">
 
-    <!--  Header  -->
+    <!--Header-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,136 +16,210 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="15dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="15dp"
             android:text="@string/tv_payment_header"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@color/orange"/>
+            android:textColor="@color/orange"
+            fontPath="fonts/PoppinsBold.ttf"/>
     </LinearLayout>
 
-    <!--  Body  -->
-    <LinearLayout
+    <!--Body-->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="680dp"
         android:orientation="vertical"
         android:background="@color/light_blue">
 
-        <!--    Body Content    -->
+        <!--Body Content-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/container_raw_bill"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:background="@color/white"
             android:orientation="vertical"
-            android:background="@color/white">
+            android:padding="15dp">
 
-            <!--     TextView Rute       -->
+            <!--TextView Rute-->
             <TextView
                 android:id="@+id/tv_rute_payment"
+                fontPath="fonts/MontserratRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                android:textSize="17sp" />
 
-            <!--     TextView Tanggal       -->
+            <!--TextView Tanggal-->
             <TextView
                 android:id="@+id/tv_tanggal_payment"
+                fontPath="fonts/MontserratRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                android:textSize="17sp" />
 
-            <!--     TextView Jenis Mobil       -->
+            <!--TextView Jenis Mobil-->
             <TextView
                 android:id="@+id/tv_vehicle"
+                fontPath="fonts/MontserratRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                android:textSize="17sp" />
 
-            <!--     TextView Jenis Mobil       -->
+            <!--TextView Jenis Mobil-->
             <TextView
                 android:id="@+id/tv_fee"
+                fontPath="fonts/MontserratRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="18sp"
-                android:textColor="@color/medium_dark_blue"/>
+                android:textColor="@color/medium_dark_blue"
+                android:textSize="17sp" />
 
-            <!--      Horizontal Line      -->
+            <!--Horizontal Line-->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/medium_dark_blue"/>
+                android:background="@color/medium_dark_blue" />
 
-            <!--     Relative Layout Body Content       -->
+            <!--Relative Layout Body Content-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!--       TextView Jumlah Tiket         -->
+                <!--TextView Jumlah Tiket-->
                 <TextView
                     android:id="@+id/tv_jumlahTicket"
+                    fontPath="fonts/MontserratRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
+                    android:textColor="@color/medium_dark_blue"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <!--       TextView Seat         -->
+                <!--TextView Seat-->
                 <TextView
                     android:id="@+id/tv_ticketSeat"
+                    fontPath="fonts/MontserratRegular.ttf"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="32dp"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="18sp"
+                    android:textColor="@color/medium_dark_blue"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <!--       TextView Total         -->
+                <!--TextView Total-->
                 <TextView
                     android:id="@+id/tv_total_payment"
+                    fontPath="fonts/MontserratRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark_blue"/>
+                    android:textColor="@color/medium_dark_blue"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
+
+        <!--container discount & final price-->
+        <RelativeLayout
+            android:id="@+id/container_discount"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/container_raw_bill"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
+
+            <!--discount spinner-->
+            <Spinner
+                android:id="@+id/spinner_discount"
+                style="@style/SpinnerThemeSharp"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:textColor="@color/medium_dark_blue"
+                android:textSize="17sp" />
+
+            <!--Final Price container-->
+            <RelativeLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_below="@id/spinner_discount"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/discount_title"
+                    fontPath="fonts/MontserratRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/discount_title"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/discount_amount"
+                    fontPath="fonts/MontserratRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="13dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/dark_blue"/>
+
+                <TextView
+                    android:id="@+id/final_total_title"
+                    fontPath="fonts/MontserratBold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/discount_title"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/total_title"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/final_total_amount"
+                    fontPath="fonts/MontserratBold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/discount_amount"
+                    android:layout_marginRight="13dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/dark_blue"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
         <Button
             android:id="@+id/btn_confirm_payment"
+            fontPath="fonts/RobotoBold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="250dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:layout_below="@id/container_discount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/orange_btn"
             android:paddingLeft="15dp"
+            android:paddingTop="10dp"
             android:paddingRight="15dp"
+            android:paddingBottom="10dp"
             android:text="@string/btn_confirm_payment"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:background="@drawable/orange_btn"/>
-    </LinearLayout>
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </LinearLayout>

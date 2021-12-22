@@ -1,6 +1,7 @@
 package com.example.tubesp3b_2.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class HistoryFragment extends Fragment implements IHistoryFragment {
     private HistoryFragmentPresenter presenter;
     private MainActivity activity;
     private User user;
+    private int lastIdx;
+    private boolean indicatorUpdate;
 
     //must-have empty constructor
     public HistoryFragment(){}
@@ -34,6 +37,8 @@ public class HistoryFragment extends Fragment implements IHistoryFragment {
         HistoryFragment fragment = new HistoryFragment();
         fragment.user = user;
         fragment.activity = activity;
+        fragment.lastIdx = 1;
+        fragment.indicatorUpdate = false;
 
         return fragment;
     }
@@ -55,27 +60,51 @@ public class HistoryFragment extends Fragment implements IHistoryFragment {
         this.binding.listviewHistory.setAdapter(this.adapter);
 
         //get order list dari API
-        this.requestHistoryTask();
+        this.updateToPresenter(null);
+
+        //start loading gif
+        this.binding.lottieLoading.setVisibility(View.VISIBLE);
 
         return view;
     }
 
 
-    //request payment history
-    public void requestHistoryTask(){
-        new GetHistoryTask(this.getContext(), this.activity, this.user.getToken()).executeHistory();
-    }
-
-
-    //request to renew data at presenter
+    //get chunks of history
     public void updateToPresenter(History[] retrievedHistories){
-        this.presenter.loadData(retrievedHistories);
+        //first time retrieving the history
+        if(retrievedHistories==null && lastIdx == 1) {
+            new GetHistoryTask(this.getContext(), this.activity, this.user.getToken()).executeHistory(0, 10);
+
+        //updating new added history
+        }else if(retrievedHistories== null && lastIdx != 1){
+            this.indicatorUpdate = true;
+            new GetHistoryTask(this.getContext(), this.activity, this.user.getToken()).executeHistory(0, 1);
+            
+        //get first chunk & other chunks
+        }else if(retrievedHistories != null && retrievedHistories.length == 10){
+            this.lastIdx += 10;
+            this.presenter.addHistory(retrievedHistories);
+            new GetHistoryTask(this.getContext(), this.activity, this.user.getToken()).executeHistory(this.lastIdx, 10);
+
+        //last chunks
+        }else if(retrievedHistories != null && retrievedHistories.length < 10){
+            if(!this.indicatorUpdate){
+                this.lastIdx += retrievedHistories.length;
+                this.presenter.addHistory(retrievedHistories);
+            }else{
+                this.indicatorUpdate = false;
+                this.presenter.updateNewHistory(retrievedHistories);
+            }
+            this.presenter.sendAllToFrag();
+        }
     }
 
 
     @Override
     //update to listview layout
     public void updateToAdapter(List<History> updatedHistories) {
+        //stop loading gif
+        this.binding.lottieLoading.setVisibility(View.GONE);
         this.adapter.update(updatedHistories);
     }
 }

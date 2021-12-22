@@ -13,13 +13,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.tubesp3b_2.databinding.ActivitySplashScreenBinding;
-import com.example.tubesp3b_2.model.SharedPref;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.model.room_database.AppDataBase;
 import com.example.tubesp3b_2.presenter.LoginCheckerThread;
@@ -28,13 +26,17 @@ import com.example.tubesp3b_2.view.LoginFragment;
 import com.example.tubesp3b_2.view.OnBoarding1Fragment;
 import com.example.tubesp3b_2.view.OnBoarding2Fragment;
 
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import org.parceler.Parcels;
 
 public class SplashScreenActivity extends AppCompatActivity implements IBoardingScreen {
     private ActivitySplashScreenBinding binding;
-    private SharedPref sp;
     private AppDataBase db;
     private LoginCheckerThread checkerLogin;
+    private LoginFragment tab3;
 
     //on-boarding page needs
     private static final int NUM_PAGES = 3;
@@ -44,6 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     //change intent needs
     private int delay;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //inflating layout
@@ -52,8 +55,10 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         View view = this.binding.getRoot();
         setContentView(view);
 
+        //inisialisasi Calligraphy
+        this.setupFonts();
+
         //attributes initialization
-        this.sp = new SharedPref(getBaseContext());
         this.db = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "pppb_tubes2_database").build();
         this.checkerLogin =  new LoginCheckerThread(this.db, this);
         this.delay = 4000;
@@ -61,14 +66,17 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         //check if logout
         this.checkLogout();
 
-        //check if theres still user's info on database
-        this.checkUser();
-
         //set splash screen's animations
         this.setSplashAnimation();
 
         //setup status bar
         this.setupStatusBar(0);
+    }
+
+
+    //method untuk terima & salurin response login gagal
+    public void givePostLoginResponse(){
+        this.tab3.loginFailed();
     }
 
 
@@ -81,6 +89,17 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     }
 
 
+    //setup fonts
+    public void setupFonts(){
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoMonoRegular.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+    }
+
+
     //set status bar
     public void setupStatusBar(int page){
         Window window = this.getWindow();
@@ -90,8 +109,8 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         //ganti warna status bar --> biru
         if(page == 0){
             window.setStatusBarColor(this.getResources().getColor(R.color.light_blue));
-            //ganti balik warna status bar jadi putih
-        }else{
+        //ganti balik warna status bar jadi putih
+        }else if(page == 1){
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
     }
@@ -101,7 +120,10 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
     public void checkLogout(){
         if(this.getIntent().hasExtra("user")){
             User user = Parcels.unwrap(this.getIntent().getExtras().getParcelable("user"));
-            new LoginCheckerThread(this.db, this).removeUser(user.getUsername(), user.getToken());
+            new LoginCheckerThread(this.db, this).removeUser();
+
+        }else{
+            this.checkUser();
         }
     }
 
@@ -119,12 +141,13 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
             this.showBoardingScreen();
         //move intent
         }else{
+            binding.containerSplashLanding.setVisibility(View.GONE);
             this.changeIntent(uname, token);
         }
     }
 
 
-    //show onboarding screen or nah
+    //show onboarding screen
     public void showBoardingScreen(){
         //set on-boarding page's adapter
         this.viewPager = this.binding.pager;
@@ -133,6 +156,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         this.viewPager.postDelayed(new Runnable() {
             @Override
             public void run() {
+                binding.containerSplashLanding.setVisibility(View.GONE);
                 viewPager.setAdapter(pagerAdapter);
             }
         }, 5000);
@@ -201,7 +225,7 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                     OnBoarding2Fragment tab2 = OnBoarding2Fragment.newInstance(this.activity);
                     return tab2;
                 case 2:
-                    LoginFragment tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity, db);
+                    tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity, db);
                     return tab3;
             }
             return null;
@@ -211,5 +235,12 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
         public int getCount() {
             return NUM_PAGES;
         }
+    }
+
+
+    //inject library Calligraphy
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

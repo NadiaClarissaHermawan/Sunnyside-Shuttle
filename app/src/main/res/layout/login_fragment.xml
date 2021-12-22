@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-50dp"
+        android:src="@drawable/bottom_splash"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.15"/>
+
     <!--logo-->
     <ImageView
         android:id="@+id/logo"
@@ -45,52 +57,60 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name"/>
+        app:layout_constraintTop_toBottomOf="@+id/app_name"
+        fontPath="fonts/MontserratRegular.ttf"/>
 
-    <!--Error message username-->
-    <TextView
-        android:id="@+id/error_uname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/orange"
-        app:layout_constraintStart_toStartOf="@id/et_login_username"
-        app:layout_constraintEnd_toEndOf="@id/et_login_username"
-        app:layout_constraintTop_toBottomOf="@id/et_login_username"
-        app:layout_constraintBottom_toTopOf="@id/et_login_password"
-        app:layout_constraintHorizontal_bias="0.09"/>
-
-    <!--  EditText Password  -->
+    <!--Edit text password-->
     <EditText
         android:id="@+id/et_login_password"
+        fontPath="fonts/MontserratRegular.ttf"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
         android:layout_marginTop="8dp"
-        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg"
         android:hint="@string/et_login_password"
         android:inputType="textPassword"
-        android:background="@drawable/edit_text_bg"
-        app:layout_constraintWidth_percent=".8"
-        app:layout_constraintVertical_bias=".02"
-        app:layout_constraintHorizontal_bias=".5"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login_username"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_login_username"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintWidth_percent=".8" />
 
-    <!--Error message password-->
+
+    <!--Error message-->
     <TextView
-        android:id="@+id/error_pass"
+        android:id="@+id/error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toStartOf="@id/et_login_password"
-        app:layout_constraintEnd_toEndOf="@id/et_login_password"
-        app:layout_constraintTop_toBottomOf="@id/et_login_password"
-        app:layout_constraintBottom_toTopOf="@id/btn_login"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0.09"/>
+        fontPath="fonts/MontserratRegular.ttf"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/et_login_username"
+        app:layout_constraintEnd_toEndOf="@id/et_login_username"
+        app:layout_constraintTop_toBottomOf="@id/et_login_username"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
+
+    <!--lottie loading JSON animation-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_loading"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.203"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"></com.airbnb.lottie.LottieAnimationView>
+
 
     <!--  Button Login  -->
     <Button
@@ -109,5 +129,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login_password"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_login_password"
+        fontPath="fonts/RobotoBold.ttf"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

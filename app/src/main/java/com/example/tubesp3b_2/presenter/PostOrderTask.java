@@ -69,12 +69,13 @@ public class PostOrderTask {
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("POST_ORDER_SUCCEED", "onSucceedResponse: "+ response.toString());
-                processResult(response.toString());
+                processResult(true);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("POST_ORDER_ERROR", "onErrorResponse: "+error.toString());
+                processResult(false);
             }
         }){
             @Override
@@ -98,8 +99,8 @@ public class PostOrderTask {
 
 
     //if callVoley succeed, call this response handler
-    public void processResult(String json){
+    public void processResult(boolean code){
         //back to payment page
-        this.activity.givePostOrderResponse();
+        this.activity.givePostOrderResponse(code);
     }
 }

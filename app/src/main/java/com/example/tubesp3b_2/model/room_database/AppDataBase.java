@@ -9,5 +9,6 @@ import com.example.tubesp3b_2.view.interfaces.TaskDao;
 
 @Database(entities = {User.class}, version = 1)
 public abstract class AppDataBase extends RoomDatabase {
+    //helper for User table
     public abstract TaskDao taskDao();
 }

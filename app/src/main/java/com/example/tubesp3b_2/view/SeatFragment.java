@@ -32,6 +32,7 @@ import com.example.tubesp3b_2.model.Seat;
 import com.example.tubesp3b_2.model.TicketOrder;
 import com.example.tubesp3b_2.model.User;
 import com.example.tubesp3b_2.presenter.GetCoursesTask;
+import com.github.tbouron.shakedetector.library.ShakeDetector;
 
 import org.parceler.Parcels;
 
@@ -88,6 +89,9 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
         this.binding.seatsCanvas.setOnTouchListener(this::onTouch);
         this.binding.btnContinue.setOnClickListener(this::onClick);
 
+        //set on shake listener
+        this.setupShakeListener();
+
         //listener get ticket order details
         this.fragmentManager.setFragmentResultListener(
             "getOrderSchedule", this, new FragmentResultListener() {
@@ -143,6 +147,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
                 //change vehicle
                 if(!currentVehicle.equals(order.getVehicle())){
                     order.setVehicle(currentVehicle);
+                    order.setSeats(new ArrayList<>());
                     requestCourseInfo();
                 }
             }
@@ -348,6 +353,27 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
                 toast.show();
             }
         }
+    }
+
+
+    //set on shake listener
+    public void setupShakeListener(){
+        ShakeDetector.create(this.getContext(), new ShakeDetector.OnShakeListener() {
+            @Override
+            public void OnShake() {
+                if(binding.spinnerVehicle.getSelectedItem().toString().equals("Small")){
+                    binding.spinnerVehicle.setSelection(1);
+                    order.setVehicle("Large");
+                }else{
+                    binding.spinnerVehicle.setSelection(0);
+                    order.setVehicle("Small");
+                }
+                order.setSeats(new ArrayList<>());
+                requestCourseInfo();
+            }
+        });
+        ShakeDetector.start();
+        ShakeDetector.updateConfiguration(5, 3);
     }
 
 

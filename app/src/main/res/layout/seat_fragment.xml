@@ -16,12 +16,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="15dp"
-            android:paddingBottom="25dp"
+            android:paddingBottom="15dp"
             android:paddingLeft="15dp"
             android:text="@string/tv_book_seat"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@color/orange"/>
+            android:textColor="@color/orange"
+            fontPath="fonts/PoppinsBold.ttf"/>
     </LinearLayout>
 
     <!--Body-->
@@ -35,20 +36,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
+            android:orientation="vertical">
 
-            <!--TextView Car Type-->
-            <TextView
-                android:id="@+id/tv_carType_bookseat"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="30dp"
-                android:text="@string/tv_carType_seat"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:layout_marginLeft="30dp">
+
+                <!--TextView Car Type-->
+                <TextView
+                    android:id="@+id/tv_carType_bookseat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/tv_carType_seat"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_blue"
+                    fontPath="fonts/MontserratBold.ttf"/>
+
+                <!--try to shake your phone-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/shake"
+                    android:textSize="13sp"
+                    android:textColor="@color/medium_dark_blue"/>
+            </LinearLayout>
 
             <!--Dropdown Car Type-->
             <Spinner
@@ -57,7 +73,8 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
-                style="@style/SpinnerTheme"/>
+                style="@style/SpinnerTheme"
+                fontPath="fonts/MontserratRegular.ttf"/>
         </LinearLayout>
 
         <!--Container Canvas Seat-->
@@ -76,7 +93,8 @@
                 android:text="@string/tv_pickSeat_seat"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:textColor="@color/dark_blue"
+                fontPath="fonts/MontserratBold.ttf"/>
 
             <!--Seat Canvas-->
             <ImageView
@@ -104,6 +122,7 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:background="@drawable/orange_btn"/>
+            android:background="@drawable/orange_btn"
+            fontPath="fonts/RobotoBold.ttf"/>
     </LinearLayout>
 </LinearLayout>

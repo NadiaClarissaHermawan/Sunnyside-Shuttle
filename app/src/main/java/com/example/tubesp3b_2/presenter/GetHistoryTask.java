@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class GetHistoryTask {
     //attributes
-    private final String BASE_URL = "https://devel.loconode.com/pppb/v1/orders?limit=10&offset=1";
+    private String BASE_URL = "https://devel.loconode.com/pppb/v1/orders?";
     private Context context;
     private MainActivity mainActivity;
     private Gson gson;
@@ -34,11 +34,13 @@ public class GetHistoryTask {
     }
 
 
-    //start Volley Thread --> no param this time
-    public void executeHistory(){
+    //start Volley Thread
+    public void executeHistory(int offset, int limit){
         //initialize GSON builder & clean input
         GsonBuilder builder = new GsonBuilder();
         this.gson = builder.create();
+
+        this.BASE_URL += "limit="+limit+"&offset="+offset;
 
         this.callVolleyHistory();
     }

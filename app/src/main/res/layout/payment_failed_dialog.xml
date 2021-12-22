@@ -16,7 +16,7 @@
 
         <!--lottie shuttle JSON animation-->
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_succeed"
+            android:id="@+id/lottie_failed"
             android:layout_width="500dp"
             android:layout_height="500dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -25,17 +25,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.74"
             app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/main_payment_succeed"></com.airbnb.lottie.LottieAnimationView>
+            app:lottie_rawRes="@raw/main_payment_failed"></com.airbnb.lottie.LottieAnimationView>
 
         <!--return to home page btn-->
         <Button
-            android:id="@+id/back_to_home_btn"
+            android:id="@+id/back_to_seats_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/orange_btn"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/back_to_home"
+            android:text="@string/back_to_seats"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"

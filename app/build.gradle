@@ -43,9 +43,16 @@ dependencies {
     //Library for Lottie animation (gif & animations)
     implementation 'com.airbnb.android:lottie:3.4.1'
 
+    //library for Calligraphy (fonts)
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
+
     //library for Volley & Gson (threading & connecting to API)
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    //library for shake detector
+    implementation 'com.github.tbouron.shakedetector:library:1.0.0@aar'
 
     //library for Parceler (simplified parcelable)
     implementation 'org.parceler:parceler-api:1.1.12'
