@@ -256,7 +256,8 @@ public class BookTicketFragment extends Fragment implements View.OnClickListener
         //show popup calendar
         if(view == this.binding.datePicker){
             this.calendar = Calendar.getInstance();
-            new DatePickerDialog(this.getContext(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
+            new DatePickerDialog(this.getContext(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DATE)).show();
 
         //go to next page (pick a seat)
         }else if(view == this.binding.btnFind){

@@ -168,7 +168,8 @@ public class PaymentFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         this.binding.btnConfirmPayment.setEnabled(false);
-        new PostOrderTask(this.getContext(), this.activity, this.user.getToken()).execute(this.order.getCourse_id(), formatSeats().replaceAll("\\s","").replaceAll("s", ""));
+        new PostOrderTask(this.getContext(), this.activity, this.user.getToken())
+                .execute(this.order.getCourse_id(), formatSeats().replaceAll("\\s","").replaceAll("s", ""));
     }
 
 

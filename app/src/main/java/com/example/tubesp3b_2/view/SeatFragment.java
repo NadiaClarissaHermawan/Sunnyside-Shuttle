@@ -6,8 +6,6 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -178,7 +176,8 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     //setup seats canvas
     public void setupSeatsCanvas(){
         if(this.canvas == null){
-            this.bitmap = Bitmap.createBitmap(this.binding.seatsCanvas.getWidth(), this.binding.seatsCanvas.getHeight(), Bitmap.Config.ARGB_8888);
+            this.bitmap = Bitmap.createBitmap(this.binding.seatsCanvas.getWidth(),
+                    this.binding.seatsCanvas.getHeight(), Bitmap.Config.ARGB_8888);
             this.binding.seatsCanvas.setImageBitmap(bitmap);
             this.canvas = new Canvas(bitmap);
         }
@@ -356,7 +355,7 @@ public class SeatFragment extends Fragment implements View.OnClickListener, View
     }
 
 
-    //set on shake listener
+    //set on shake listener library
     public void setupShakeListener(){
         ShakeDetector.create(this.getContext(), new ShakeDetector.OnShakeListener() {
             @Override
