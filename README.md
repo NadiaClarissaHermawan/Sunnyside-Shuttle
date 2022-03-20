@@ -1,9 +1,4 @@
 # Tubes P3B-2 
-TODO : fitur tambahan (anyone? p.s. contact me 1st if u want to add somethin), Dokumentasi (on progress too), Video Presentasi
-
-# Deadline
-- Source code : 22 Des 2021 (2 days left) 
-- Dokum & Video : 3 Jan 2022
 
 # Kelompok F Kelas A 
 <pre>
@@ -30,6 +25,3 @@ TODO : fitur tambahan (anyone? p.s. contact me 1st if u want to add somethin), D
 - Shake to change car type
 - Discount
 </pre>
-
-
-
