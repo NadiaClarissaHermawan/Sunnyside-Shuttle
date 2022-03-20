@@ -225,7 +225,8 @@ public class SplashScreenActivity extends AppCompatActivity implements IBoarding
                     OnBoarding2Fragment tab2 = OnBoarding2Fragment.newInstance(this.activity);
                     return tab2;
                 case 2:
-                    tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE), getBaseContext(), this.activity, db);
+                    tab3 = LoginFragment.newInstance((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE),
+                            getBaseContext(), this.activity, db);
                     return tab3;
             }
             return null;
